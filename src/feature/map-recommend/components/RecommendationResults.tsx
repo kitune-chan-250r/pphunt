@@ -49,8 +49,8 @@ const EmptyState = ({
       <Typography variant="body2" color="text.secondary">
         {isDone
           ? activeTab === 0
-            ? "条件に合う未プレイ譜面は見つかりませんでした。"
-            : "周辺プレイヤーより高いスコアの譜面は見つかりませんでした。"
+            ? "周辺プレイヤーより高いスコアの譜面は見つかりませんでした。"
+            : "条件に合う未プレイ譜面は見つかりませんでした。"
           : "分析を開始しています…"}
       </Typography>
     )}
@@ -63,7 +63,7 @@ export const RecommendationResults = ({
 }: RecommendationResultsProps) => {
   const [activeTab, setActiveTab] = useState(0);
   const recommendations =
-    activeTab === 0 ? analysis.unplayed : analysis.improvements;
+    activeTab === 0 ? analysis.improvements : analysis.unplayed;
 
   return (
     <Stack spacing={{ xs: 2.5, sm: 3 }}>
@@ -112,12 +112,12 @@ export const RecommendationResults = ({
           }}
         >
           <Tab
-            label={`未プレイ・PP候補 (${analysis.unplayed.length})`}
+            label={`スコア更新候補 (${analysis.improvements.length})`}
             id="recommend-tab-0"
             aria-controls="recommend-panel-0"
           />
           <Tab
-            label={`スコア更新候補 (${analysis.improvements.length})`}
+            label={`未プレイ・PP候補 (${analysis.unplayed.length})`}
             id="recommend-tab-1"
             aria-controls="recommend-panel-1"
           />
