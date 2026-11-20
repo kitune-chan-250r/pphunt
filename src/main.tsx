@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { PPHuntPageV2 } from "./feature/player-search/pages/PPHuntPageV2.tsx";
+import { MapRecommend } from "./feature/map-recommend/components/MapRecommend";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PPHuntPageV2 />
+    <MapRecommend playerId="76561198152408857" />
   </StrictMode>,
 );
