@@ -25,6 +25,7 @@ export interface PlayerSearchBarV2Props {
   onChange: (nextValue: string) => void;
   onClear: () => void;
   onSubmit: () => void;
+  onPlayerSelect?: (player: Player) => void;
 }
 
 /**
@@ -40,6 +41,7 @@ export const PlayerSearchBarV2 = ({
   onChange,
   onClear,
   onSubmit,
+  onPlayerSelect,
 }: PlayerSearchBarV2Props) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
@@ -145,7 +147,14 @@ export const PlayerSearchBarV2 = ({
         }
         value={null}
         inputValue={value}
-        onInputChange={(_, nextValue) => onChange(nextValue)}
+        onInputChange={(_, nextValue, reason) => {
+          if (reason === "input") onChange(nextValue);
+        }}
+        onChange={(_, selectedPlayer) => {
+          if (selectedPlayer && typeof selectedPlayer !== "string") {
+            onPlayerSelect?.(selectedPlayer);
+          }
+        }}
         renderInput={renderInput}
         renderOption={(props, option) => (
           <PlayerSearchOptionV2
@@ -175,7 +184,7 @@ export const PlayerSearchBarV2 = ({
         freeSolo
       />
 
-      <Stack
+      {/* <Stack
         direction="row"
         spacing={1.5}
         sx={{ mt: 3.5, justifyContent: "center" }}
@@ -191,7 +200,7 @@ export const PlayerSearchBarV2 = ({
         >
           クリア
         </Button>
-      </Stack>
+      </Stack> */}
     </Stack>
   );
 };

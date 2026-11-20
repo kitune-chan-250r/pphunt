@@ -1,18 +1,7 @@
-import { useMemo } from "react";
 import "@fontsource-variable/geist";
-import {
-  Box,
-  Container,
-  CssBaseline,
-  Stack,
-  ThemeProvider,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import { motion, useReducedMotion } from "framer-motion";
-import { createPPHuntThemeV2 } from "../../player-search/components/pphuntThemeV2";
 import { AnalysisProgressCard } from "./AnalysisProgressCard";
-import { MapRecommendHeader } from "./MapRecommendHeader";
 import { RecommendationResults } from "./RecommendationResults";
 import { useMapRecommendations } from "../hooks/useMapRecommendations";
 
@@ -21,87 +10,65 @@ interface MapRecommendProps {
 }
 
 export const MapRecommend = ({ playerId }: MapRecommendProps) => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const isMobile = useMediaQuery("(max-width:599.95px)");
   const reduceMotion = useReducedMotion();
   const shouldAnimate = !reduceMotion;
   const riseDistance = shouldAnimate ? (isMobile ? 8 : 12) : 0;
   const entranceEase = [0.22, 1, 0.36, 1] as const;
-  const theme = useMemo(
-    () => createPPHuntThemeV2(prefersDarkMode ? "dark" : "light"),
-    [prefersDarkMode],
-  );
   const analysis = useMapRecommendations(playerId);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          minHeight: "100svh",
-          bgcolor: "background.default",
-          color: "text.primary",
-        }}
-      >
-        <MapRecommendHeader isDark={prefersDarkMode} />
-
-        <Container
-          maxWidth="lg"
-          component="main"
-          sx={{ px: { xs: 2, sm: 3 }, py: { xs: 4, sm: 6 } }}
+    <Box
+      component="section"
+      aria-label="譜面のおすすめ"
+      sx={{ color: "text.primary" }}
+    >
+      <Stack spacing={{ xs: 3, sm: 4 }} sx={{ py: { xs: 4, sm: 6 } }}>
+        {/* <motion.div
+          initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: shouldAnimate ? 0.8 : 0,
+            ease: entranceEase,
+          }}
         >
-          <Stack spacing={{ xs: 3, sm: 4 }}>
-            <motion.div
-              initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: shouldAnimate ? 0.8 : 0,
-                ease: entranceEase,
-              }}
-            >
-              <Typography
-                component="h1"
-                sx={{
-                  fontSize: { xs: "1.625rem", sm: "1.875rem" },
-                  fontWeight: 500,
-                  lineHeight: 1.25,
-                }}
-              >
-                周辺プレイヤーの譜面を分析
-              </Typography>
-            </motion.div>
+          <Typography
+            component="h2"
+            sx={{
+              fontSize: { xs: "1.625rem", sm: "1.875rem" },
+              fontWeight: 500,
+              lineHeight: 1.25,
+            }}
+          >
+            周辺プレイヤーの譜面を分析
+          </Typography>
+        </motion.div> */}
 
-            <motion.div
-              initial={
-                shouldAnimate ? { opacity: 0, y: riseDistance } : false
-              }
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: shouldAnimate ? 1 : 0,
-                delay: shouldAnimate ? 0.1 : 0,
-                ease: entranceEase,
-              }}
-            >
-              <AnalysisProgressCard analysis={analysis} />
-            </motion.div>
-            <motion.div
-              initial={
-                shouldAnimate ? { opacity: 0, y: riseDistance } : false
-              }
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{
-                duration: shouldAnimate ? 1 : 0,
-                delay: shouldAnimate ? 0.1 : 0,
-                ease: entranceEase,
-              }}
-            >
-              <RecommendationResults analysis={analysis} playerId={playerId} />
-            </motion.div>
-          </Stack>
-        </Container>
-      </Box>
-    </ThemeProvider>
+        <motion.div
+          initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: shouldAnimate ? 1 : 0,
+            delay: shouldAnimate ? 0.1 : 0,
+            ease: entranceEase,
+          }}
+        >
+          <AnalysisProgressCard analysis={analysis} />
+        </motion.div>
+        <motion.div
+          initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{
+            duration: shouldAnimate ? 1 : 0,
+            delay: shouldAnimate ? 0.1 : 0,
+            ease: entranceEase,
+          }}
+        >
+          <RecommendationResults analysis={analysis} playerId={playerId} />
+        </motion.div>
+      </Stack>
+    </Box>
   );
 };

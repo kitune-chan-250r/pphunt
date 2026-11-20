@@ -14,6 +14,7 @@ export interface PlayerSearchInterface {
   searchError: string | null;
   searchPlayerWithDebounce: DebouncedState<(value: string) => Promise<void>>;
   handlePlayerSearchStringChange: (searchString: string) => void;
+  setPlayerSearchString: (searchString: string) => void;
   clearSearch: () => void;
 }
 
@@ -69,6 +70,18 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
     [searchPlayerWithDebounce],
   );
 
+  const setPlayerSearchStringWithoutSearch = useCallback(
+    (searchString: string) => {
+      searchPlayerWithDebounce.cancel();
+      requestSeq.current += 1;
+      setPlayerSearchString(searchString);
+      setPlayerSearchResults([]);
+      setIsSearching(false);
+      setSearchError(null);
+    },
+    [searchPlayerWithDebounce],
+  );
+
   const clearSearch = useCallback(() => {
     searchPlayerWithDebounce.cancel();
     requestSeq.current += 1;
@@ -85,6 +98,7 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
     searchError,
     searchPlayerWithDebounce,
     handlePlayerSearchStringChange,
+    setPlayerSearchString: setPlayerSearchStringWithoutSearch,
     clearSearch,
   };
 };
