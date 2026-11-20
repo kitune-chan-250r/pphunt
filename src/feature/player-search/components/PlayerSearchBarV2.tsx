@@ -15,12 +15,13 @@ import { ClearIconV2, SearchIconV2, SpinnerV2 } from "./PPHuntIconsV2";
 import { PlayerSearchOptionV2 } from "./PlayerSearchOptionV2";
 import { LoadingListboxV2 } from "./LoadingListboxV2";
 import { designTokens } from "./pphuntThemeV2";
-import type { Player } from "../types/PlayerSearchResult";
+import type { Player } from "../../scoresaber/types/PlayerSearchResult";
 
 export interface PlayerSearchBarV2Props {
   value: string;
   autoCompleteOptions: Player[];
   isSearching?: boolean;
+  errorMessage?: string | null;
   onChange: (nextValue: string) => void;
   onClear: () => void;
   onSubmit: () => void;
@@ -35,6 +36,7 @@ export const PlayerSearchBarV2 = ({
   value,
   autoCompleteOptions,
   isSearching = false,
+  errorMessage = null,
   onChange,
   onClear,
   onSubmit,
@@ -162,11 +164,12 @@ export const PlayerSearchBarV2 = ({
         }
         slots={{ listbox: LoadingListboxV2 }}
         noOptionsText={
-          value.length < 3
+          errorMessage ??
+          (value.length < 3
             ? "3文字以上で検索"
             : isSearching
               ? "検索中…"
-              : "該当するプレイヤーがありません"
+              : "該当するプレイヤーがありません")
         }
         sx={{ width: "100%" }}
         freeSolo

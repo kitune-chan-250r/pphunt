@@ -12,11 +12,12 @@ import {
   type AutocompleteRenderInputParams,
 } from "@mui/material";
 import { ClearIcon, SearchIcon } from "./PPHuntIcons";
-import type { Player } from "../types/PlayerSearchResult";
+import type { Player } from "../../scoresaber/types/PlayerSearchResult";
 
 interface PlayerSearchBarProps {
   value: string;
   autoCompleteOptions: Player[];
+  errorMessage?: string | null;
   onChange: (nextValue: string) => void;
   onClear: () => void;
   onSubmit: () => void;
@@ -25,6 +26,7 @@ interface PlayerSearchBarProps {
 export const PlayerSearchBar = ({
   value,
   autoCompleteOptions,
+  errorMessage = null,
   onChange,
   onClear,
   onSubmit,
@@ -161,6 +163,9 @@ export const PlayerSearchBar = ({
         inputValue={value}
         onInputChange={(_, nextValue) => onChange(nextValue)}
         renderInput={(params) => renderInput(params)}
+        noOptionsText={
+          errorMessage ?? "該当するプレイヤーがありません"
+        }
         sx={{ width: "100%" }}
         freeSolo
       />

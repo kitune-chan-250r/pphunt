@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import type { HTMLAttributes, Key } from "react";
 import { CountryFlagV2 } from "./CountryFlagV2";
 import { designTokens } from "./pphuntThemeV2";
-import type { Player } from "../types/PlayerSearchResult";
+import type { Player } from "../../scoresaber/types/PlayerSearchResult";
 
 export interface PlayerSearchOptionV2Props {
   props: HTMLAttributes<HTMLLIElement> & { key: Key };

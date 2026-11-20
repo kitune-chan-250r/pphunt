@@ -1,5 +1,10 @@
 # React + TypeScript + Vite
 
+## Feature structure
+
+- `src/feature/player-search/` contains the player-search pages and UI components.
+- `src/feature/scoresaber/` contains ScoreSaber data hooks and response types used by the search UI.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
