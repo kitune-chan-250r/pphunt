@@ -39,7 +39,7 @@ export const PPHuntWordmarkV2 = ({
           display: "grid",
           gridTemplateColumns: `repeat(${PIXEL_ROWS[0].length}, ${cell}px)`,
           gridAutoRows: `${cell}px`,
-          gap: variant === "hero" ? 2 : 1,
+          gap: variant === "hero" ? "2px" : "1px",
         }}
       >
         {PIXEL_ROWS.flatMap((row, rowIndex) =>
