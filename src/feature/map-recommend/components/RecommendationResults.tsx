@@ -6,7 +6,9 @@ import {
   Tab,
   Tabs,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
+import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import { MapRecommendationCard } from "./MapRecommendationCard";
@@ -62,6 +64,11 @@ export const RecommendationResults = ({
   playerId,
 }: RecommendationResultsProps) => {
   const [activeTab, setActiveTab] = useState(0);
+  const isMobile = useMediaQuery("(max-width:599.95px)");
+  const reduceMotion = useReducedMotion();
+  const shouldAnimate = !reduceMotion;
+  const riseDistance = shouldAnimate ? (isMobile ? 8 : 12) : 0;
+  const layoutEase = [0.22, 1, 0.36, 1] as const;
   const recommendations =
     activeTab === 0 ? analysis.improvements : analysis.unplayed;
 
@@ -130,12 +137,28 @@ export const RecommendationResults = ({
         aria-labelledby={`recommend-tab-${activeTab}`}
         spacing={1.5}
       >
-        {recommendations.map((recommendation) => (
-          <MapRecommendationCard
-            key={recommendation.leaderboard.id}
-            recommendation={recommendation}
-          />
-        ))}
+        <LayoutGroup>
+          {recommendations.map((recommendation) => (
+            <motion.div
+              key={recommendation.leaderboard.id}
+              layout={shouldAnimate ? "position" : false}
+              initial={
+                shouldAnimate ? { opacity: 0, y: riseDistance } : false
+              }
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: shouldAnimate ? 0.45 : 0,
+                ease: layoutEase,
+                layout: {
+                  duration: shouldAnimate ? 0.45 : 0,
+                  ease: layoutEase,
+                },
+              }}
+            >
+              <MapRecommendationCard recommendation={recommendation} />
+            </motion.div>
+          ))}
+        </LayoutGroup>
 
         {recommendations.length === 0 && !analysis.error && (
           <EmptyState
