@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { createScoreSaberClient } from "./scoreSaberClient";
 import { usePlayerRepository } from "./usePlayerRepository";
 import { usePlayerScoreRepository } from "./usePlayerScoreRepository";
@@ -13,14 +12,13 @@ export interface ScoreSaberInterface {
   leaderboardRepository: ReturnType<typeof useLeaderboardRepository>;
 }
 
+const client = createScoreSaberClient();
+
 /**
  * Data-access layer for ScoreSaber API v2.
- * A single shared client per hook instance means responses are cached and
- * requests go through a small concurrency window instead of firing in bulk.
+ * A single app-wide client shares its cache and request pacing across callers.
  */
 export const useScoreSaber = (): ScoreSaberInterface => {
-  const client = useMemo(() => createScoreSaberClient({ concurrency: 6 }), []);
-
   const playerRepository = usePlayerRepository(client);
   const playerScoreRepository = usePlayerScoreRepository(client);
   const leaderboardRepository = useLeaderboardRepository(client);

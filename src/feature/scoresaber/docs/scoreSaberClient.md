@@ -11,7 +11,7 @@ export const SCORESABER_BASE_URL = "https://scoresaber.com";
 export const MAX_LIMIT = 100; // v2 のページネーション上限
 
 export interface ScoreSaberClientOptions {
-  concurrency?: number; // 既定 6
+  concurrency?: number; // 既定 1
   maxRetries?: number; // 既定 3（初回失敗後の追加試行数）
   requestTimeoutMs?: number; // 既定 15000
   useCache?: boolean; // 既定 true
@@ -34,29 +34,22 @@ export const apiErrorBody: (error: unknown) => ApiErrorResponse | null;
 
 ## 解説
 
-### 1. 同時数制限（FIFO リミッター）
+### 1. リクエスト頻度と同時数の制限（FIFO リミッター）
 
-200人のトップスコアを取得する処理で `Promise.all` を使うと、200リクエストが一気に飛ぶ。ScoreSaber はレート制限を持つため、これは 429 を大量に発生させる。
+200人のトップスコアを取得する処理では、同時数だけを制限しても、応答が速い間は短時間に多数のリクエストが送信される。添付HARでは、約6秒で99件のプレイヤー要求が成功した後、429が連続し、`Retry-After` ヘッダーもありませんでした。
 
-`createLimiter` は「同時に `concurrency` 個まで」の FIFO キューで、タスクを順に流す。
+FIFO キューは `concurrency` 以下の同時実行数に加え、リクエスト開始間隔を1秒以上に保つ。同じクライアントから短時間に要求が集中するのを防ぐ。
 
 ```ts
 const limit = createLimiter(concurrency);
-const data = await limit(() => requestOnce(url));
+const data = await limit.run(() => requestOnce(url));
 ```
 
 - キューに積まれた順に実行される（順序が保証される）
-- 1つのタスクが終わると `pump()` が次のタスクを起動する
-- 200リクエストを同時6で流すと、体感的には「6本ずつ × 34バッチ」になる
+- 同時数に空きがあっても、前回の開始から既定1秒が経つまで次の要求を開始しない
+- 429を受け取ると、同じクライアントのキュー全体を `Retry-After`（なければ60秒）の期間だけ停止する
 
-`concurrency` は `ScoreSaberClientOptions` で変えられる。分析層で「200人の取得は時間がかかるので同時数を増やしたいが、個別スコア確認は静かに流したい」という場合は、**用途別に別クライアントを作る**のが正しい。同じクライアントを共有するとキャッシュは効くが、同時数が混ざる。
-
-```ts
-// 大量取得用：同時数をやや大きめ
-const bulkClient = createScoreSaberClient({ concurrency: 10 });
-// 個別確認用：控えめ
-const detailClient = createScoreSaberClient({ concurrency: 3 });
-```
+アプリでは `useScoreSaber` がモジュールスコープのクライアントを共有する。別々のクライアントを並行して作ると、それぞれ独立したキューになるため、同じレート制限を共有するAPIに対しては避ける。
 
 ### 2. リトライ
 
@@ -64,18 +57,18 @@ const detailClient = createScoreSaberClient({ concurrency: 3 });
 
 | 状況                                | リトライ   | 理由                                             |
 | ----------------------------------- | ---------- | ------------------------------------------------ |
-| 429                                 | する       | レート制限。`Retry-After` を尊重                 |
+| 429                                 | する       | `Retry-After` を尊重し、キュー全体を停止          |
 | 5xx                                 | する       | 一時的なサーバ障害                               |
 | ネットワークエラー（response なし） | する       | 一時障害                                         |
 | **404**                             | **しない** | 「未プレイ」という正しい回答。リトライしても無駄 |
 | 400 / 401                           | しない     | パラメータまたは認証の問題。リトライで解決しない |
 
-`retryDelayMs` は 429 の `Retry-After` ヘッダーを優先し、それ以外では指数バックオフ（1s → 2s → 4s、上限8s）を使う。
+`Retry-After` は秒数とHTTP日時形式の両方を解釈する。ヘッダーがない429ではキュー全体を60秒停止し、個々の再試行は指数バックオフ（1s → 2s → 4s、上限8s）を行う。
 
 ```ts
 for (let attempt = 0; ; attempt += 1) {
   try {
-    const data = await limit(() => requestOnce(url));
+    const data = await limit.run(() => requestOnce(url));
     if (caching) cache.set(url, data);
     return data as T;
   } catch (error) {
@@ -85,7 +78,7 @@ for (let attempt = 0; ; attempt += 1) {
 }
 ```
 
-注意点：リトライは**リミッターの内側**で待たない。`wait()` は `limit()` の外（`get` のループ内）で行われるため、バックオフ中にスロットが占有されない。
+注意点：リトライは**リミッターの内側**で待たない。`wait()` は `limit.run()` の外（`get` のループ内）で行われるため、バックオフ中にスロットが占有されない。429後は再試行の待機が終わっても、共有キューの停止が解除されるまで送信されない。
 
 ### 3. キャッシュ
 

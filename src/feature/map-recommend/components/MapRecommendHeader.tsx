@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { PPHuntWordmarkV2 } from "../../player-search/components/PPHuntWordmarkV2";
 import { designTokens } from "../../player-search/components/pphuntThemeV2";
 
@@ -10,11 +10,21 @@ export const MapRecommendHeader = ({ isDark }: MapRecommendHeaderProps) => (
   <Box
     component="header"
     sx={{
-      px: { xs: 2, sm: 3 },
-      py: 1.5,
+      py: 1,
       borderBottom: `1px solid ${isDark ? designTokens.hairline.dark : designTokens.hairline.light}`,
     }}
   >
-    <PPHuntWordmarkV2 isDark={isDark} variant="header" />
+    <Container
+      maxWidth="lg"
+      disableGutters
+      sx={{
+        px: { xs: 2, sm: 3 },
+        minHeight: 40,
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <PPHuntWordmarkV2 isDark={isDark} variant="header" />
+    </Container>
   </Box>
 );

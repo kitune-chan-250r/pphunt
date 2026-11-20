@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useScoreSaber } from "../../scoresaber/hooks/useScoreSaber";
 import type {
   Leaderboard,
-  RankedPlayer,
+  PlayerProfile,
   Score,
 } from "../../scoresaber/types/ScoreSaber";
 
@@ -32,7 +32,7 @@ type AnalysisPhase =
 
 interface MapRecommendationsState {
   playerId: string;
-  player: RankedPlayer | null;
+  player: PlayerProfile | null;
   unplayed: MapRecommendation[];
   improvements: MapRecommendation[];
   phase: AnalysisPhase;

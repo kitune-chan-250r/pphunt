@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import "@fontsource-variable/geist";
 import {
   Box,
   Container,
@@ -8,9 +9,8 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import {
-  createPPHuntThemeV2,
-} from "../../player-search/components/pphuntThemeV2";
+import { motion, useReducedMotion } from "framer-motion";
+import { createPPHuntThemeV2 } from "../../player-search/components/pphuntThemeV2";
 import { AnalysisProgressCard } from "./AnalysisProgressCard";
 import { MapRecommendHeader } from "./MapRecommendHeader";
 import { RecommendationResults } from "./RecommendationResults";
@@ -22,6 +22,11 @@ interface MapRecommendProps {
 
 export const MapRecommend = ({ playerId }: MapRecommendProps) => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const isMobile = useMediaQuery("(max-width:599.95px)");
+  const reduceMotion = useReducedMotion();
+  const shouldAnimate = !reduceMotion;
+  const riseDistance = shouldAnimate ? (isMobile ? 8 : 12) : 0;
+  const entranceEase = [0.22, 1, 0.36, 1] as const;
   const theme = useMemo(
     () => createPPHuntThemeV2(prefersDarkMode ? "dark" : "light"),
     [prefersDarkMode],
@@ -40,22 +45,60 @@ export const MapRecommend = ({ playerId }: MapRecommendProps) => {
       >
         <MapRecommendHeader isDark={prefersDarkMode} />
 
-        <Container maxWidth="md" component="main" sx={{ py: { xs: 4, sm: 6 } }}>
-          <Stack spacing={3}>
-            <Box>
+        <Container
+          maxWidth="lg"
+          component="main"
+          sx={{ px: { xs: 2, sm: 3 }, py: { xs: 4, sm: 6 } }}
+        >
+          <Stack spacing={{ xs: 3, sm: 4 }}>
+            <motion.div
+              initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: shouldAnimate ? 0.8 : 0,
+                ease: entranceEase,
+              }}
+            >
               <Typography
-                variant="h5"
-                sx={{ fontWeight: 600, letterSpacing: "-0.03em" }}
+                component="h1"
+                sx={{
+                  fontSize: { xs: "1.625rem", sm: "1.875rem" },
+                  fontWeight: 500,
+                  lineHeight: 1.25,
+                }}
               >
                 周辺プレイヤーの譜面を分析
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 0.75 }}>
-                近いGlobal Rankのプレイヤーのトップスコアから、次に挑戦する譜面を探します。
-              </Typography>
-            </Box>
+            </motion.div>
 
-            <AnalysisProgressCard analysis={analysis} />
-            <RecommendationResults analysis={analysis} playerId={playerId} />
+            <motion.div
+              initial={
+                shouldAnimate ? { opacity: 0, y: riseDistance } : false
+              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: shouldAnimate ? 1 : 0,
+                delay: shouldAnimate ? 0.1 : 0,
+                ease: entranceEase,
+              }}
+            >
+              <AnalysisProgressCard analysis={analysis} />
+            </motion.div>
+            <motion.div
+              initial={
+                shouldAnimate ? { opacity: 0, y: riseDistance } : false
+              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0 }}
+              transition={{
+                duration: shouldAnimate ? 1 : 0,
+                delay: shouldAnimate ? 0.1 : 0,
+                ease: entranceEase,
+              }}
+            >
+              <RecommendationResults analysis={analysis} playerId={playerId} />
+            </motion.div>
           </Stack>
         </Container>
       </Box>

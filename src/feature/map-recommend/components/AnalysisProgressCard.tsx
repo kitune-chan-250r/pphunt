@@ -7,14 +7,13 @@ import {
 } from "@mui/material";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
+import { PlayerProfileCard } from "./PlayerProfileCard";
 
 type MapRecommendationsAnalysis = ReturnType<typeof useMapRecommendations>;
 
 interface AnalysisProgressCardProps {
   analysis: MapRecommendationsAnalysis;
 }
-
-const numberFormat = new Intl.NumberFormat("en-US");
 
 const getProgressValue = (analysis: MapRecommendationsAnalysis) => {
   if (analysis.phase === "scores" && analysis.totalPlayers > 0) {
@@ -45,42 +44,49 @@ export const AnalysisProgressCard = ({
   const progressValue = getProgressValue(analysis);
 
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        px: 2,
-        py: 1.5,
-        bgcolor: "background.paper",
-        borderColor: "divider",
-      }}
-    >
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        spacing={1}
-        sx={{ justifyContent: "space-between", alignItems: { sm: "center" } }}
+    <Stack spacing={1.5}>
+      <PlayerProfileCard player={analysis.player} />
+      <Card
+        variant="outlined"
+        sx={{
+          px: { xs: 2, sm: 3 },
+          py: { xs: 2, sm: 2.5 },
+          bgcolor: "background.paper",
+          borderColor: "divider",
+          borderRadius: "14px",
+        }}
       >
-        <Box>
-          <Typography sx={{ fontWeight: 600 }}>
-            {analysis.player.name}
-          </Typography>
-          <Typography variant="caption" color="text.secondary">
-            Global Rank #{numberFormat.format(analysis.player.stats.rank)}
-          </Typography>
-        </Box>
-        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={1}
+          sx={{ justifyContent: "space-between", alignItems: { sm: "center" } }}
+        >
+          <Box>
+            <Typography variant="caption" color="text.secondary">
+              分析状況
+            </Typography>
+            <Typography variant="body2" color="text.primary" role="status">
+              {getStatusLabel(analysis)}
+            </Typography>
+          </Box>
           {analysis.isLoading && <SpinnerV2 size={16} />}
-          <Typography variant="body2" color="text.secondary" role="status">
-            {getStatusLabel(analysis)}
-          </Typography>
         </Stack>
-      </Stack>
-      {analysis.isLoading && (
-        <LinearProgress
-          variant={progressValue === undefined ? "indeterminate" : "determinate"}
-          value={progressValue}
-          sx={{ mt: 1.5, borderRadius: 4, height: 4 }}
-        />
-      )}
-    </Card>
+        {analysis.isLoading && (
+          <LinearProgress
+            variant={
+              progressValue === undefined ? "indeterminate" : "determinate"
+            }
+            value={progressValue}
+            sx={{
+              mt: 2,
+              borderRadius: 2,
+              height: 4,
+              bgcolor: "action.hover",
+              "& .MuiLinearProgress-bar": { borderRadius: 2 },
+            }}
+          />
+        )}
+      </Card>
+    </Stack>
   );
 };

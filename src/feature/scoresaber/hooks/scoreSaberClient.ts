@@ -24,35 +24,71 @@ export interface ScoreSaberClient {
   clearCache(): void;
 }
 
-const DEFAULT_CONCURRENCY = 6;
+const DEFAULT_CONCURRENCY = 1;
 const DEFAULT_MAX_RETRIES = 3;
 const DEFAULT_TIMEOUT_MS = 15_000;
+const DEFAULT_MINIMUM_REQUEST_INTERVAL_MS = 1_000;
+const DEFAULT_RATE_LIMIT_COOLDOWN_MS = 60_000;
 
-/** Minimal FIFO concurrency limiter (avoids firing 200 requests at once). */
-const createLimiter = (concurrency: number) => {
+interface RequestLimiter {
+  run<T>(task: () => Promise<T>): Promise<T>;
+  pause(durationMs: number): void;
+}
+
+/** FIFO limiter for both in-flight concurrency and request start frequency. */
+const createLimiter = (concurrency: number): RequestLimiter => {
   const queue: Array<() => void> = [];
   let active = 0;
+  let nextRequestAt = 0;
+  let pausedUntil = 0;
+  let timer: ReturnType<typeof setTimeout> | undefined;
 
   const pump = () => {
-    if (active >= concurrency) return;
+    if (timer !== undefined || active >= concurrency || queue.length === 0) {
+      return;
+    }
+
+    const waitMs = Math.max(nextRequestAt, pausedUntil) - Date.now();
+    if (waitMs > 0) {
+      timer = setTimeout(() => {
+        timer = undefined;
+        pump();
+      }, waitMs);
+      return;
+    }
+
     const run = queue.shift();
     if (!run) return;
+
     active += 1;
+    nextRequestAt = Date.now() + DEFAULT_MINIMUM_REQUEST_INTERVAL_MS;
     run();
+    pump();
   };
 
-  return <T>(task: () => Promise<T>): Promise<T> =>
-    new Promise<T>((resolve, reject) => {
-      queue.push(() => {
-        task()
-          .then(resolve, reject)
-          .finally(() => {
-            active -= 1;
-            pump();
-          });
-      });
+  return {
+    run: <T>(task: () => Promise<T>): Promise<T> =>
+      new Promise<T>((resolve, reject) => {
+        queue.push(() => {
+          task()
+            .then(resolve, reject)
+            .finally(() => {
+              active -= 1;
+              pump();
+            });
+        });
+        pump();
+      }),
+    pause: (durationMs) => {
+      if (durationMs <= 0) return;
+      pausedUntil = Math.max(pausedUntil, Date.now() + durationMs);
+      if (timer !== undefined) {
+        clearTimeout(timer);
+        timer = undefined;
+      }
       pump();
-    });
+    },
+  };
 };
 
 const isRetryable = (error: unknown): boolean => {
@@ -65,14 +101,26 @@ const isRetryable = (error: unknown): boolean => {
   return status === undefined || status >= 500;
 };
 
-const retryDelayMs = (error: unknown, attempt: number): number => {
-  if (axios.isAxiosError(error)) {
-    const header = error.response?.headers?.["retry-after"];
-    const retryAfter = Number(header);
-    if (Number.isFinite(retryAfter) && retryAfter > 0) {
-      return retryAfter * 1000;
-    }
+const getRetryAfterMs = (error: unknown): number | undefined => {
+  if (!axios.isAxiosError(error)) return undefined;
+
+  const header = error.response?.headers?.["retry-after"];
+  if (typeof header !== "string" && typeof header !== "number") {
+    return undefined;
   }
+
+  const seconds = Number(header);
+  if (Number.isFinite(seconds)) return Math.max(seconds, 0) * 1000;
+
+  const retryAt = Date.parse(String(header));
+  return Number.isNaN(retryAt)
+    ? undefined
+    : Math.max(retryAt - Date.now(), 0);
+};
+
+const retryDelayMs = (error: unknown, attempt: number): number => {
+  const retryAfter = getRetryAfterMs(error);
+  if (retryAfter !== undefined && retryAfter > 0) return retryAfter;
   return Math.min(2 ** attempt * 500, 8000);
 };
 
@@ -94,11 +142,6 @@ export const createScoreSaberClient = (
   const cache = new Map<string, unknown>();
   const caching = options.useCache ?? true;
 
-  const requestOnce = async (url: string): Promise<unknown> => {
-    const response = await http.get(url);
-    return response.data;
-  };
-
   const get = async <T>(
     path: string,
     params: Record<string, string | number | boolean> = {},
@@ -114,9 +157,23 @@ export const createScoreSaberClient = (
       return cache.get(url) as T;
     }
 
+    const requestOnce = async (): Promise<unknown> => {
+      try {
+        const response = await http.get(url);
+        return response.data;
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 429) {
+          limit.pause(
+            getRetryAfterMs(error) || DEFAULT_RATE_LIMIT_COOLDOWN_MS,
+          );
+        }
+        throw error;
+      }
+    };
+
     for (let attempt = 0; ; attempt += 1) {
       try {
-        const data = await limit(() => requestOnce(url));
+        const data = await limit.run(requestOnce);
         if (caching) cache.set(url, data);
         return data as T;
       } catch (error) {

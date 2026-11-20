@@ -128,6 +128,13 @@ export type LeaderboardScoreEntry = Score;
  */
 export type RankedPlayer = Player;
 
+/** Additional fields returned by `GET /api/v2/players/{id}`. */
+export type PlayerProfile = Player & {
+  createdAt?: string;
+  followers?: number;
+  following?: number;
+};
+
 /** Error body returned by v2 endpoints (e.g. 404 for an unplayed leaderboard). */
 export interface ApiErrorResponse {
   statusCode: number;

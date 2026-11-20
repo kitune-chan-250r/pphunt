@@ -19,13 +19,13 @@ export const useScoreSaber = (): ScoreSaberInterface;
 
 ## 解説
 
-### 共有クライアントを1回だけ作る
+### アプリ全体でクライアントを共有する
 
 ```ts
-const client = useMemo(() => createScoreSaberClient({ concurrency: 6 }), []);
+const client = createScoreSaberClient();
 ```
 
-`useMemo` でフックの生存中1回だけクライアントを作る。ここで毎回 `createScoreSaberClient()` を呼ぶと、リポジトリごとに別々のキャッシュと別々のリミッターを持つことになり、キャッシュが効かず同時数も分散する。
+クライアントはモジュールスコープで一度だけ作る。検索や分析など複数のコンポーネントが同時に使っても、キャッシュとリクエスト間隔制御、429後の停止期間を共有できる。コンポーネントごとにクライアントを作るとキューが分かれ、アプリ全体の送信頻度を抑えられない。
 
 各リポジトリは引数でクライアントを受け取る（`usePlayerRepository(client)`）。既定引数で単独生成もできるが、ファサード経由で使う限りは共有クライアントが渡される。
 
@@ -208,22 +208,22 @@ export const ComparisonPanel = ({ playerId }: { playerId: string }) => {
 ## 注意点
 
 - **フックの返り値は安定しない**。`useScoreSaber()` を呼ぶコンポーネントが再レンダリングすると、返されるオブジェクトは毎回新しくなる。`useEffect` の依存配列に `playerRepository` を入れると、リポジトリのメソッドは `useCallback` で安定化されているため実害はないが、ファサードのオブジェクト自体を依存にすると再実行される。依存には使うメソッド単体を入れるか、`useMemo` で包んだ上で使う。
-- **キャッシュはフックの生存中に限定される**。ページ遷移でファサードが作り直されるとキャッシュは失われる。200人分のトップ50を「一度取得してキャッシュし、以後は比較だけ」という構成にしたいなら、クライアントをモジュールスコープで持つ（フックの外で `createScoreSaberClient()` を呼ぶ）のが確実。
+- **キャッシュはアプリの実行中保持される**。モジュールスコープの共有クライアントを使うため、フックやページが再生成されても同じURLへの成功済みリクエストは再利用される。
 
 ```ts
-// モジュールスコープの共有クライアント：フックの再生成を跨いでキャッシュが残る
-const sharedClient = createScoreSaberClient({ concurrency: 6 });
+// useScoreSaber.ts
+const client = createScoreSaberClient();
 
 export const useScoreSaber = (): ScoreSaberInterface => {
-  const playerRepository = usePlayerRepository(sharedClient);
-  const playerScoreRepository = usePlayerScoreRepository(sharedClient);
-  const leaderboardRepository = useLeaderboardRepository(sharedClient);
+  const playerRepository = usePlayerRepository(client);
+  const playerScoreRepository = usePlayerScoreRepository(client);
+  const leaderboardRepository = useLeaderboardRepository(client);
 
   return { playerRepository, playerScoreRepository, leaderboardRepository };
 };
 ```
 
-- 200人のトップ50取得（200リクエスト）と個別スコア確認（譜面数分）で同時数の要求が違う。大量取得用に `concurrency` を上げた別クライアントを用意するとよい。
+- 大量取得と個別スコア確認のどちらも同じキューを通す。用途別クライアントを並行して作るとリクエスト頻度制御が分散するため、アプリ内では共有クライアントを使う。
 
 ## 検証済み事実
 

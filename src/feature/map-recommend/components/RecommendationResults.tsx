@@ -34,7 +34,8 @@ const EmptyState = ({
       textAlign: "center",
       border: 1,
       borderColor: "divider",
-      borderRadius: 2,
+      borderRadius: "14px",
+      bgcolor: "background.paper",
     }}
   >
     {isLoading ? (
@@ -65,7 +66,7 @@ export const RecommendationResults = ({
     activeTab === 0 ? analysis.unplayed : analysis.improvements;
 
   return (
-    <Stack spacing={3}>
+    <Stack spacing={{ xs: 2.5, sm: 3 }}>
       {analysis.error && <Alert severity="error">{analysis.error}</Alert>}
       {!playerId.trim() && (
         <Alert severity="info">プレイヤーIDを指定すると分析を開始します。</Alert>
@@ -94,7 +95,21 @@ export const RecommendationResults = ({
           value={activeTab}
           onChange={(_, value: number) => setActiveTab(value)}
           aria-label="譜面のおすすめ分類"
-          sx={{ borderBottom: 1, borderColor: "divider" }}
+          sx={{
+            borderBottom: 1,
+            borderColor: "divider",
+            minHeight: 48,
+            "& .MuiTab-root": {
+              minHeight: 48,
+              px: { xs: 1.5, sm: 2 },
+              color: "text.secondary",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              textTransform: "none",
+            },
+            "& .MuiTab-root.Mui-selected": { color: "text.primary" },
+            "& .MuiTabs-indicator": { height: 2, borderRadius: 2 },
+          }}
         >
           <Tab
             label={`未プレイ・PP候補 (${analysis.unplayed.length})`}
@@ -113,7 +128,7 @@ export const RecommendationResults = ({
         role="tabpanel"
         id={`recommend-panel-${activeTab}`}
         aria-labelledby={`recommend-tab-${activeTab}`}
-        spacing={1.25}
+        spacing={1.5}
       >
         {recommendations.map((recommendation) => (
           <MapRecommendationCard

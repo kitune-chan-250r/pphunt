@@ -1,10 +1,14 @@
 import { useCallback } from "react";
 import { MAX_LIMIT, createScoreSaberClient } from "./scoreSaberClient";
-import type { PaginatedResponse, RankedPlayer } from "../types/ScoreSaber";
+import type {
+  PaginatedResponse,
+  PlayerProfile,
+  RankedPlayer,
+} from "../types/ScoreSaber";
 
 export interface PlayerRepository {
   /** `GET /api/v2/players/{id}` */
-  getPlayer: (playerId: string) => Promise<RankedPlayer>;
+  getPlayer: (playerId: string) => Promise<PlayerProfile>;
 
   /**
    * `GET /api/v2/players` sorted by global rank, centred on `rank`.
@@ -32,8 +36,8 @@ export const usePlayerRepository = (
   client = createScoreSaberClient(),
 ): PlayerRepository => {
   const getPlayer = useCallback(
-    async (playerId: string): Promise<RankedPlayer> => {
-      const response = await client.get<RankedPlayer>(
+    async (playerId: string): Promise<PlayerProfile> => {
+      const response = await client.get<PlayerProfile>(
         `/api/v2/players/${encodeURIComponent(playerId)}`,
       );
       return response;
