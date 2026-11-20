@@ -18,8 +18,7 @@ export const designTokens = {
   muted: { light: "#78716c", dark: "#a8a29e" },
   surface: { light: "#ffffff", dark: "#141416" },
   canvas: { light: "#faf9f8", dark: "#09090b" },
-  font:
-    '"Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif, "Noto Sans JP", "Noto Color Emoji", sans-serif',
+  font: '"Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif, "Noto Sans JP", "Noto Color Emoji", sans-serif',
 } as const;
 
 export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {

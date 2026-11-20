@@ -39,7 +39,11 @@ export interface CountryFlagV2Props {
   title?: string;
 }
 
-export const CountryFlagV2 = ({ country, isDark, title }: CountryFlagV2Props) => {
+export const CountryFlagV2 = ({
+  country,
+  isDark,
+  title,
+}: CountryFlagV2Props) => {
   const code = toFlagCode(country);
   const label = title ?? (country || "不明");
 
