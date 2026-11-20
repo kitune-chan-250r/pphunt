@@ -1,3 +1,8 @@
+---
+name: framer-motion
+description: Applies smooth, restrained entrance, scroll-reveal, and interaction-feedback motion using native Framer effects while preserving the existing design. Use when adding or reviewing animations with framer-motion, such as hero entrances, scroll reveals, staggered card or sibling animations, hover and press feedback, or reduced-motion handling. Covers entrance grouping, easing, durations, thresholds, responsive behavior, and motion rules for page-wide or element-specific requests.
+---
+
 # Effects
 
 Apply smooth, restrained motion using native Framer effects. Preserve the design. Page-wide requests cover hero to footer; requests about “this,” “here,” or a named element stay within that target.
