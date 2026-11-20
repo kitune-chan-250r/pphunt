@@ -14,21 +14,24 @@ const cellSize: Record<WordmarkVariant, number> = { hero: 12, header: 5 };
 export const PPHuntWordmarkV2 = ({
   isDark,
   variant = "hero",
+  compact = false,
 }: {
   isDark: boolean;
   variant?: WordmarkVariant;
+  compact?: boolean;
 }) => {
   const accent = isDark ? designTokens.accent.dark : designTokens.accent.light;
   const ink = isDark ? designTokens.ink.dark : designTokens.ink.light;
-  const cell = cellSize[variant];
+  const isCompactHero = variant === "hero" && compact;
+  const cell = isCompactHero ? 7 : cellSize[variant];
 
   return (
     <Stack
       direction="row"
-      spacing={variant === "hero" ? 1.5 : 1}
+      spacing={isCompactHero ? 1 : variant === "hero" ? 1.5 : 1}
       sx={{
         alignItems: "center",
-        marginBottom: variant === "hero" ? 3.5 : 0,
+        marginBottom: isCompactHero ? 1.5 : variant === "hero" ? 3.5 : 0,
       }}
       aria-label="PPHunt"
     >
@@ -39,7 +42,7 @@ export const PPHuntWordmarkV2 = ({
           display: "grid",
           gridTemplateColumns: `repeat(${PIXEL_ROWS[0].length}, ${cell}px)`,
           gridAutoRows: `${cell}px`,
-          gap: variant === "hero" ? "2px" : "1px",
+          gap: isCompactHero ? "1.5px" : variant === "hero" ? "2px" : "1px",
         }}
       >
         {PIXEL_ROWS.flatMap((row, rowIndex) =>
@@ -62,6 +65,7 @@ export const PPHuntWordmarkV2 = ({
         sx={{
           color: ink,
           fontWeight: 500,
+          fontSize: isCompactHero ? { xs: "2rem", sm: "2.5rem" } : undefined,
           letterSpacing: variant === "hero" ? "-0.01em" : "0.01em",
           lineHeight: 1.15,
           userSelect: "none",

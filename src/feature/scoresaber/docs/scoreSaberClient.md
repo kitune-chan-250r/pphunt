@@ -11,7 +11,7 @@ export const SCORESABER_BASE_URL = "https://scoresaber.com";
 export const MAX_LIMIT = 100; // v2 のページネーション上限
 
 export interface ScoreSaberClientOptions {
-  concurrency?: number; // 既定 1
+  concurrency?: number; // 既定 4
   maxRetries?: number; // 既定 3（初回失敗後の追加試行数）
   requestTimeoutMs?: number; // 既定 15000
   useCache?: boolean; // 既定 true
@@ -38,7 +38,7 @@ export const apiErrorBody: (error: unknown) => ApiErrorResponse | null;
 
 200人のトップスコアを取得する処理では、同時数だけを制限しても、応答が速い間は短時間に多数のリクエストが送信される。添付HARでは、約6秒で99件のプレイヤー要求が成功した後、429が連続し、`Retry-After` ヘッダーもありませんでした。
 
-FIFO キューは `concurrency` 以下の同時実行数に加え、リクエスト開始間隔を1秒以上に保つ。同じクライアントから短時間に要求が集中するのを防ぐ。
+FIFO キューは `concurrency` 以下の同時実行数に加え、リクエスト開始間隔を300ms以上に保つ。並列取得を許可しながら、開始頻度を毎秒約3.3件に抑える。
 
 ```ts
 const limit = createLimiter(concurrency);
@@ -46,7 +46,7 @@ const data = await limit.run(() => requestOnce(url));
 ```
 
 - キューに積まれた順に実行される（順序が保証される）
-- 同時数に空きがあっても、前回の開始から既定1秒が経つまで次の要求を開始しない
+- 同時数に空きがあっても、前回の開始から既定300msが経つまで次の要求を開始しない
 - 429を受け取ると、同じクライアントのキュー全体を `Retry-After`（なければ60秒）の期間だけ停止する
 
 アプリでは `useScoreSaber` がモジュールスコープのクライアントを共有する。別々のクライアントを並行して作ると、それぞれ独立したキューになるため、同じレート制限を共有するAPIに対しては避ける。

@@ -1,5 +1,5 @@
 import "@fontsource-variable/geist";
-import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnalysisProgressCard } from "./AnalysisProgressCard";
 import { RecommendationResults } from "./RecommendationResults";
@@ -23,7 +23,7 @@ export const MapRecommend = ({ playerId }: MapRecommendProps) => {
       aria-label="譜面のおすすめ"
       sx={{ color: "text.primary" }}
     >
-      <Stack spacing={{ xs: 3, sm: 4 }} sx={{ py: { xs: 4, sm: 6 } }}>
+      <Stack spacing={{ xs: 2, sm: 2.5 }} sx={{ py: { xs: 2, sm: 3 } }}>
         {/* <motion.div
           initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
           animate={{ opacity: 1, y: 0 }}

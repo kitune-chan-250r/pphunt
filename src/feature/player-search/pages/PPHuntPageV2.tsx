@@ -8,7 +8,6 @@ import {
   Stack,
   ThemeProvider,
   Tooltip,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import { motion, useReducedMotion } from "framer-motion";
@@ -100,7 +99,8 @@ export const PPHuntPageV2 = () => {
             flexDirection: "column",
             alignItems: selectedPlayer ? "stretch" : "center",
             justifyContent: selectedPlayer ? "flex-start" : "center",
-            py: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 6, sm: 10 },
+            pt: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 6, sm: 10 },
+            pb: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 12, sm: 16 },
           }}
         >
           <motion.div
@@ -123,9 +123,14 @@ export const PPHuntPageV2 = () => {
                 mx: "auto",
               }}
             >
-              <PPHuntWordmarkV2 isDark={isDark} variant="hero" />
+              <PPHuntWordmarkV2
+                isDark={isDark}
+                variant="hero"
+                compact={Boolean(selectedPlayer)}
+              />
 
               <PlayerSearchBarV2
+                compact={Boolean(selectedPlayer)}
                 autoCompleteOptions={playerSearchResults}
                 value={playerSearchString}
                 isSearching={isSearching}

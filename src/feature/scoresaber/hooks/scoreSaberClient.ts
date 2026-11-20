@@ -24,10 +24,10 @@ export interface ScoreSaberClient {
   clearCache(): void;
 }
 
-const DEFAULT_CONCURRENCY = 1;
+const DEFAULT_CONCURRENCY = 4;
 const DEFAULT_MAX_RETRIES = 3;
 const DEFAULT_TIMEOUT_MS = 15_000;
-const DEFAULT_MINIMUM_REQUEST_INTERVAL_MS = 1_000;
+const DEFAULT_MINIMUM_REQUEST_INTERVAL_MS = 300;
 const DEFAULT_RATE_LIMIT_COOLDOWN_MS = 60_000;
 
 interface RequestLimiter {

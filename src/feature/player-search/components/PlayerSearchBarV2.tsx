@@ -2,7 +2,6 @@ import { useCallback, useRef, type FormEvent } from "react";
 import {
   Autocomplete,
   Box,
-  Button,
   IconButton,
   InputAdornment,
   Stack,
@@ -22,6 +21,7 @@ export interface PlayerSearchBarV2Props {
   autoCompleteOptions: Player[];
   isSearching?: boolean;
   errorMessage?: string | null;
+  compact?: boolean;
   onChange: (nextValue: string) => void;
   onClear: () => void;
   onSubmit: () => void;
@@ -38,6 +38,7 @@ export const PlayerSearchBarV2 = ({
   autoCompleteOptions,
   isSearching = false,
   errorMessage = null,
+  compact = false,
   onChange,
   onClear,
   onSubmit,
@@ -108,7 +109,7 @@ export const PlayerSearchBarV2 = ({
         sx={{
           "& .MuiOutlinedInput-root": {
             borderRadius: `${designTokens.radius.field}px`,
-            height: 48,
+            height: compact ? 40 : 48,
             bgcolor: isDark
               ? designTokens.surface.dark
               : designTokens.surface.light,
@@ -125,13 +126,13 @@ export const PlayerSearchBarV2 = ({
             },
           },
           "& .MuiOutlinedInput-input": {
-            fontSize: "1rem",
-            py: 1,
+            fontSize: compact ? "0.9375rem" : "1rem",
+            py: compact ? 0.5 : 1,
           },
         }}
       />
     ),
-    [handleClearClick, isDark, value],
+    [compact, handleClearClick, isDark, value],
   );
 
   return (
