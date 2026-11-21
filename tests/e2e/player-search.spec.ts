@@ -1,4 +1,4 @@
-import { expect, test, type Route } from "@playwright/test";
+import { expect, test, type Page, type Route } from "@playwright/test";
 import type {
   Leaderboard,
   PaginatedResponse,
@@ -163,22 +163,37 @@ const competitorScores: PlayerScoreEntry[] = [
   },
 ];
 
-test("searches for a player and shows map recommendations", async ({ page }) => {
+async function installSuccessfulApiMocks(page: Page): Promise<string[]> {
+  const searchQueries: string[] = [];
+
   await page.route("https://scoresaber.com/api/v2/**", async (route) => {
     const url = new URL(route.request().url());
     const { pathname, searchParams } = url;
 
     if (pathname === "/api/v2/players" && searchParams.has("search")) {
-      return fulfillJson(route, makePaginatedResponse([targetPlayer]));
+      searchQueries.push(searchParams.get("search") ?? "");
+      return fulfillJson(
+        route,
+        makePaginatedResponse([targetPlayer, competitor]),
+      );
     }
 
     if (pathname === "/api/v2/players" && searchParams.has("page")) {
-      const players = searchParams.get("page") === "1" ? [competitor] : [];
-      return fulfillJson(route, makePaginatedResponse(players));
+      return fulfillJson(
+        route,
+        makePaginatedResponse([targetPlayer, competitor]),
+      );
     }
 
-    if (pathname === "/api/v2/players/player-1") {
-      return fulfillJson(route, targetPlayer satisfies PlayerProfile);
+    const playerPath = pathname.match(/^\/api\/v2\/players\/([^/]+)$/);
+    if (playerPath) {
+      const player = [targetPlayer, competitor].find(
+        ({ id }) => id === playerPath[1],
+      );
+      if (!player) {
+        return fulfillJson(route, { error: "Player not found" }, 404);
+      }
+      return fulfillJson(route, player satisfies PlayerProfile);
     }
 
     const scoresPath = pathname.match(/^\/api\/v2\/players\/([^/]+)\/scores$/);
@@ -198,27 +213,96 @@ test("searches for a player and shows map recommendations", async ({ page }) => 
     return fulfillJson(route, { error: `Unexpected API request: ${pathname}` }, 500);
   });
 
+  return searchQueries;
+}
+
+test("プレイヤーを検索し、詳細な譜面のおすすめを表示する", async ({ page }) => {
+  const searchQueries = await installSuccessfulApiMocks(page);
+
   await page.goto("/");
   await expect(page).toHaveTitle("PPHunt");
 
   const searchInput = page.getByRole("combobox", {
     name: "検索するプレイヤー名",
   });
-  await searchInput.fill("Aoi");
-  await page.getByRole("option", { name: /Aoi Player/ }).click();
 
-  await expect(
-    page.getByRole("region", { name: "Aoi Player のプレイヤープロフィール" }),
-  ).toBeVisible();
+  await searchInput.fill("Ao");
+  await page.waitForTimeout(400);
+  expect(searchQueries).toEqual([]);
+
+  await searchInput.fill("Aoi");
+  const playerOption = page.getByRole("option", { name: /Aoi Player/ });
+  await expect(playerOption).toContainText("JP · #1");
+  await playerOption.click();
+
+  const profile = page.getByRole("region", {
+    name: "Aoi Player のプレイヤープロフィール",
+  });
+  await expect(profile).toBeVisible();
+  await expect(profile).toContainText("#1");
+  await expect(profile).toContainText("12,345.00");
+  await expect(profile).toContainText("95.50%");
+  await expect(profile).toContainText("20.00 PP");
   await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
 
   const recommendationCards = page.getByRole("article");
   await expect(recommendationCards).toHaveCount(1);
-  await expect(recommendationCards.first()).toContainText("Played Map");
-  await expect(recommendationCards.first()).toContainText("更新候補");
+  const improvementCard = recommendationCards.first();
+  await expect(improvementCard).toContainText("Played Map");
+  await expect(improvementCard).toContainText("更新候補");
+  await expect(improvementCard).toContainText("Expert");
+  await expect(improvementCard).toContainText("周辺 1人がプレイ");
+  await expect(improvementCard).toContainText("14.0");
+  await expect(improvementCard).toContainText("周辺最高: 950,000");
+  await expect(improvementCard).toContainText("自分: 900,000");
 
-  await page.getByRole("tab", { name: "未プレイ・PP候補 (1)" }).click();
+  const improvementTab = page.getByRole("tab", {
+    name: "スコア更新候補 (1)",
+  });
+  const unplayedTab = page.getByRole("tab", {
+    name: "未プレイ・PP候補 (1)",
+  });
+  await expect(improvementTab).toHaveAttribute("aria-selected", "true");
+  await unplayedTab.click();
   await expect(recommendationCards).toHaveCount(1);
-  await expect(recommendationCards.first()).toContainText("Unplayed Map");
-  await expect(recommendationCards.first()).toContainText("未プレイ");
+  const unplayedCard = recommendationCards.first();
+  await expect(unplayedCard).toContainText("Unplayed Map");
+  await expect(unplayedCard).toContainText("未プレイ");
+  await expect(unplayedCard).toContainText("周辺最高: 1,000,000");
+  await expect(unplayedCard).toContainText("Mira Player · #2");
+  await expect(unplayedCard).not.toContainText("自分:");
+
+  await improvementTab.click();
+  await expect(recommendationCards.first()).toContainText("Played Map");
+});
+
+test("検索欄をクリアして別のプレイヤーを選択する", async ({ page }) => {
+  const searchQueries = await installSuccessfulApiMocks(page);
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+
+  await searchInput.fill("Aoi");
+  await page.getByRole("option", { name: /Aoi Player/ }).click();
+  await expect(
+    page.getByRole("region", { name: "Aoi Player のプレイヤープロフィール" }),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "検索欄をクリア" }).click();
+  await expect(searchInput).toHaveValue("");
+  await expect(
+    page.getByRole("region", { name: "Aoi Player のプレイヤープロフィール" }),
+  ).toBeVisible();
+
+  await searchInput.fill("Mira");
+  const nextPlayerOption = page.getByRole("option", { name: /Mira Player/ });
+  await expect(nextPlayerOption).toContainText("JP · #2");
+  await nextPlayerOption.click();
+  await expect(
+    page.getByRole("region", { name: "Mira Player のプレイヤープロフィール" }),
+  ).toBeVisible();
+  await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
+  await expect.poll(() => searchQueries).toEqual(["Aoi", "Mira"]);
 });
