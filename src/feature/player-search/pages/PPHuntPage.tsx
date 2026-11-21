@@ -9,10 +9,13 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useScoreSaber } from "../hooks/useScoreSaber";
-import { DarkModeIcon, LightModeIcon } from "./PPHuntIcons";
-import { PlayerSearchBar } from "./PlayerSearchBar";
-import { createPPHuntTheme, LOGO_LETTERS } from "./pphuntTheme";
+import { usePlayerSearch } from "../hooks/usePlayerSearch";
+import { DarkModeIcon, LightModeIcon } from "../components/PPHuntIcons";
+import { PlayerSearchBar } from "../components/PlayerSearchBar";
+import {
+  createPPHuntTheme,
+  LOGO_LETTERS,
+} from "../components/pphuntTheme";
 
 export const PPHuntPage = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -29,20 +32,11 @@ export const PPHuntPage = () => {
     playerSearchString,
     searchPlayerWithDebounce,
     handlePlayerSearchStringChange,
-  } = useScoreSaber();
-
-  const handleChange = (nextValue: string) => {
-    handlePlayerSearchStringChange(nextValue);
-    searchPlayerWithDebounce(nextValue);
-  };
-
-  const handleClear = () => {
-    handlePlayerSearchStringChange("");
-    searchPlayerWithDebounce.cancel();
-  };
+    searchError,
+    clearSearch,
+  } = usePlayerSearch();
 
   const handleSubmit = () => {
-    searchPlayerWithDebounce(playerSearchString);
     searchPlayerWithDebounce.flush();
   };
 
@@ -124,8 +118,9 @@ export const PPHuntPage = () => {
           <PlayerSearchBar
             autoCompleteOptions={playerSearchResults}
             value={playerSearchString}
-            onChange={handleChange}
-            onClear={handleClear}
+            errorMessage={searchError}
+            onChange={handlePlayerSearchStringChange}
+            onClear={clearSearch}
             onSubmit={handleSubmit}
           />
         </Container>

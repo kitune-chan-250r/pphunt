@@ -1,67 +1,33 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-import { useDebouncedCallback, type DebouncedState } from "use-debounce";
-import type {
-  Player,
-  PlayerSearchResultResponse,
-} from "../types/PlayerSearchResult";
+import { createScoreSaberClient } from "./scoreSaberClient";
+import { usePlayerRepository } from "./usePlayerRepository";
+import { usePlayerScoreRepository } from "./usePlayerScoreRepository";
+import { useLeaderboardRepository } from "./useLeaderboardRepository";
+import type { Player } from "../types/PlayerSearchResult";
 
-interface ScoreSaberInterface {
-  playerSearchResults: Player[];
-  playerSearchString: string;
-  searchPlayerWithDebounce: DebouncedState<(value: string) => void>;
-  handlePlayerSearchStringChange: (searchString: string) => void;
+export interface ScoreSaberInterface {
+  /** Kept for existing callers: thin wrapper over the player repository. */
+  searchPlayers: (searchString: string) => Promise<Player[]>;
+  playerRepository: ReturnType<typeof usePlayerRepository>;
+  playerScoreRepository: ReturnType<typeof usePlayerScoreRepository>;
+  leaderboardRepository: ReturnType<typeof useLeaderboardRepository>;
 }
 
+const client = createScoreSaberClient();
+
+/**
+ * Data-access layer for ScoreSaber API v2.
+ * A single app-wide client shares its cache and request pacing across callers.
+ */
 export const useScoreSaber = (): ScoreSaberInterface => {
-  const BASE_URL = "https://scoresaber.com";
-  const [playerSearchString, setPlayerSearchString] = useState("");
-  const [playerSearchResults, setPlayerSearchResults] = useState<Player[]>([]);
-
-  const handlePlayerSearchStringChange = (searchString: string) => {
-    setPlayerSearchString(searchString);
-  };
-
-  const searchPlayerWithDebounce = useDebouncedCallback(
-    (value: string) => {
-      console.info(`[useScoreSaber] debounced search string: {${value}}`);
-      // 3文字以下は検索しない
-      if (value.length < 3) {
-        return;
-      }
-
-      const searchUrl = `${BASE_URL}/api/v2/players?search=${value}&limit=10`;
-      const response = axios.get(searchUrl);
-      response
-        .then((res) => {
-          const data = res.data as PlayerSearchResultResponse;
-          console.info(data);
-          setPlayerSearchResults(data.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    },
-    350,
-    { maxWait: 2000 },
-  );
-
-  // const test = useCallback(async () => {
-  //   const res = await axios.get<string>(`${BASE_URL}/api/v2/leaderboards`);
-  //   const data = res.data;
-  //   console.info(data);
-  // }, []);
-
-  // useEffect(() => {
-  //   void (async () => {
-  //     await test();
-  //   })();
-  // }, []);
+  const playerRepository = usePlayerRepository(client);
+  const playerScoreRepository = usePlayerScoreRepository(client);
+  const leaderboardRepository = useLeaderboardRepository(client);
 
   return {
-    playerSearchResults,
-    playerSearchString,
-    searchPlayerWithDebounce,
-    handlePlayerSearchStringChange,
+    searchPlayers: (searchString: string) =>
+      playerRepository.searchPlayers(searchString),
+    playerRepository,
+    playerScoreRepository,
+    leaderboardRepository,
   };
 };
