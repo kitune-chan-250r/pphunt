@@ -269,6 +269,7 @@ test("初期表示と入力文字数に応じた候補検索を確認する", as
   expect(searchQueries).toEqual([]);
 
   await searchInput.fill("Player");
+  await page.clock.fastForward(400);
   const aoiOption = page.getByRole("option", { name: /Aoi Player/ });
   const miraOption = page.getByRole("option", { name: /Mira Player/ });
   await expect(aoiOption).toContainText("JP · #1");
@@ -447,6 +448,7 @@ test("Enterキーでデバウンス中の候補検索をすぐに実行する", 
   const { searchQueries } = await installSuccessfulApiMocks(page);
 
   await page.clock.install();
+  await page.clock.pauseAt(new Date());
   await page.goto("/");
   const searchInput = page.getByRole("combobox", {
     name: "検索するプレイヤー名",
@@ -462,6 +464,7 @@ test("検索予約中にクリアすると候補検索をキャンセルする",
   const { searchQueries } = await installSuccessfulApiMocks(page);
 
   await page.clock.install();
+  await page.clock.pauseAt(new Date());
   await page.goto("/");
   const searchInput = page.getByRole("combobox", {
     name: "検索するプレイヤー名",
