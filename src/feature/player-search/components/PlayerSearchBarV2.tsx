@@ -1,4 +1,9 @@
-import { useCallback, useRef, type FormEvent } from "react";
+import {
+  useCallback,
+  useRef,
+  type FormEvent,
+  type KeyboardEvent,
+} from "react";
 import {
   Autocomplete,
   Box,
@@ -10,11 +15,37 @@ import {
   useTheme,
   type AutocompleteRenderInputParams,
 } from "@mui/material";
+import type { HTMLAttributes, ReactNode } from "react";
 import { ClearIconV2, SearchIconV2, SpinnerV2 } from "./PPHuntIconsV2";
 import { PlayerSearchOptionV2 } from "./PlayerSearchOptionV2";
 import { LoadingListboxV2 } from "./LoadingListboxV2";
 import { designTokens } from "./pphuntThemeV2";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
+
+type PlayerSearchStatusProps = HTMLAttributes<HTMLDivElement> & {
+  ownerState?: {
+    loading?: boolean;
+    noOptionsText?: ReactNode;
+    options?: Player[];
+  };
+};
+
+const PlayerSearchStatusV2 = ({
+  children,
+  ownerState,
+  ...props
+}: PlayerSearchStatusProps) => (
+  <Box {...props}>
+    {children}
+    {!ownerState?.loading && ownerState?.options?.length === 0 ? (
+      <Box
+        sx={{ px: 2, py: 1.75, color: "text.secondary" }}
+      >
+        {ownerState.noOptionsText}
+      </Box>
+    ) : null}
+  </Box>
+);
 
 export interface PlayerSearchBarV2Props {
   value: string;
@@ -58,6 +89,16 @@ export const PlayerSearchBarV2 = ({
     onSubmit();
   };
 
+  const handleFormKeyDown = (event: KeyboardEvent<HTMLFormElement>) => {
+    if (
+      event.target === inputRef.current &&
+      event.key === "Enter" &&
+      !event.nativeEvent.isComposing
+    ) {
+      onSubmit();
+    }
+  };
+
   const renderInput = useCallback(
     (params: AutocompleteRenderInputParams) => (
       <TextField
@@ -94,6 +135,7 @@ export const PlayerSearchBarV2 = ({
               <InputAdornment position="end">
                 <Tooltip title="検索欄をクリア">
                   <IconButton
+                    type="button"
                     onClick={handleClearClick}
                     edge="end"
                     size="small"
@@ -139,6 +181,7 @@ export const PlayerSearchBarV2 = ({
     <Stack
       component="form"
       onSubmit={handleFormSubmit}
+      onKeyDownCapture={handleFormKeyDown}
       sx={{ width: "100%", maxWidth: 584, alignItems: "stretch" }}
     >
       <Autocomplete
@@ -172,7 +215,12 @@ export const PlayerSearchBarV2 = ({
             <span>検索中…</span>
           </Stack>
         }
-        slots={{ listbox: LoadingListboxV2 }}
+        // MUI suppresses noOptionsText for freeSolo, so render it in the status slot.
+        slots={{
+          listbox: LoadingListboxV2,
+          status: PlayerSearchStatusV2,
+        }}
+        slotProps={{ popper: { keepMounted: true } }}
         noOptionsText={
           errorMessage ??
           (value.length < 3
