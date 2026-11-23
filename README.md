@@ -9,16 +9,29 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 ## E2E tests (Playwright)
 
-Playwright tests run in Chromium and mock ScoreSaber API responses, so they do not
-depend on the live service. Run these commands inside the Linux devcontainer:
+Playwright tests mock ScoreSaber API responses, so they do not depend on the live
+service. The default suite covers desktop Chromium, Pixel 7 emulation, desktop
+WebKit (Safari), and iPhone 13 emulation (mobile Safari). Run these commands
+inside the Linux devcontainer:
 
 ```bash
-npx playwright install --with-deps chromium
+npx playwright install --with-deps chromium webkit
 npm run test:e2e
 ```
 
-The first command installs Chromium and its Linux dependencies in the container.
-The test runner starts the Vite development server automatically on port 5173.
+Run only the mobile or Safari projects with:
+
+```bash
+npm run test:e2e:mobile
+npm run test:e2e:safari
+```
+
+Playwright's WebKit project provides Safari-engine coverage; it is not Apple's
+Safari application itself.
+
+The first command installs the required browser binaries and Linux dependencies
+in the container. The test runner starts the Vite development server
+automatically on port 5173.
 
 Currently, two official plugins are available:
 
