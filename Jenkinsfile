@@ -20,7 +20,7 @@ pipeline {
         sh '''
           set -eu
 
-          npm ci
+          npm install
           npm run build
         '''
 
