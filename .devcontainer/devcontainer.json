@@ -5,7 +5,11 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:5-26-bookworm",
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "1.9.8"
+		}
+	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
 		5173
@@ -21,6 +25,7 @@
 				"ms-vscode.vscode-typescript-next",
 				"dsznajder.es7-react-js-snippets",
 				"mhutchie.git-graph",
+				"hashicorp.terraform"
 			]
 		}
 	},

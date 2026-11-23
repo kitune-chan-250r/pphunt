@@ -26,3 +26,20 @@ dist-ssr
 .playwright-cli/
 playwright-report/
 test-results/
+
+# Terraform local data and state
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+*.tfplan
+tfplan
+crash.log
+crash.*.log
+
+# Local credentials and environment configuration
+.env
+.env.*
+!.env.example
