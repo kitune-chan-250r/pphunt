@@ -66,6 +66,7 @@ pipeline {
           npm config get cache
 
           npm ci
+          npm run build
           npm run test:e2e
         '''
       }
