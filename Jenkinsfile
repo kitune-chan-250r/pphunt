@@ -16,6 +16,10 @@ pipeline {
         }
       }
 
+      environment {
+        CLOUDFLARE_ACCOUNT_ID = '260b77a937976718dbb6b3597530f24a'
+      }
+
       steps {
         sh '''
           set -eu
@@ -89,9 +93,31 @@ pipeline {
     }
 
     stage('Deploy') {
-      // Cloudflare Pagesへのデプロイ
+      when {
+        expression {
+          env.BRANCH_NAME == 'main' ||
+          env.GIT_BRANCH == 'main' ||
+          env.GIT_BRANCH == 'origin/main'
+        }
+      }
+
+      agent {
+        docker {
+          image 'mcr.microsoft.com/devcontainers/typescript-node:5-26-bookworm'
+          reuseNode true
+        }
+      }
+
       steps {
-        echo "Deploying to Cloudflare Pages..."
+        withCredentials([string(credentialsId: 'cloudflare-api-token', variable: 'CLOUDFLARE_API_TOKEN')]) {
+          sh '''
+            set -eu
+
+            npx wrangler pages deploy dist \
+              --project-name=pphunt \
+              --branch=main
+          '''
+        }
       }
     }
   }
