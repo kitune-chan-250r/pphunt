@@ -170,9 +170,10 @@ async function installSuccessfulApiMocks(
   const searchQueries: string[] = [];
   const requests: string[] = [];
 
-  await page.route("https://scoresaber.com/api/v2/**", async (route) => {
+  await page.route("**/api/scoresaber/api/v2/**", async (route) => {
     const url = new URL(route.request().url());
-    const { pathname, searchParams } = url;
+    const pathname = url.pathname.replace(/^\/api\/scoresaber/, "");
+    const { searchParams } = url;
     requests.push(`${pathname}${url.search}`);
 
     if (pathname === "/api/v2/players" && searchParams.has("search")) {
@@ -227,10 +228,11 @@ async function installSearchApiMock(
 ): Promise<string[]> {
   const searchQueries: string[] = [];
 
-  await page.route("https://scoresaber.com/api/v2/**", async (route) => {
+  await page.route("**/api/scoresaber/api/v2/**", async (route) => {
     const url = new URL(route.request().url());
+    const pathname = url.pathname.replace(/^\/api\/scoresaber/, "");
     if (
-      url.pathname === "/api/v2/players" &&
+      pathname === "/api/v2/players" &&
       url.searchParams.has("search")
     ) {
       const query = url.searchParams.get("search") ?? "";
