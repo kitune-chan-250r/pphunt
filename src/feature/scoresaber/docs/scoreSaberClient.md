@@ -7,7 +7,7 @@
 ## 公開しているもの
 
 ```ts
-export const SCORESABER_BASE_URL = "https://scoresaber.com";
+export const SCORESABER_BASE_URL = "/api/scoresaber";
 export const MAX_LIMIT = 100; // v2 のページネーション上限
 
 export interface ScoreSaberClientOptions {
@@ -186,3 +186,9 @@ for (const player of nearbyPlayers) {
 - この層の読み取りエンドポイントに認証は不要。
 - `limit` はすべてのページネーションエンドポイントで最大100。
 - 実レスポンスで page 13 @ limit 100（`sort=rank&sortDirection=asc`）が rank 1201–1300 を返すことを確認済み。
+
+## リクエスト経路
+
+クライアントは同一オリジンの `/api/scoresaber` をベースURLにし、ScoreSaber の API パスとクエリを維持して送信する。Cloudflare Pages Functions が `/api/scoresaber/api/v2/*` を `https://scoresaber.com/api/v2/*` に中継する。Vite 開発サーバーでは `vite.config.ts` の開発プロキシが同じパスを中継するため、開発環境と本番環境でクライアント設定を切り替える必要はない。
+
+中継Functionは GET の ScoreSaber API v2 のみを許可し、転送先ホストを固定する。`Retry-After` を含むAPI応答ヘッダーとステータスを維持し、既存のリトライ処理が機能するようにする。

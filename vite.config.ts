@@ -7,6 +7,13 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
+    proxy: {
+      "/api/scoresaber": {
+        target: "https://scoresaber.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/scoresaber/, ""),
+      },
+    },
     watch: {
       usePolling: true,
       interval: 100,

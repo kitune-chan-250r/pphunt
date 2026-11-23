@@ -25,14 +25,25 @@ variable "domain" {
 }
 
 locals {
-  project_name      = "pphunt"
-  production_branch = "main"
+  project_name                 = "pphunt"
+  production_branch            = "main"
+  functions_compatibility_date = "2026-11-23"
 }
 
 resource "cloudflare_pages_project" "pphunt" {
   account_id        = var.account_id
   name              = local.project_name
   production_branch = local.production_branch
+
+  deployment_configs = {
+    production = {
+      compatibility_date = local.functions_compatibility_date
+    }
+
+    preview = {
+      compatibility_date = local.functions_compatibility_date
+    }
+  }
 }
 
 resource "cloudflare_dns_record" "pphunt_pages" {

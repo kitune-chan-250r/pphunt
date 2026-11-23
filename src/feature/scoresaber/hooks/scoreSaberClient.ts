@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance } from "axios";
 import type { ApiErrorResponse } from "../types/ScoreSaber";
 
-export const SCORESABER_BASE_URL = "https://scoresaber.com";
+export const SCORESABER_BASE_URL = "/api/scoresaber";
 
 /** ScoreSaber v2 caps `limit` at 100 on every paginated endpoint. */
 export const MAX_LIMIT = 100;

@@ -16,10 +16,19 @@ Terraform は Direct Upload 方式の Cloudflare Pages プロジェクトを作�
 テストの成功後、`main` ブランチの `dist/` を本番環境にデプロイします。
 Cloudflare の GitHub ビルド連携は使用しません。
 
+ScoreSaber API はブラウザーから直接呼び出さず、Pages Functions の
+`/api/scoresaber/*` 経由でアクセスします。Function の実装はリポジトリ直下の
+`functions/` に置き、Jenkins と同様にリポジトリルートから `wrangler pages deploy
+dist` を実行してデプロイしてください。Terraform は Pages Functions の互換性日を
+production / preview の両環境に設定します。Vite の開発サーバーにも同じパスの
+開発用プロキシを設定しています。
+
 Cloudflare API トークンを `.env` に `CLOUDFLARE_API_TOKEN` として設定してください。
 Terraform は `.env` を自動では読み込みません。Cloudflare Provider は
 シェルから export された `CLOUDFLARE_API_TOKEN` を自動的に読み込みます。
-リポジトリのルートで次のように環境変数を読み込んでから Terraform を実行します。
+Dev Container は起動時に `.env` を環境変数として読み込みます。`.env` の作成や
+変更後は、VS Code の **Dev Containers: Rebuild Container** を実行してください。
+Dev Container を使わない場合は、リポジトリのルートで次のように環境変数を読み込んでから Terraform を実行します。
 
 ```bash
 set -a
