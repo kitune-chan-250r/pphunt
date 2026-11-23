@@ -84,5 +84,9 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy') {
+      // Cloudflare Pagesへのデプロイ
+    }
   }
 }
