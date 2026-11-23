@@ -87,6 +87,9 @@ pipeline {
 
     stage('Deploy') {
       // Cloudflare Pagesへのデプロイ
+      steps {
+        echo "Deploying to Cloudflare Pages..."
+      }
     }
   }
 }
