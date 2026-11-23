@@ -74,7 +74,6 @@ pipeline {
           npm config get cache
 
           npm ci
-          npm run build
 
           npx playwright install 
 
