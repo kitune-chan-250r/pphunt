@@ -47,8 +47,9 @@ pipeline {
     stage('Playwright Test') {
       agent {
         docker {
-          image 'mcr.microsoft.com/devcontainers/typescript-node:5-26-bookworm'
-          reuseNode true
+            image 'mcr.microsoft.com/playwright:v1.65.1-noble'
+            reuseNode true
+            args '--ipc=host'
         }
       }
       
@@ -76,7 +77,7 @@ pipeline {
           npm run build
 
           npx playwright install 
-          
+
           npm run test:e2e
         '''
       }
