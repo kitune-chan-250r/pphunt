@@ -20,12 +20,23 @@ pipeline {
         sh '''
           set -eu
 
-          rm -rf node_modules
+          echo "=== Execution identity ==="
+          id
 
-          npm cache clean --force
+          echo "=== Original environment ==="
+          echo "HOME=${HOME:-<unset>}"
+          npm config get cache
+
+          # ホームとnpmキャッシュをワークスペース配下に統一
+          export HOME="$WORKSPACE/.home"
+          export NPM_CONFIG_CACHE="$WORKSPACE/.npm-cache"
+
+          mkdir -p "$HOME" "$NPM_CONFIG_CACHE"
+
+          echo "=== Effective npm cache ==="
+          npm config get cache
 
           npm ci
-          
           npm run build
         '''
 
