@@ -45,6 +45,13 @@ pipeline {
     }
 
     stage('Playwright Test') {
+      agent {
+        docker {
+          image 'mcr.microsoft.com/devcontainers/typescript-node:5-26-bookworm'
+          reuseNode true
+        }
+      }
+      
       steps {
         sh '''
           set -eu
