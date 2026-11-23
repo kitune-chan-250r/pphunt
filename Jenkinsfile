@@ -74,6 +74,9 @@ pipeline {
 
           npm ci
           npm run build
+
+          npx playwright install 
+          
           npm run test:e2e
         '''
       }
@@ -87,6 +90,9 @@ pipeline {
 
     stage('Deploy') {
       // Cloudflare Pagesへのデプロイ
+      steps {
+        echo "Deploying to Cloudflare Pages..."
+      }
     }
   }
 }
