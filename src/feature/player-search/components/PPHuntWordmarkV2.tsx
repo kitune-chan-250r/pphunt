@@ -1,15 +1,30 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { designTokens } from "./pphuntThemeV2";
 
 /**
- * Pixel-block mark, in the spirit of ScoreSaber's logo: a stepped grid of
- * squares rather than a rounded, multicolour wordmark.
+ * Cube mark, in the spirit of a Beat Saber note block: a rounded square in
+ * the amber accent with a white cut-out arrow. The wordmark type itself is
+ * unchanged from the original design.
  */
-const PIXEL_ROWS = ["....", "..##", ".###", "####"] as const;
-
 type WordmarkVariant = "hero" | "header";
 
-const cellSize: Record<WordmarkVariant, number> = { hero: 12, header: 5 };
+const markSize: Record<WordmarkVariant, number> = { hero: 48, header: 20 };
+
+const CubeMark = ({ size, accent }: { size: number; accent: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 48 48"
+    aria-hidden="true"
+    style={{ display: "block", flexShrink: 0 }}
+  >
+    <rect x="3" y="3" width="42" height="42" rx="10" fill={accent} />
+    <path
+      d="M24 11 L36.5 25.5 L29.5 25.5 L29.5 37 L18.5 37 L18.5 25.5 L11.5 25.5 Z"
+      fill="#ffffff"
+    />
+  </svg>
+);
 
 export const PPHuntWordmarkV2 = ({
   isDark,
@@ -23,7 +38,7 @@ export const PPHuntWordmarkV2 = ({
   const accent = isDark ? designTokens.accent.dark : designTokens.accent.light;
   const ink = isDark ? designTokens.ink.dark : designTokens.ink.light;
   const isCompactHero = variant === "hero" && compact;
-  const cell = isCompactHero ? 7 : cellSize[variant];
+  const mark = isCompactHero ? 28 : markSize[variant];
 
   return (
     <Stack
@@ -35,30 +50,7 @@ export const PPHuntWordmarkV2 = ({
       }}
       aria-label="PPHunt"
     >
-      <Box
-        component="span"
-        aria-hidden="true"
-        sx={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${PIXEL_ROWS[0].length}, ${cell}px)`,
-          gridAutoRows: `${cell}px`,
-          gap: isCompactHero ? "1.5px" : variant === "hero" ? "2px" : "1px",
-        }}
-      >
-        {PIXEL_ROWS.flatMap((row, rowIndex) =>
-          row.split("").map((char, colIndex) => (
-            <Box
-              key={`${rowIndex}-${colIndex}`}
-              component="span"
-              sx={{
-                width: cell,
-                height: cell,
-                bgcolor: char === "#" ? accent : "transparent",
-              }}
-            />
-          )),
-        )}
-      </Box>
+      <CubeMark size={mark} accent={accent} />
 
       <Typography
         variant={variant === "hero" ? "h1" : "body2"}
