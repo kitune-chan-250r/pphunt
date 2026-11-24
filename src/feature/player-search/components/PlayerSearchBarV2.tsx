@@ -91,12 +91,32 @@ export const PlayerSearchBarV2 = ({
 
   const handleFormKeyDown = (event: KeyboardEvent<HTMLFormElement>) => {
     if (
-      event.target === inputRef.current &&
-      event.key === "Enter" &&
-      !event.nativeEvent.isComposing
+      event.target !== inputRef.current ||
+      event.key !== "Enter" ||
+      event.nativeEvent.isComposing
     ) {
-      onSubmit();
+      return;
     }
+
+    // Arrow-key navigation sets aria-activedescendant on the input; in
+    // that case let the Autocomplete itself select the highlighted option.
+    const hasHighlightedOption = Boolean(
+      inputRef.current?.getAttribute("aria-activedescendant"),
+    );
+    if (hasHighlightedOption) {
+      return;
+    }
+
+    // Plain Enter with candidates on screen selects the top candidate,
+    // instead of merely closing the candidate list.
+    if (autoCompleteOptions.length > 0 && onPlayerSelect) {
+      event.preventDefault();
+      event.stopPropagation();
+      onPlayerSelect(autoCompleteOptions[0]);
+      return;
+    }
+
+    onSubmit();
   };
 
   const renderInput = useCallback(
