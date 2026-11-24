@@ -209,6 +209,11 @@ async function installSuccessfulApiMocks(
       return fulfillJson(route, makePaginatedResponse(scores));
     }
 
+    // co-play シーディング用のリーダーボードスコア（新アルゴリズムで使用）
+    if (/^\/api\/v2\/leaderboards\/\d+\/scores$/.test(pathname)) {
+      return fulfillJson(route, makePaginatedResponse([]));
+    }
+
     if (
       pathname ===
       `/api/v2/players/${targetPlayer.id}/scores/hash/${unplayedMap.map.hash}/Standard/4`
@@ -508,7 +513,7 @@ test("候補をキーボードで選択するとプロフィールと分析結�
   await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
   expect(searchQueries).toEqual(["Aoi"]);
   expect(requests).toContain("/api/v2/players/player-1");
-  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=50&sort=top");
+  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=100&sort=top");
   expect(requests).toContain(
     "/api/v2/players/player-1/scores/hash/unplayed-map-hash/Standard/4",
   );
