@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test --project=mobile-chromium --project=mobile-safari",
-    "test:e2e:safari": "playwright test --project=safari --project=mobile-safari"
+    "test:e2e:safari": "playwright test --project=safari --project=mobile-safari",
+    "test:unit": "vitest run",
+    "test:backtest:v3": "BACKTEST=1 vitest run --config scripts/backtest/vitest.v3.config.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -39,6 +41,7 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",
     "vite": "^8.3.6",
+    "vitest": "^5.1.1",
     "wrangler": "^4.166.0"
   }
 }
