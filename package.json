@@ -8,6 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test:unit": "vitest run",
+    "test:backtest": "BACKTEST=1 vitest run --config scripts/backtest/vitest.config.ts",
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test --project=mobile-chromium --project=mobile-safari",
     "test:e2e:safari": "playwright test --project=safari --project=mobile-safari"
@@ -39,6 +41,7 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",
     "vite": "^8.3.6",
+    "vitest": "^5.1.1",
     "wrangler": "^4.166.0"
   }
 }
