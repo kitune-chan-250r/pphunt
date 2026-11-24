@@ -553,6 +553,43 @@ test("候補をキーボードで選択するとプロフィールと分析結�
   await expect(recommendationCards.first()).toContainText("Played Map");
 });
 
+test("検索候補とプロフィールに国旗アイコンが表示される", async ({ page }) => {
+  await installSuccessfulApiMocks(page);
+
+  // 国旗用スタイルシートは遅延読み込みされるため、読み込み完了後に
+  // 背景画像と寸法が適用された状態になることを確認する。
+  const expectFlagRendered = async (flag: ReturnType<Page["locator"]>) => {
+    await expect
+      .poll(() =>
+        flag.evaluate((el) => {
+          const rect = el.getBoundingClientRect();
+          return getComputedStyle(el).backgroundImage !== "none" &&
+            rect.width >= 10
+            ? "ready"
+            : "pending";
+        }),
+      )
+      .toBe("ready");
+  };
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+  await searchInput.fill("Player");
+
+  const aoiOption = page.getByRole("option", { name: /Aoi Player/ });
+  await expectFlagRendered(aoiOption.locator("span.fi-jp"));
+
+  await searchInput.press("ArrowDown");
+  await searchInput.press("Enter");
+  const profile = page.getByRole("region", {
+    name: "Aoi Player のプレイヤープロフィール",
+  });
+  await expect(profile).toBeVisible();
+  await expectFlagRendered(profile.locator("span.fi-jp"));
+});
+
 test("検索欄をクリアして別のプレイヤーを選択する", async ({ page }) => {
   const { searchQueries } = await installSuccessfulApiMocks(page);
 
