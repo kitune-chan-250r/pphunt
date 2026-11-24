@@ -13,6 +13,7 @@ import {
 import { motion, useReducedMotion } from "framer-motion";
 import { usePlayerSearch } from "../hooks/usePlayerSearch";
 import { DarkModeIconV2, LightModeIconV2 } from "../components/PPHuntIconsV2";
+import { AsciiBackdrop } from "../components/AsciiBackdrop";
 import { PlayerSearchBarV2 } from "../components/PlayerSearchBarV2";
 import { PPHuntWordmarkV2 } from "../components/PPHuntWordmarkV2";
 import { createPPHuntThemeV2, designTokens } from "../components/pphuntThemeV2";
@@ -59,6 +60,7 @@ export const PPHuntPageV2 = () => {
       <CssBaseline />
       <Box
         sx={{
+          position: "relative",
           minHeight: "100svh",
           display: "flex",
           flexDirection: "column",
@@ -66,9 +68,12 @@ export const PPHuntPageV2 = () => {
           color: "text.primary",
         }}
       >
+        <AsciiBackdrop isDark={isDark} suspended={Boolean(selectedPlayer)} />
         <Box
           component="header"
           sx={{
+            position: "relative",
+            zIndex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -94,6 +99,8 @@ export const PPHuntPageV2 = () => {
           component="main"
           maxWidth="lg"
           sx={{
+            position: "relative",
+            zIndex: 1,
             flex: 1,
             display: "flex",
             flexDirection: "column",
