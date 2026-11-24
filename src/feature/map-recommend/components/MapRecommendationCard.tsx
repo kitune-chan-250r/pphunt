@@ -38,7 +38,7 @@ export const MapRecommendationCard = ({
   recommendation,
 }: MapRecommendationCardProps) => {
   const theme = useTheme();
-  const { leaderboard, competitor, myScore, kind } = recommendation;
+  const { leaderboard, competitor, myScore, kind, prediction } = recommendation;
   const { map, difficulty, realm } = leaderboard;
   const title = `${map.songName}${map.songSubName ? ` ${map.songSubName}` : ""}`;
 
@@ -151,6 +151,32 @@ export const MapRecommendationCard = ({
             label={`周辺 ${recommendation.appearanceCount}人がプレイ`}
             sx={{ borderRadius: "6px" }}
           />
+          {prediction?.sources.includes("SIMILAR") && (
+            <Chip
+              size="small"
+              variant="outlined"
+              color="primary"
+              label="似たプレイヤー人気"
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
+          {prediction?.sources.includes("CHALLENGE") && (
+            <Chip
+              size="small"
+              variant="outlined"
+              color="warning"
+              label="挑戦枠"
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
+          {prediction?.highVariance && (
+            <Chip
+              size="small"
+              variant="outlined"
+              label="高分散"
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
           {realm.stars > 0 && (
             <Chip
               size="small"
@@ -218,6 +244,39 @@ export const MapRecommendationCard = ({
             ? `自分: ${formatScore(myScore.modifiedScore)}`
             : `${competitor.name} · #${numberFormat.format(competitor.rank)}`}
         </Typography>
+        {prediction && (
+          <>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ mt: 0.8 }}
+            >
+              予測 PP 増分
+            </Typography>
+            <Typography
+              component="p"
+              sx={{
+                fontSize: "1.0625rem",
+                lineHeight: 1.25,
+                fontWeight: 500,
+                fontVariantNumeric: "tabular-nums",
+              }}
+            >
+              +{prediction.expectedDeltaPp.toFixed(1)}
+              <Typography
+                component="span"
+                sx={{ ml: 0.5, fontSize: "0.75rem", color: "text.secondary" }}
+              >
+                PP（堅実見積もり +
+                {Math.max(0, prediction.lcbDeltaPp).toFixed(1)}）
+              </Typography>
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              予測精度 {(prediction.predictedAccuracy * 100).toFixed(1)}% /
+              予測 {prediction.predictedPp.toFixed(1)} PP
+            </Typography>
+          </>
+        )}
       </Stack>
     </Card>
   );
