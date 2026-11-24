@@ -15,7 +15,7 @@
 		5173
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	"postCreateCommand": "npx playwright install --with-deps webkit",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
@@ -25,7 +25,8 @@
 				"ms-vscode.vscode-typescript-next",
 				"dsznajder.es7-react-js-snippets",
 				"mhutchie.git-graph",
-				"hashicorp.terraform"
+				"hashicorp.terraform",
+				"ms-playwright.playwright"
 			]
 		}
 	},
