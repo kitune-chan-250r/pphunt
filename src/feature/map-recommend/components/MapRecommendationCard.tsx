@@ -18,7 +18,11 @@ const numberFormat = new Intl.NumberFormat("en-US");
 const formatScore = (score: number) => numberFormat.format(score);
 
 const formatDifficulty = (difficulty: string) => {
-  switch (difficulty.toLowerCase()) {
+  // ScoreSaber sometimes returns raw internal identifiers such as
+  // "_ExpertPlus_SoloStandard" instead of a plain difficulty name.
+  // Normalise those to the leading difficulty token before formatting.
+  const normalized = difficulty.replace(/^_+/, "").split("_")[0];
+  switch (normalized.toLowerCase()) {
     case "easy":
       return "Easy";
     case "normal":
@@ -30,8 +34,22 @@ const formatDifficulty = (difficulty: string) => {
     case "expertplus":
       return "Expert+";
     default:
-      return difficulty;
+      return normalized;
   }
+};
+
+const formatGameMode = (gameMode: string) => {
+  // "SoloStandard" -> "Standard", "SoloNoArrows" -> "NoArrows", etc.
+  return gameMode.startsWith("Solo") ? gameMode.slice("Solo".length) : gameMode;
+};
+
+const formatDifficultyLabel = (gameMode: string, rawDifficulty: string) => {
+  const difficultyLabel = formatDifficulty(rawDifficulty);
+  const modeLabel = formatGameMode(gameMode);
+  // The standard mode is the default, so the difficulty alone is clearest.
+  return modeLabel === "Standard" || modeLabel === ""
+    ? difficultyLabel
+    : `${modeLabel} / ${difficultyLabel}`;
 };
 
 export const MapRecommendationCard = ({
@@ -142,7 +160,10 @@ export const MapRecommendationCard = ({
           <Chip
             size="small"
             variant="outlined"
-            label={`${difficulty.gameMode} / ${formatDifficulty(difficulty.rawDifficulty)}`}
+            label={formatDifficultyLabel(
+              difficulty.gameMode,
+              difficulty.rawDifficulty,
+            )}
             sx={{ borderRadius: "6px" }}
           />
           <Chip
