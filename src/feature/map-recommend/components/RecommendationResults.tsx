@@ -210,6 +210,13 @@ export const RecommendationResults = ({
             />
           )}
         </Stack>
+
+        {analysis.phase === "done" && (
+          <Typography variant="caption" color="text.secondary">
+            分析に使用したAPI呼び出し: 約{analysis.apiCallCount}回（周辺
+            {analysis.totalPlayers}人のスコアを集計）
+          </Typography>
+        )}
       </Stack>
     </PlaylistExportProvider>
   );
