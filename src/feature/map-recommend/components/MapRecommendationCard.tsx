@@ -38,7 +38,7 @@ export const MapRecommendationCard = ({
   recommendation,
 }: MapRecommendationCardProps) => {
   const theme = useTheme();
-  const { leaderboard, competitor, myScore, kind } = recommendation;
+  const { leaderboard, competitor, myScore, kind, display } = recommendation;
   const { map, difficulty, realm } = leaderboard;
   const title = `${map.songName}${map.songSubName ? ` ${map.songSubName}` : ""}`;
 
@@ -151,6 +151,23 @@ export const MapRecommendationCard = ({
             label={`周辺 ${recommendation.appearanceCount}人がプレイ`}
             sx={{ borderRadius: "6px" }}
           />
+          {display && display.recentPlayerCount > 0 && (
+            <Chip
+              size="small"
+              variant="outlined"
+              label={`直近90日に ${display.recentPlayerCount}人`}
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
+          {display?.isAboveCurve && (
+            <Chip
+              size="small"
+              color="warning"
+              variant="outlined"
+              label="格上"
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
           {realm.stars > 0 && (
             <Chip
               size="small"
@@ -218,6 +235,24 @@ export const MapRecommendationCard = ({
             ? `自分: ${formatScore(myScore.modifiedScore)}`
             : `${competitor.name} · #${numberFormat.format(competitor.rank)}`}
         </Typography>
+        {display && (
+          <>
+            <Typography variant="caption" color="text.secondary">
+              予測 +ΔPP（周辺最高ベース）:{" "}
+              {display.predictedDeltaPpBest.toFixed(1)} PP
+            </Typography>
+            {kind === "UNPLAYED" && (
+              <Typography variant="caption" color="text.secondary">
+                予測 +ΔPP（中央値ベース）:{" "}
+                {display.predictedDeltaPpMedian.toFixed(1)} PP
+              </Typography>
+            )}
+            <Typography variant="caption" color="text.secondary">
+              予測精度（目安）:{" "}
+              {(display.predictedAccuracy * 100).toFixed(1)}%
+            </Typography>
+          </>
+        )}
       </Stack>
     </Card>
   );
