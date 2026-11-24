@@ -13,6 +13,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/scoresaber/, ""),
       },
+      "/api/beatsaver": {
+        target: "https://api.beatsaver.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/beatsaver/, ""),
+      },
     },
     watch: {
       usePolling: true,

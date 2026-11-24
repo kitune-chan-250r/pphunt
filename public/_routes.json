@@ -1,5 +1,5 @@
 {
   "version": 1,
-  "include": ["/api/scoresaber/*"],
+  "include": ["/api/scoresaber/*", "/api/beatsaver/*"],
   "exclude": []
 }
