@@ -15,7 +15,10 @@
 		5173
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npx playwright install --with-deps webkit",
+	"postCreateCommand": [
+		"npx playwright install",
+		"npx playwright install --with-deps webkit"
+	],
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
