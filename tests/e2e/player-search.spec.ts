@@ -508,7 +508,8 @@ test("候補をキーボードで選択するとプロフィールと分析結�
   await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
   expect(searchQueries).toEqual(["Aoi"]);
   expect(requests).toContain("/api/v2/players/player-1");
-  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=50&sort=top");
+  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=100&sort=top");
+  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=100&sort=recent");
   expect(requests).toContain(
     "/api/v2/players/player-1/scores/hash/unplayed-map-hash/Standard/4",
   );
