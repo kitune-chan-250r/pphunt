@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import { useDebouncedCallback, type DebouncedState } from "use-debounce";
 import { useScoreSaber } from "../../scoresaber/hooks/useScoreSaber";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
+import { ensureFlagIconsCss } from "../flagIconsCss";
 
 const MIN_QUERY_LENGTH = 3;
 const DEBOUNCE_MS = 350;
@@ -40,6 +41,12 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
 
       const seq = ++requestSeq.current;
       setIsSearching(true);
+
+      // Search candidates render country flags; fetch the lazily loaded
+      // flag stylesheet in parallel with the search request so it is ready
+      // before the results render. (Kept out of the keystroke path so typing
+      // bursts are never delayed by the stylesheet fetch.)
+      void ensureFlagIconsCss();
 
       try {
         const players = await searchPlayers(value);
