@@ -1,0 +1,5389 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-24T12:53:26.928Z",
+  "records": [
+    {
+      "stratum": "1-100",
+      "slotIndex": 0,
+      "player": {
+        "id": "1922350521131465",
+        "name": "oermer",
+        "rank": 1,
+        "totalPP": 22052.119901180817
+      },
+      "cutoffUsed": 90,
+      "trainSize": 106,
+      "testSize": 35,
+      "unplayedTestSize": 35,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 100,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 165,
+      "networkCallsForPlayer": 46,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.048950305746204,
+          "recall20": 0.02857142857142857,
+          "unplayedNdcg20": 0.26286369860775394,
+          "unplayedRecall20": 0.02857142857142857,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 40,
+          "poolSize": 846,
+          "testInUniverse": 18,
+          "coverage": 0.5142857142857142
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.12186785548432355,
+          "recall20": 0.05714285714285714,
+          "unplayedNdcg20": 0.7765231941883451,
+          "unplayedRecall20": 0.05714285714285714,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 43,
+          "poolSize": 1010,
+          "testInUniverse": 18,
+          "coverage": 0.5142857142857142
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.12186785548432355,
+          "recall20": 0.05714285714285714,
+          "unplayedNdcg20": 0.7765231941883451,
+          "unplayedRecall20": 0.05714285714285714,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 43,
+          "poolSize": 1010,
+          "testInUniverse": 18,
+          "coverage": 0.5142857142857142
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.11803600101323156,
+          "recall20": 0.05714285714285714,
+          "unplayedNdcg20": 0.7765231941883451,
+          "unplayedRecall20": 0.05714285714285714,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 43,
+          "poolSize": 1238,
+          "testInUniverse": 19,
+          "coverage": 0.5428571428571428
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 1,
+      "player": {
+        "id": "76561198988695829",
+        "name": "Matty",
+        "rank": 5,
+        "totalPP": 20791.664500518084
+      },
+      "cutoffUsed": 90,
+      "trainSize": 91,
+      "testSize": 29,
+      "unplayedTestSize": 29,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 104,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 169,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.1663179250803849,
+          "recall20": 0.06896551724137931,
+          "unplayedNdcg20": 0.5214272446432393,
+          "unplayedRecall20": 0.13793103448275862,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 157,
+          "poolSize": 863,
+          "testInUniverse": 14,
+          "coverage": 0.4827586206896552
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.1844054029823415,
+          "recall20": 0.10344827586206896,
+          "unplayedNdcg20": 0.503139839949322,
+          "unplayedRecall20": 0.1724137931034483,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 229,
+          "poolSize": 1007,
+          "testInUniverse": 14,
+          "coverage": 0.4827586206896552
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.22957070706421717,
+          "recall20": 0.10344827586206896,
+          "unplayedNdcg20": 0.4217504747003892,
+          "unplayedRecall20": 0.13793103448275862,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 229,
+          "poolSize": 1007,
+          "testInUniverse": 14,
+          "coverage": 0.4827586206896552
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.2125620899528988,
+          "recall20": 0.13793103448275862,
+          "unplayedNdcg20": 0.5213070641771036,
+          "unplayedRecall20": 0.1724137931034483,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 231,
+          "poolSize": 1238,
+          "testInUniverse": 15,
+          "coverage": 0.5172413793103449
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 2,
+      "player": {
+        "id": "76561198960449289",
+        "name": "aqua",
+        "rank": 9,
+        "totalPP": 19862.58062570863
+      },
+      "cutoffUsed": 180,
+      "trainSize": 125,
+      "testSize": 36,
+      "unplayedTestSize": 36,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 108,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 173,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.22588382751890107,
+          "unplayedRecall20": 0.027777777777777776,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 177,
+          "poolSize": 780,
+          "testInUniverse": 12,
+          "coverage": 0.3333333333333333
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.16070915809509673,
+          "recall20": 0.05555555555555555,
+          "unplayedNdcg20": 0.29378119497365246,
+          "unplayedRecall20": 0.05555555555555555,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 295,
+          "poolSize": 911,
+          "testInUniverse": 11,
+          "coverage": 0.3055555555555556
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.19048519055187996,
+          "recall20": 0.05555555555555555,
+          "unplayedNdcg20": 0.29378119497365246,
+          "unplayedRecall20": 0.05555555555555555,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 295,
+          "poolSize": 911,
+          "testInUniverse": 11,
+          "coverage": 0.3055555555555556
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.1546789411642066,
+          "recall20": 0.05555555555555555,
+          "unplayedNdcg20": 0.29378119497365246,
+          "unplayedRecall20": 0.05555555555555555,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 296,
+          "poolSize": 1000,
+          "testInUniverse": 11,
+          "coverage": 0.3055555555555556
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 3,
+      "player": {
+        "id": "76561198265369367",
+        "name": "Mayple",
+        "rank": 13,
+        "totalPP": 19430.888134388166
+      },
+      "cutoffUsed": 90,
+      "trainSize": 88,
+      "testSize": 63,
+      "unplayedTestSize": 63,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 112,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 177,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.17944894083772836,
+          "recall20": 0.031746031746031744,
+          "unplayedNdcg20": 0.426881443559932,
+          "unplayedRecall20": 0.06349206349206349,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 250,
+          "poolSize": 871,
+          "testInUniverse": 20,
+          "coverage": 0.31746031746031744
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.16403157064788124,
+          "recall20": 0.047619047619047616,
+          "unplayedNdcg20": 0.23201865421521187,
+          "unplayedRecall20": 0.047619047619047616,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 414,
+          "poolSize": 1005,
+          "testInUniverse": 25,
+          "coverage": 0.3968253968253968
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.1719614826027931,
+          "recall20": 0.047619047619047616,
+          "unplayedNdcg20": 0.2252918011495457,
+          "unplayedRecall20": 0.047619047619047616,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 414,
+          "poolSize": 1005,
+          "testInUniverse": 25,
+          "coverage": 0.3968253968253968
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.19742703485627067,
+          "recall20": 0.06349206349206349,
+          "unplayedNdcg20": 0.2810348352928318,
+          "unplayedRecall20": 0.06349206349206349,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 418,
+          "poolSize": 1238,
+          "testInUniverse": 26,
+          "coverage": 0.4126984126984127
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 4,
+      "player": {
+        "id": "76561198313983208",
+        "name": "Tranch",
+        "rank": 18,
+        "totalPP": 18643.654909435423
+      },
+      "cutoffUsed": 90,
+      "trainSize": 74,
+      "testSize": 68,
+      "unplayedTestSize": 68,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 117,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 182,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.3368564167003599,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.37567469703278883,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 423,
+          "poolSize": 880,
+          "testInUniverse": 29,
+          "coverage": 0.4264705882352941
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.32927748949769453,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.33293319709230107,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 567,
+          "poolSize": 1005,
+          "testInUniverse": 26,
+          "coverage": 0.38235294117647056
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.32927748949769453,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.33293319709230107,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 567,
+          "poolSize": 1005,
+          "testInUniverse": 26,
+          "coverage": 0.38235294117647056
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.3289563299737575,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.3326959913537115,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 575,
+          "poolSize": 1238,
+          "testInUniverse": 30,
+          "coverage": 0.4411764705882353
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 5,
+      "player": {
+        "id": "1477469542377599",
+        "name": "Marsh_era",
+        "rank": 22,
+        "totalPP": 18579.59969656161
+      },
+      "cutoffUsed": 90,
+      "trainSize": 99,
+      "testSize": 57,
+      "unplayedTestSize": 57,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 121,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 186,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.16693044263678433,
+          "unplayedRecall20": 0.017543859649122806,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 403,
+          "poolSize": 877,
+          "testInUniverse": 7,
+          "coverage": 0.12280701754385964
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.11385002887716623,
+          "unplayedRecall20": 0.017543859649122806,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 550,
+          "poolSize": 1005,
+          "testInUniverse": 8,
+          "coverage": 0.14035087719298245
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.11385002887716623,
+          "unplayedRecall20": 0.017543859649122806,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 550,
+          "poolSize": 1005,
+          "testInUniverse": 8,
+          "coverage": 0.14035087719298245
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 558,
+          "poolSize": 1238,
+          "testInUniverse": 9,
+          "coverage": 0.15789473684210525
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 6,
+      "player": {
+        "id": "76561198979511454",
+        "name": "Shoogie",
+        "rank": 26,
+        "totalPP": 18435.006971755476
+      },
+      "cutoffUsed": 180,
+      "trainSize": 66,
+      "testSize": 87,
+      "unplayedTestSize": 87,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 125,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 190,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.25013479977506664,
+          "recall20": 0.04597701149425287,
+          "unplayedNdcg20": 0.3697326924787522,
+          "unplayedRecall20": 0.08045977011494253,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 376,
+          "poolSize": 816,
+          "testInUniverse": 43,
+          "coverage": 0.4942528735632184
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.4208478452181801,
+          "recall20": 0.09195402298850575,
+          "unplayedNdcg20": 0.4280163352857841,
+          "unplayedRecall20": 0.09195402298850575,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 517,
+          "poolSize": 907,
+          "testInUniverse": 46,
+          "coverage": 0.5287356321839081
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.42754237447208265,
+          "recall20": 0.09195402298850575,
+          "unplayedNdcg20": 0.4280163352857841,
+          "unplayedRecall20": 0.09195402298850575,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 517,
+          "poolSize": 907,
+          "testInUniverse": 46,
+          "coverage": 0.5287356321839081
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.4481856447601771,
+          "recall20": 0.10344827586206896,
+          "unplayedNdcg20": 0.4871032956190383,
+          "unplayedRecall20": 0.11494252873563218,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 517,
+          "poolSize": 1000,
+          "testInUniverse": 47,
+          "coverage": 0.5402298850574713
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 7,
+      "player": {
+        "id": "76561198312915350",
+        "name": "Shani132",
+        "rank": 30,
+        "totalPP": 18100.079099452894
+      },
+      "cutoffUsed": 90,
+      "trainSize": 92,
+      "testSize": 46,
+      "unplayedTestSize": 46,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 129,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 194,
+      "networkCallsForPlayer": 0,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.20036630154570975,
+          "recall20": 0.06521739130434782,
+          "unplayedNdcg20": 0.5749712306799765,
+          "unplayedRecall20": 0.10869565217391304,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 561,
+          "poolSize": 902,
+          "testInUniverse": 16,
+          "coverage": 0.34782608695652173
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.3045651588191376,
+          "recall20": 0.06521739130434782,
+          "unplayedNdcg20": 0.5816639521003247,
+          "unplayedRecall20": 0.13043478260869565,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 744,
+          "poolSize": 1005,
+          "testInUniverse": 16,
+          "coverage": 0.34782608695652173
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.49500806551568305,
+          "recall20": 0.10869565217391304,
+          "unplayedNdcg20": 0.5807975359330217,
+          "unplayedRecall20": 0.13043478260869565,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 744,
+          "poolSize": 1005,
+          "testInUniverse": 16,
+          "coverage": 0.34782608695652173
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.27766633364616383,
+          "recall20": 0.06521739130434782,
+          "unplayedNdcg20": 0.5831005073844368,
+          "unplayedRecall20": 0.13043478260869565,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 756,
+          "poolSize": 1238,
+          "testInUniverse": 23,
+          "coverage": 0.5
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 8,
+      "player": {
+        "id": "76561199013341592",
+        "name": "VortexWizrd",
+        "rank": 34,
+        "totalPP": 17775.515881938303
+      },
+      "cutoffUsed": 90,
+      "trainSize": 77,
+      "testSize": 52,
+      "unplayedTestSize": 52,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 133,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 198,
+      "networkCallsForPlayer": 2,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.22853035828991758,
+          "recall20": 0.09615384615384616,
+          "unplayedNdcg20": 0.4927586133342502,
+          "unplayedRecall20": 0.15384615384615385,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 664,
+          "poolSize": 907,
+          "testInUniverse": 22,
+          "coverage": 0.4230769230769231
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.2223538029896622,
+          "recall20": 0.09615384615384616,
+          "unplayedNdcg20": 0.5470400359659578,
+          "unplayedRecall20": 0.17307692307692307,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 858,
+          "poolSize": 1006,
+          "testInUniverse": 24,
+          "coverage": 0.46153846153846156
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.41584400594442067,
+          "recall20": 0.15384615384615385,
+          "unplayedNdcg20": 0.5482193234987557,
+          "unplayedRecall20": 0.17307692307692307,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 858,
+          "poolSize": 1006,
+          "testInUniverse": 24,
+          "coverage": 0.46153846153846156
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.19205843704671666,
+          "recall20": 0.07692307692307693,
+          "unplayedNdcg20": 0.5055053522947353,
+          "unplayedRecall20": 0.15384615384615385,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 869,
+          "poolSize": 1235,
+          "testInUniverse": 30,
+          "coverage": 0.5769230769230769
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 9,
+      "player": {
+        "id": "76561198993934070",
+        "name": "Tanhis",
+        "rank": 38,
+        "totalPP": 17705.76766446429
+      },
+      "cutoffUsed": 90,
+      "trainSize": 25,
+      "testSize": 99,
+      "unplayedTestSize": 99,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 137,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 202,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.485989581879952,
+          "recall20": 0.12121212121212122,
+          "unplayedNdcg20": 0.661351143696769,
+          "unplayedRecall20": 0.1414141414141414,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 741,
+          "poolSize": 932,
+          "testInUniverse": 86,
+          "coverage": 0.8686868686868687
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.49015825138437247,
+          "recall20": 0.1111111111111111,
+          "unplayedNdcg20": 0.6798644662931803,
+          "unplayedRecall20": 0.1414141414141414,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 938,
+          "poolSize": 1027,
+          "testInUniverse": 87,
+          "coverage": 0.8787878787878788
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.6397185762792037,
+          "recall20": 0.13131313131313133,
+          "unplayedNdcg20": 0.6922001286128846,
+          "unplayedRecall20": 0.1414141414141414,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 938,
+          "poolSize": 1027,
+          "testInUniverse": 87,
+          "coverage": 0.8787878787878788
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.45665380323713095,
+          "recall20": 0.10101010101010101,
+          "unplayedNdcg20": 0.6530327929957671,
+          "unplayedRecall20": 0.13131313131313133,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 955,
+          "poolSize": 1278,
+          "testInUniverse": 88,
+          "coverage": 0.8888888888888888
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 10,
+      "player": {
+        "id": "76561198320958554",
+        "name": "clarkrainbowfan2",
+        "rank": 42,
+        "totalPP": 17502.89323128944
+      },
+      "cutoffUsed": 90,
+      "trainSize": 79,
+      "testSize": 41,
+      "unplayedTestSize": 41,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 141,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 206,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.04842113514361551,
+          "unplayedRecall20": 0.024390243902439025,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 642,
+          "poolSize": 948,
+          "testInUniverse": 20,
+          "coverage": 0.4878048780487805
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 809,
+          "poolSize": 1074,
+          "testInUniverse": 21,
+          "coverage": 0.5121951219512195
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 809,
+          "poolSize": 1074,
+          "testInUniverse": 21,
+          "coverage": 0.5121951219512195
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 814,
+          "poolSize": 1316,
+          "testInUniverse": 22,
+          "coverage": 0.5365853658536586
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 11,
+      "player": {
+        "id": "76561198366737508",
+        "name": "Luck",
+        "rank": 46,
+        "totalPP": 17454.91256734839
+      },
+      "cutoffUsed": 90,
+      "trainSize": 133,
+      "testSize": 17,
+      "unplayedTestSize": 17,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 145,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 210,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.08958057071768552,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.2532970168502316,
+          "unplayedRecall20": 0.17647058823529413,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 723,
+          "poolSize": 980,
+          "testInUniverse": 12,
+          "coverage": 0.7058823529411765
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.044346388015560595,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.10161117315456299,
+          "unplayedRecall20": 0.11764705882352941,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 910,
+          "poolSize": 1130,
+          "testInUniverse": 12,
+          "coverage": 0.7058823529411765
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.05007372704807675,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.10161117315456299,
+          "unplayedRecall20": 0.11764705882352941,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 910,
+          "poolSize": 1130,
+          "testInUniverse": 12,
+          "coverage": 0.7058823529411765
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.08161165590286197,
+          "recall20": 0.11764705882352941,
+          "unplayedNdcg20": 0.14517522096354277,
+          "unplayedRecall20": 0.17647058823529413,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 924,
+          "poolSize": 1381,
+          "testInUniverse": 16,
+          "coverage": 0.9411764705882353
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 12,
+      "player": {
+        "id": "76561198879664253",
+        "name": "SaltyButter",
+        "rank": 51,
+        "totalPP": 17304.8
+      },
+      "cutoffUsed": 90,
+      "trainSize": 175,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 150,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 215,
+      "networkCallsForPlayer": 4,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 13,
+      "player": {
+        "id": "76561198848329343",
+        "name": "yabje",
+        "rank": 55,
+        "totalPP": 17224.974599296376
+      },
+      "cutoffUsed": 90,
+      "trainSize": 69,
+      "testSize": 77,
+      "unplayedTestSize": 77,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 154,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 219,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.16191222856080045,
+          "recall20": 0.05194805194805195,
+          "unplayedNdcg20": 0.2341343834950402,
+          "unplayedRecall20": 0.06493506493506493,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 674,
+          "poolSize": 982,
+          "testInUniverse": 37,
+          "coverage": 0.4805194805194805
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.1814741908300978,
+          "recall20": 0.03896103896103896,
+          "unplayedNdcg20": 0.3564083277777711,
+          "unplayedRecall20": 0.07792207792207792,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 761,
+          "poolSize": 1136,
+          "testInUniverse": 38,
+          "coverage": 0.4935064935064935
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.3503074794243355,
+          "recall20": 0.07792207792207792,
+          "unplayedNdcg20": 0.3564083277777711,
+          "unplayedRecall20": 0.07792207792207792,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 761,
+          "poolSize": 1136,
+          "testInUniverse": 38,
+          "coverage": 0.4935064935064935
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.1609733633595753,
+          "recall20": 0.03896103896103896,
+          "unplayedNdcg20": 0.32576603159329187,
+          "unplayedRecall20": 0.06493506493506493,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 767,
+          "poolSize": 1369,
+          "testInUniverse": 39,
+          "coverage": 0.5064935064935064
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 14,
+      "player": {
+        "id": "76561199229531540",
+        "name": "AceBat",
+        "rank": 59,
+        "totalPP": 17134.012958040046
+      },
+      "cutoffUsed": 90,
+      "trainSize": 167,
+      "testSize": 9,
+      "unplayedTestSize": 9,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 158,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 223,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 800,
+          "poolSize": 1001,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 942,
+          "poolSize": 1131,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 942,
+          "poolSize": 1131,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 946,
+          "poolSize": 1355,
+          "testInUniverse": 2,
+          "coverage": 0.2222222222222222
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 15,
+      "player": {
+        "id": "76561199146457878",
+        "name": "kulonmi",
+        "rank": 63,
+        "totalPP": 17087.410283052108
+      },
+      "cutoffUsed": 90,
+      "trainSize": 97,
+      "testSize": 31,
+      "unplayedTestSize": 31,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 162,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 227,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 738,
+          "poolSize": 1029,
+          "testInUniverse": 14,
+          "coverage": 0.45161290322580644
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 754,
+          "poolSize": 1125,
+          "testInUniverse": 15,
+          "coverage": 0.4838709677419355
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 754,
+          "poolSize": 1125,
+          "testInUniverse": 15,
+          "coverage": 0.4838709677419355
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 757,
+          "poolSize": 1342,
+          "testInUniverse": 16,
+          "coverage": 0.5161290322580645
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 16,
+      "player": {
+        "id": "76561198931503563",
+        "name": "Oscar Brøndum",
+        "rank": 67,
+        "totalPP": 16877.91518684527
+      },
+      "cutoffUsed": 90,
+      "trainSize": 146,
+      "testSize": 16,
+      "unplayedTestSize": 16,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 166,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 231,
+      "networkCallsForPlayer": 3,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.5399758610082128,
+          "recall20": 0.375,
+          "unplayedNdcg20": 0.5886566684401003,
+          "unplayedRecall20": 0.4375,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 871,
+          "poolSize": 1059,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.4080792816536136,
+          "recall20": 0.3125,
+          "unplayedNdcg20": 0.4519387150724409,
+          "unplayedRecall20": 0.375,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 987,
+          "poolSize": 1158,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.4519387150724409,
+          "recall20": 0.375,
+          "unplayedNdcg20": 0.4519387150724409,
+          "unplayedRecall20": 0.375,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 987,
+          "poolSize": 1158,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.4097324785662522,
+          "recall20": 0.3125,
+          "unplayedNdcg20": 0.4111066932771273,
+          "unplayedRecall20": 0.3125,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 996,
+          "poolSize": 1332,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 17,
+      "player": {
+        "id": "76561199003505371",
+        "name": "creepervr",
+        "rank": 71,
+        "totalPP": 16807.85429836205
+      },
+      "cutoffUsed": 90,
+      "trainSize": 70,
+      "testSize": 64,
+      "unplayedTestSize": 64,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 170,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 235,
+      "networkCallsForPlayer": 2,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.4211711637322653,
+          "recall20": 0.140625,
+          "unplayedNdcg20": 0.4211711637322653,
+          "unplayedRecall20": 0.140625,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 822,
+          "poolSize": 1062,
+          "testInUniverse": 42,
+          "coverage": 0.65625
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.5370745243544699,
+          "recall20": 0.15625,
+          "unplayedNdcg20": 0.5370745243544699,
+          "unplayedRecall20": 0.15625,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 907,
+          "poolSize": 1148,
+          "testInUniverse": 43,
+          "coverage": 0.671875
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.5412578439764324,
+          "recall20": 0.15625,
+          "unplayedNdcg20": 0.5412578439764324,
+          "unplayedRecall20": 0.15625,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 907,
+          "poolSize": 1148,
+          "testInUniverse": 43,
+          "coverage": 0.671875
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.5668522761003535,
+          "recall20": 0.171875,
+          "unplayedNdcg20": 0.5668522761003535,
+          "unplayedRecall20": 0.171875,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 911,
+          "poolSize": 1352,
+          "testInUniverse": 44,
+          "coverage": 0.6875
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 18,
+      "player": {
+        "id": "76561198255595858",
+        "name": "Fudgy",
+        "rank": 75,
+        "totalPP": 16720.718712508788
+      },
+      "cutoffUsed": 90,
+      "trainSize": 175,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 174,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 239,
+      "networkCallsForPlayer": 4,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 818,
+          "poolSize": 1102,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 901,
+          "poolSize": 1201,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 901,
+          "poolSize": 1201,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 905,
+          "poolSize": 1393,
+          "testInUniverse": 0,
+          "coverage": 0
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 19,
+      "player": {
+        "id": "76561199841164854",
+        "name": "forced to play",
+        "rank": 79,
+        "totalPP": 16676.359022614623
+      },
+      "cutoffUsed": 90,
+      "trainSize": 81,
+      "testSize": 43,
+      "unplayedTestSize": 43,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 178,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 243,
+      "networkCallsForPlayer": 4,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.26463820700081425,
+          "recall20": 0.11627906976744186,
+          "unplayedNdcg20": 0.591816183278729,
+          "unplayedRecall20": 0.2558139534883721,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 833,
+          "poolSize": 1076,
+          "testInUniverse": 28,
+          "coverage": 0.6511627906976745
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.28578982330948377,
+          "recall20": 0.11627906976744186,
+          "unplayedNdcg20": 0.42970556110828056,
+          "unplayedRecall20": 0.16279069767441862,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 846,
+          "poolSize": 1168,
+          "testInUniverse": 27,
+          "coverage": 0.627906976744186
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.4323719410458198,
+          "recall20": 0.16279069767441862,
+          "unplayedNdcg20": 0.46033497783395055,
+          "unplayedRecall20": 0.18604651162790697,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 846,
+          "poolSize": 1168,
+          "testInUniverse": 27,
+          "coverage": 0.627906976744186
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.28199582637162196,
+          "recall20": 0.11627906976744186,
+          "unplayedNdcg20": 0.4083320798371884,
+          "unplayedRecall20": 0.16279069767441862,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 847,
+          "poolSize": 1347,
+          "testInUniverse": 29,
+          "coverage": 0.6744186046511628
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 20,
+      "player": {
+        "id": "76561199162096058",
+        "name": "Bevilix",
+        "rank": 84,
+        "totalPP": 16627.55870623525
+      },
+      "cutoffUsed": 90,
+      "trainSize": 50,
+      "testSize": 58,
+      "unplayedTestSize": 58,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 183,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 248,
+      "networkCallsForPlayer": 5,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.6062623167123121,
+          "recall20": 0.20689655172413793,
+          "unplayedNdcg20": 0.6153823758807462,
+          "unplayedRecall20": 0.20689655172413793,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1000,
+          "poolSize": 1079,
+          "testInUniverse": 51,
+          "coverage": 0.8793103448275862
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.5482535888703473,
+          "recall20": 0.1724137931034483,
+          "unplayedNdcg20": 0.5733989518338685,
+          "unplayedRecall20": 0.1896551724137931,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1083,
+          "poolSize": 1171,
+          "testInUniverse": 48,
+          "coverage": 0.8275862068965517
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.6149510202009912,
+          "recall20": 0.20689655172413793,
+          "unplayedNdcg20": 0.6149510202009912,
+          "unplayedRecall20": 0.20689655172413793,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1083,
+          "poolSize": 1171,
+          "testInUniverse": 48,
+          "coverage": 0.8275862068965517
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.5164307510897489,
+          "recall20": 0.15517241379310345,
+          "unplayedNdcg20": 0.5469425940220196,
+          "unplayedRecall20": 0.1724137931034483,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1092,
+          "poolSize": 1332,
+          "testInUniverse": 48,
+          "coverage": 0.8275862068965517
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 21,
+      "player": {
+        "id": "76561198351485033",
+        "name": "JujuLipz",
+        "rank": 88,
+        "totalPP": 16524.655473237563
+      },
+      "cutoffUsed": 180,
+      "trainSize": 118,
+      "testSize": 29,
+      "unplayedTestSize": 29,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 187,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 252,
+      "networkCallsForPlayer": 4,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.15987264773168378,
+          "recall20": 0.06896551724137931,
+          "unplayedNdcg20": 0.32040150689407937,
+          "unplayedRecall20": 0.06896551724137931,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 774,
+          "poolSize": 996,
+          "testInUniverse": 12,
+          "coverage": 0.41379310344827586
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.03841989427103108,
+          "recall20": 0.034482758620689655,
+          "unplayedNdcg20": 0.13091322870719146,
+          "unplayedRecall20": 0.06896551724137931,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 731,
+          "poolSize": 1043,
+          "testInUniverse": 13,
+          "coverage": 0.4482758620689655
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.13091322870719146,
+          "recall20": 0.06896551724137931,
+          "unplayedNdcg20": 0.13091322870719146,
+          "unplayedRecall20": 0.06896551724137931,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 731,
+          "poolSize": 1043,
+          "testInUniverse": 13,
+          "coverage": 0.4482758620689655
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.03841989427103108,
+          "recall20": 0.034482758620689655,
+          "unplayedNdcg20": 0.13091322870719146,
+          "unplayedRecall20": 0.06896551724137931,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 732,
+          "poolSize": 1092,
+          "testInUniverse": 13,
+          "coverage": 0.4482758620689655
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 22,
+      "player": {
+        "id": "76561198448469526",
+        "name": "Dr.Bread",
+        "rank": 92,
+        "totalPP": 16463.200468988678
+      },
+      "cutoffUsed": 90,
+      "trainSize": 92,
+      "testSize": 36,
+      "unplayedTestSize": 36,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 191,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 256,
+      "networkCallsForPlayer": 4,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.0794469408051307,
+          "recall20": 0.027777777777777776,
+          "unplayedNdcg20": 0.2241793324297201,
+          "unplayedRecall20": 0.05555555555555555,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 875,
+          "poolSize": 1089,
+          "testInUniverse": 16,
+          "coverage": 0.4444444444444444
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.07293806870536718,
+          "unplayedRecall20": 0.027777777777777776,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 817,
+          "poolSize": 1152,
+          "testInUniverse": 18,
+          "coverage": 0.5
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.06146967624143084,
+          "recall20": 0.027777777777777776,
+          "unplayedNdcg20": 0.07293806870536718,
+          "unplayedRecall20": 0.027777777777777776,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 817,
+          "poolSize": 1152,
+          "testInUniverse": 18,
+          "coverage": 0.5
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.06708237223564183,
+          "unplayedRecall20": 0.027777777777777776,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 817,
+          "poolSize": 1322,
+          "testInUniverse": 19,
+          "coverage": 0.5277777777777778
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 23,
+      "player": {
+        "id": "76561199008923153",
+        "name": "3psilon9",
+        "rank": 96,
+        "totalPP": 16408.503834232644
+      },
+      "cutoffUsed": 90,
+      "trainSize": 77,
+      "testSize": 25,
+      "unplayedTestSize": 25,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 195,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 260,
+      "networkCallsForPlayer": 4,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 949,
+          "poolSize": 1105,
+          "testInUniverse": 8,
+          "coverage": 0.32
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 960,
+          "poolSize": 1190,
+          "testInUniverse": 7,
+          "coverage": 0.28
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 960,
+          "poolSize": 1190,
+          "testInUniverse": 7,
+          "coverage": 0.28
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 963,
+          "poolSize": 1357,
+          "testInUniverse": 8,
+          "coverage": 0.32
+        }
+      }
+    },
+    {
+      "stratum": "1-100",
+      "slotIndex": 24,
+      "player": {
+        "id": "76561199244189208",
+        "name": "Manski",
+        "rank": 100,
+        "totalPP": 16355.46411872572
+      },
+      "cutoffUsed": 90,
+      "trainSize": 95,
+      "testSize": 27,
+      "unplayedTestSize": 27,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 199,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 264,
+      "networkCallsForPlayer": 4,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.5131376201864389,
+          "recall20": 0.14814814814814814,
+          "unplayedNdcg20": 0.6904077749561164,
+          "unplayedRecall20": 0.2222222222222222,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1045,
+          "poolSize": 1100,
+          "testInUniverse": 12,
+          "coverage": 0.4444444444444444
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.5899968266445178,
+          "recall20": 0.18518518518518517,
+          "unplayedNdcg20": 0.6591397519969842,
+          "unplayedRecall20": 0.18518518518518517,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1075,
+          "poolSize": 1181,
+          "testInUniverse": 13,
+          "coverage": 0.48148148148148145
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.6203498829005422,
+          "recall20": 0.18518518518518517,
+          "unplayedNdcg20": 0.6591397519969842,
+          "unplayedRecall20": 0.18518518518518517,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1075,
+          "poolSize": 1181,
+          "testInUniverse": 13,
+          "coverage": 0.48148148148148145
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.4723505232559048,
+          "recall20": 0.14814814814814814,
+          "unplayedNdcg20": 0.6426064120454809,
+          "unplayedRecall20": 0.18518518518518517,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1080,
+          "poolSize": 1324,
+          "testInUniverse": 17,
+          "coverage": 0.6296296296296297
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 0,
+      "player": {
+        "id": "76561198916150995",
+        "name": "Azalea",
+        "rank": 101,
+        "totalPP": 16352.385190487787
+      },
+      "cutoffUsed": 90,
+      "trainSize": 151,
+      "testSize": 6,
+      "unplayedTestSize": 6,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 1,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 939,
+          "poolSize": 1105,
+          "testInUniverse": 5,
+          "coverage": 0.8333333333333334
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 856,
+          "poolSize": 1157,
+          "testInUniverse": 4,
+          "coverage": 0.6666666666666666
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 856,
+          "poolSize": 1157,
+          "testInUniverse": 4,
+          "coverage": 0.6666666666666666
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 860,
+          "poolSize": 1296,
+          "testInUniverse": 4,
+          "coverage": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 1,
+      "player": {
+        "id": "76561198331589800",
+        "name": "NDonkeyN",
+        "rank": 138,
+        "totalPP": 15942.082696471423
+      },
+      "cutoffUsed": 90,
+      "trainSize": 194,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 36,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 2,
+      "player": {
+        "id": "76561199089624837",
+        "name": "Molie",
+        "rank": 176,
+        "totalPP": 15516.445413320664
+      },
+      "cutoffUsed": 90,
+      "trainSize": 59,
+      "testSize": 82,
+      "unplayedTestSize": 82,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 37,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.20572137434094998,
+          "recall20": 0.06097560975609756,
+          "unplayedNdcg20": 0.24962878216582404,
+          "unplayedRecall20": 0.06097560975609756,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1087,
+          "poolSize": 1208,
+          "testInUniverse": 58,
+          "coverage": 0.7073170731707317
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.26954150319482434,
+          "recall20": 0.07317073170731707,
+          "unplayedNdcg20": 0.3506904972947378,
+          "unplayedRecall20": 0.08536585365853659,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1037,
+          "poolSize": 1239,
+          "testInUniverse": 57,
+          "coverage": 0.6951219512195121
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.36687071867364396,
+          "recall20": 0.08536585365853659,
+          "unplayedNdcg20": 0.4121350330638789,
+          "unplayedRecall20": 0.0975609756097561,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1037,
+          "poolSize": 1239,
+          "testInUniverse": 57,
+          "coverage": 0.6951219512195121
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.28192468195522585,
+          "recall20": 0.07317073170731707,
+          "unplayedNdcg20": 0.39255834928215705,
+          "unplayedRecall20": 0.0975609756097561,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1038,
+          "poolSize": 1516,
+          "testInUniverse": 64,
+          "coverage": 0.7804878048780488
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 3,
+      "player": {
+        "id": "7610863798939919",
+        "name": "aideblob",
+        "rank": 213,
+        "totalPP": 15192.242195975095
+      },
+      "cutoffUsed": 180,
+      "trainSize": 163,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 36,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 927,
+          "poolSize": 1188,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 604,
+          "poolSize": 1040,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 604,
+          "poolSize": 1040,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 605,
+          "poolSize": 1245,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 4,
+      "player": {
+        "id": "8144290865672358",
+        "name": "tainted_bread",
+        "rank": 251,
+        "totalPP": 14835.207527124694
+      },
+      "cutoffUsed": 180,
+      "trainSize": 134,
+      "testSize": 31,
+      "unplayedTestSize": 31,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 37,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1198,
+          "poolSize": 1261,
+          "testInUniverse": 14,
+          "coverage": 0.45161290322580644
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1090,
+          "poolSize": 1275,
+          "testInUniverse": 10,
+          "coverage": 0.3225806451612903
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1090,
+          "poolSize": 1275,
+          "testInUniverse": 10,
+          "coverage": 0.3225806451612903
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1094,
+          "poolSize": 1594,
+          "testInUniverse": 15,
+          "coverage": 0.4838709677419355
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 5,
+      "player": {
+        "id": "1525854644189520",
+        "name": "MHT",
+        "rank": 288,
+        "totalPP": 14614.678621188243
+      },
+      "cutoffUsed": 90,
+      "trainSize": 58,
+      "testSize": 73,
+      "unplayedTestSize": 73,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 36,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.18480461709750212,
+          "recall20": 0.0273972602739726,
+          "unplayedNdcg20": 0.220880836177297,
+          "unplayedRecall20": 0.0410958904109589,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1239,
+          "poolSize": 1457,
+          "testInUniverse": 39,
+          "coverage": 0.5342465753424658
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.09242156326951315,
+          "recall20": 0.0273972602739726,
+          "unplayedNdcg20": 0.22730037940162454,
+          "unplayedRecall20": 0.0821917808219178,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 946,
+          "poolSize": 1487,
+          "testInUniverse": 39,
+          "coverage": 0.5342465753424658
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.21676193687262363,
+          "recall20": 0.0684931506849315,
+          "unplayedNdcg20": 0.21696429728741,
+          "unplayedRecall20": 0.0684931506849315,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 946,
+          "poolSize": 1487,
+          "testInUniverse": 39,
+          "coverage": 0.5342465753424658
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.04642496137687128,
+          "recall20": 0.0136986301369863,
+          "unplayedNdcg20": 0.12697540161793264,
+          "unplayedRecall20": 0.0410958904109589,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 946,
+          "poolSize": 1953,
+          "testInUniverse": 43,
+          "coverage": 0.589041095890411
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 6,
+      "player": {
+        "id": "76561199237723803",
+        "name": "Eliotte",
+        "rank": 326,
+        "totalPP": 14441.136837894825
+      },
+      "cutoffUsed": 90,
+      "trainSize": 116,
+      "testSize": 15,
+      "unplayedTestSize": 15,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 37,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1481,
+          "poolSize": 1504,
+          "testInUniverse": 5,
+          "coverage": 0.3333333333333333
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1425,
+          "poolSize": 1657,
+          "testInUniverse": 7,
+          "coverage": 0.4666666666666667
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1425,
+          "poolSize": 1657,
+          "testInUniverse": 7,
+          "coverage": 0.4666666666666667
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1430,
+          "poolSize": 2022,
+          "testInUniverse": 7,
+          "coverage": 0.4666666666666667
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 7,
+      "player": {
+        "id": "76561198084235844",
+        "name": "Amp",
+        "rank": 363,
+        "totalPP": 14275.095786832668
+      },
+      "cutoffUsed": 90,
+      "trainSize": 191,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 60,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 8,
+      "player": {
+        "id": "76561199140543795",
+        "name": "tomer.miaw",
+        "rank": 401,
+        "totalPP": 14038.435313590666
+      },
+      "cutoffUsed": 90,
+      "trainSize": 16,
+      "testSize": 120,
+      "unplayedTestSize": 120,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.21454675914430585,
+          "recall20": 0.041666666666666664,
+          "unplayedNdcg20": 0.2161980254524073,
+          "unplayedRecall20": 0.041666666666666664,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1409,
+          "poolSize": 1506,
+          "testInUniverse": 94,
+          "coverage": 0.7833333333333333
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.3357354411857063,
+          "recall20": 0.06666666666666667,
+          "unplayedNdcg20": 0.36376729511621503,
+          "unplayedRecall20": 0.06666666666666667,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1065,
+          "poolSize": 1573,
+          "testInUniverse": 88,
+          "coverage": 0.7333333333333333
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.4236800786518772,
+          "recall20": 0.08333333333333333,
+          "unplayedNdcg20": 0.4236800786518772,
+          "unplayedRecall20": 0.08333333333333333,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1065,
+          "poolSize": 1573,
+          "testInUniverse": 88,
+          "coverage": 0.7333333333333333
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.3357354411857063,
+          "recall20": 0.06666666666666667,
+          "unplayedNdcg20": 0.36376729511621503,
+          "unplayedRecall20": 0.06666666666666667,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1065,
+          "poolSize": 1573,
+          "testInUniverse": 88,
+          "coverage": 0.7333333333333333
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 9,
+      "player": {
+        "id": "2296904523717266",
+        "name": "hyren",
+        "rank": 438,
+        "totalPP": 13881.941493915885
+      },
+      "cutoffUsed": 90,
+      "trainSize": 194,
+      "testSize": 2,
+      "unplayedTestSize": 2,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 10,
+      "player": {
+        "id": "76561198187170453",
+        "name": "Benny Tea",
+        "rank": 476,
+        "totalPP": 13770.052172993535
+      },
+      "cutoffUsed": 90,
+      "trainSize": 190,
+      "testSize": 1,
+      "unplayedTestSize": 1,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 11,
+      "player": {
+        "id": "4054286154647159",
+        "name": "Machinegun.UC",
+        "rank": 513,
+        "totalPP": 13602.604336349335
+      },
+      "cutoffUsed": 90,
+      "trainSize": 161,
+      "testSize": 18,
+      "unplayedTestSize": 18,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1349,
+          "poolSize": 1495,
+          "testInUniverse": 5,
+          "coverage": 0.2777777777777778
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 941,
+          "poolSize": 1506,
+          "testInUniverse": 5,
+          "coverage": 0.2777777777777778
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 941,
+          "poolSize": 1506,
+          "testInUniverse": 5,
+          "coverage": 0.2777777777777778
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 941,
+          "poolSize": 1506,
+          "testInUniverse": 5,
+          "coverage": 0.2777777777777778
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 12,
+      "player": {
+        "id": "76561198135417563",
+        "name": "OwenTheProgrammer",
+        "rank": 551,
+        "totalPP": 13460.95956628642
+      },
+      "cutoffUsed": 90,
+      "trainSize": 189,
+      "testSize": 8,
+      "unplayedTestSize": 8,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1454,
+          "poolSize": 1534,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1173,
+          "poolSize": 1482,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1173,
+          "poolSize": 1482,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1173,
+          "poolSize": 1482,
+          "testInUniverse": 0,
+          "coverage": 0
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 13,
+      "player": {
+        "id": "76561199230791114",
+        "name": "Violet",
+        "rank": 588,
+        "totalPP": 13334.44335273934
+      },
+      "cutoffUsed": 90,
+      "trainSize": 62,
+      "testSize": 74,
+      "unplayedTestSize": 74,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.031683540436586353,
+          "recall20": 0.013513513513513514,
+          "unplayedNdcg20": 0.036313393963916744,
+          "unplayedRecall20": 0.013513513513513514,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1549,
+          "poolSize": 1553,
+          "testInUniverse": 46,
+          "coverage": 0.6216216216216216
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1368,
+          "poolSize": 1477,
+          "testInUniverse": 38,
+          "coverage": 0.5135135135135135
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.024318998911013627,
+          "recall20": 0.013513513513513514,
+          "unplayedNdcg20": 0.024318998911013627,
+          "unplayedRecall20": 0.013513513513513514,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1368,
+          "poolSize": 1477,
+          "testInUniverse": 38,
+          "coverage": 0.5135135135135135
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1368,
+          "poolSize": 1477,
+          "testInUniverse": 38,
+          "coverage": 0.5135135135135135
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 14,
+      "player": {
+        "id": "76561198025220197",
+        "name": "Molentum",
+        "rank": 625,
+        "totalPP": 13202.358858306356
+      },
+      "cutoffUsed": 90,
+      "trainSize": 145,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1321,
+          "poolSize": 1551,
+          "testInUniverse": 4,
+          "coverage": 1
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 833,
+          "poolSize": 1563,
+          "testInUniverse": 4,
+          "coverage": 1
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 833,
+          "poolSize": 1563,
+          "testInUniverse": 4,
+          "coverage": 1
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 833,
+          "poolSize": 1563,
+          "testInUniverse": 4,
+          "coverage": 1
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 15,
+      "player": {
+        "id": "76561198975779715",
+        "name": "jonkadoo",
+        "rank": 663,
+        "totalPP": 13057.566674441547
+      },
+      "cutoffUsed": 90,
+      "trainSize": 130,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1486,
+          "poolSize": 1550,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1300,
+          "poolSize": 1619,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1300,
+          "poolSize": 1619,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1300,
+          "poolSize": 1619,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 16,
+      "player": {
+        "id": "76561198196072407",
+        "name": "Uncouth 🍻🇸🇪",
+        "rank": 700,
+        "totalPP": 12910.330441120937
+      },
+      "cutoffUsed": 180,
+      "trainSize": 166,
+      "testSize": 14,
+      "unplayedTestSize": 14,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1183,
+          "poolSize": 1440,
+          "testInUniverse": 7,
+          "coverage": 0.5
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 674,
+          "poolSize": 1385,
+          "testInUniverse": 6,
+          "coverage": 0.42857142857142855
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 674,
+          "poolSize": 1385,
+          "testInUniverse": 6,
+          "coverage": 0.42857142857142855
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 674,
+          "poolSize": 1385,
+          "testInUniverse": 6,
+          "coverage": 0.42857142857142855
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 17,
+      "player": {
+        "id": "76561199780993060",
+        "name": "PennPenn",
+        "rank": 738,
+        "totalPP": 12817.014280138534
+      },
+      "cutoffUsed": 90,
+      "trainSize": 64,
+      "testSize": 57,
+      "unplayedTestSize": 57,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1420,
+          "poolSize": 1627,
+          "testInUniverse": 38,
+          "coverage": 0.6666666666666666
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.09406034888634263,
+          "recall20": 0.05263157894736842,
+          "unplayedNdcg20": 0.09875963825328898,
+          "unplayedRecall20": 0.05263157894736842,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 967,
+          "poolSize": 1590,
+          "testInUniverse": 37,
+          "coverage": 0.6491228070175439
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.09895104785390364,
+          "recall20": 0.05263157894736842,
+          "unplayedNdcg20": 0.09895104785390364,
+          "unplayedRecall20": 0.05263157894736842,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 967,
+          "poolSize": 1590,
+          "testInUniverse": 37,
+          "coverage": 0.6491228070175439
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.09406034888634263,
+          "recall20": 0.05263157894736842,
+          "unplayedNdcg20": 0.09875963825328898,
+          "unplayedRecall20": 0.05263157894736842,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 967,
+          "poolSize": 1590,
+          "testInUniverse": 37,
+          "coverage": 0.6491228070175439
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 18,
+      "player": {
+        "id": "76561199186039014",
+        "name": "XD_ERK",
+        "rank": 775,
+        "totalPP": 12710.5
+      },
+      "cutoffUsed": 90,
+      "trainSize": 117,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 19,
+      "player": {
+        "id": "76561198084852852",
+        "name": "bucciax",
+        "rank": 813,
+        "totalPP": 12608.301305304358
+      },
+      "cutoffUsed": 180,
+      "trainSize": 156,
+      "testSize": 5,
+      "unplayedTestSize": 5,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1437,
+          "poolSize": 1540,
+          "testInUniverse": 3,
+          "coverage": 0.6
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.22996759348159168,
+          "recall20": 0.2,
+          "unplayedNdcg20": 0.3154648767857287,
+          "unplayedRecall20": 0.2,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1088,
+          "poolSize": 1574,
+          "testInUniverse": 2,
+          "coverage": 0.4
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1088,
+          "poolSize": 1574,
+          "testInUniverse": 2,
+          "coverage": 0.4
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.22996759348159168,
+          "recall20": 0.2,
+          "unplayedNdcg20": 0.3154648767857287,
+          "unplayedRecall20": 0.2,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1088,
+          "poolSize": 1574,
+          "testInUniverse": 2,
+          "coverage": 0.4
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 20,
+      "player": {
+        "id": "76561198827086329",
+        "name": "Vassa",
+        "rank": 850,
+        "totalPP": 12506.491674724615
+      },
+      "cutoffUsed": 90,
+      "trainSize": 122,
+      "testSize": 25,
+      "unplayedTestSize": 25,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 72,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1650,
+          "poolSize": 1700,
+          "testInUniverse": 13,
+          "coverage": 0.52
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1313,
+          "poolSize": 1732,
+          "testInUniverse": 13,
+          "coverage": 0.52
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.03456941163636335,
+          "recall20": 0.04,
+          "unplayedNdcg20": 0.03839065562888781,
+          "unplayedRecall20": 0.04,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1313,
+          "poolSize": 1732,
+          "testInUniverse": 13,
+          "coverage": 0.52
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1313,
+          "poolSize": 1732,
+          "testInUniverse": 13,
+          "coverage": 0.52
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 21,
+      "player": {
+        "id": "2738194926275594",
+        "name": "sirpine0",
+        "rank": 888,
+        "totalPP": 12435.675715597179
+      },
+      "cutoffUsed": 90,
+      "trainSize": 198,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 74,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 22,
+      "player": {
+        "id": "76561199861710538",
+        "name": "Tekk",
+        "rank": 925,
+        "totalPP": 12342.807539047715
+      },
+      "cutoffUsed": 90,
+      "trainSize": 86,
+      "testSize": 17,
+      "unplayedTestSize": 17,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 196,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 80,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.03690940167944494,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.0796729736846308,
+          "unplayedRecall20": 0.11764705882352941,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1457,
+          "poolSize": 1676,
+          "testInUniverse": 15,
+          "coverage": 0.8823529411764706
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.17582811007349036,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.18456741195150306,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 981,
+          "poolSize": 1603,
+          "testInUniverse": 14,
+          "coverage": 0.8235294117647058
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.17582811007349036,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.18456741195150306,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 981,
+          "poolSize": 1603,
+          "testInUniverse": 14,
+          "coverage": 0.8235294117647058
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.17582811007349036,
+          "recall20": 0.058823529411764705,
+          "unplayedNdcg20": 0.18456741195150306,
+          "unplayedRecall20": 0.058823529411764705,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 981,
+          "poolSize": 1603,
+          "testInUniverse": 14,
+          "coverage": 0.8235294117647058
+        }
+      }
+    },
+    {
+      "stratum": "101-1000",
+      "slotIndex": 23,
+      "player": {
+        "id": "76561199276869594",
+        "name": "jesse_291",
+        "rank": 963,
+        "totalPP": 12249.320137429891
+      },
+      "cutoffUsed": 90,
+      "trainSize": 179,
+      "testSize": 3,
+      "unplayedTestSize": 3,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 158,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 150,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1553,
+          "poolSize": 1588,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1442,
+          "poolSize": 1656,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1442,
+          "poolSize": 1656,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1442,
+          "poolSize": 1656,
+          "testInUniverse": 0,
+          "coverage": 0
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 0,
+      "player": {
+        "id": "76561198275522989",
+        "name": "Redstone",
+        "rank": 1001,
+        "totalPP": 12169.323480132842
+      },
+      "cutoffUsed": 90,
+      "trainSize": 68,
+      "testSize": 61,
+      "unplayedTestSize": 61,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 120,
+      "fetchedNeighboursV3": 50,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 150,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1354,
+          "poolSize": 1415,
+          "testInUniverse": 24,
+          "coverage": 0.39344262295081966
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 938,
+          "poolSize": 1460,
+          "testInUniverse": 2,
+          "coverage": 0.03278688524590164
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 938,
+          "poolSize": 1460,
+          "testInUniverse": 2,
+          "coverage": 0.03278688524590164
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 938,
+          "poolSize": 1460,
+          "testInUniverse": 2,
+          "coverage": 0.03278688524590164
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 1,
+      "player": {
+        "id": "76561198304486868",
+        "name": "Gelt",
+        "rank": 1168,
+        "totalPP": 11781.878418395438
+      },
+      "cutoffUsed": 90,
+      "trainSize": 91,
+      "testSize": 49,
+      "unplayedTestSize": 49,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1760,
+          "poolSize": 1771,
+          "testInUniverse": 29,
+          "coverage": 0.5918367346938775
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1755,
+          "poolSize": 1835,
+          "testInUniverse": 26,
+          "coverage": 0.5306122448979592
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1755,
+          "poolSize": 1835,
+          "testInUniverse": 26,
+          "coverage": 0.5306122448979592
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1875,
+          "poolSize": 2499,
+          "testInUniverse": 29,
+          "coverage": 0.5918367346938775
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 2,
+      "player": {
+        "id": "76561199784327502",
+        "name": "CIBERWOLF360",
+        "rank": 1334,
+        "totalPP": 11457.237749153068
+      },
+      "cutoffUsed": 90,
+      "trainSize": 43,
+      "testSize": 105,
+      "unplayedTestSize": 105,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 230,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1555,
+          "poolSize": 1611,
+          "testInUniverse": 80,
+          "coverage": 0.7619047619047619
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.1437429690656425,
+          "recall20": 0.0380952380952381,
+          "unplayedNdcg20": 0.16400569885190372,
+          "unplayedRecall20": 0.0380952380952381,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1132,
+          "poolSize": 1498,
+          "testInUniverse": 62,
+          "coverage": 0.5904761904761905
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.17366213711545542,
+          "recall20": 0.0380952380952381,
+          "unplayedNdcg20": 0.17380282055999177,
+          "unplayedRecall20": 0.0380952380952381,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1132,
+          "poolSize": 1498,
+          "testInUniverse": 62,
+          "coverage": 0.5904761904761905
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.14244764468756738,
+          "recall20": 0.0380952380952381,
+          "unplayedNdcg20": 0.15418535792104748,
+          "unplayedRecall20": 0.0380952380952381,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1132,
+          "poolSize": 2121,
+          "testInUniverse": 64,
+          "coverage": 0.6095238095238096
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 3,
+      "player": {
+        "id": "76561198388337985",
+        "name": "Hades",
+        "rank": 1501,
+        "totalPP": 11180.287832646562
+      },
+      "cutoffUsed": 90,
+      "trainSize": 191,
+      "testSize": 1,
+      "unplayedTestSize": 1,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 4,
+      "player": {
+        "id": "76561198074057755",
+        "name": "AIXIM",
+        "rank": 1668,
+        "totalPP": 10870.670520318097
+      },
+      "cutoffUsed": 180,
+      "trainSize": 179,
+      "testSize": 7,
+      "unplayedTestSize": 7,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 230,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1663,
+          "poolSize": 1807,
+          "testInUniverse": 3,
+          "coverage": 0.42857142857142855
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1088,
+          "poolSize": 1721,
+          "testInUniverse": 3,
+          "coverage": 0.42857142857142855
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1088,
+          "poolSize": 1721,
+          "testInUniverse": 3,
+          "coverage": 0.42857142857142855
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1089,
+          "poolSize": 2062,
+          "testInUniverse": 3,
+          "coverage": 0.42857142857142855
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 5,
+      "player": {
+        "id": "76561199443334975",
+        "name": "S_IWASHI",
+        "rank": 1834,
+        "totalPP": 10621.957605775238
+      },
+      "cutoffUsed": 180,
+      "trainSize": 138,
+      "testSize": 30,
+      "unplayedTestSize": 30,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1691,
+          "poolSize": 1867,
+          "testInUniverse": 4,
+          "coverage": 0.13333333333333333
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1144,
+          "poolSize": 1753,
+          "testInUniverse": 3,
+          "coverage": 0.1
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1144,
+          "poolSize": 1753,
+          "testInUniverse": 3,
+          "coverage": 0.1
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1145,
+          "poolSize": 2140,
+          "testInUniverse": 3,
+          "coverage": 0.1
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 6,
+      "player": {
+        "id": "76561198142766130",
+        "name": "amalu",
+        "rank": 2001,
+        "totalPP": 10378.808921347507
+      },
+      "cutoffUsed": 90,
+      "trainSize": 68,
+      "testSize": 46,
+      "unplayedTestSize": 46,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2002,
+          "poolSize": 2061,
+          "testInUniverse": 26,
+          "coverage": 0.5652173913043478
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1537,
+          "poolSize": 1917,
+          "testInUniverse": 25,
+          "coverage": 0.5434782608695652
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1537,
+          "poolSize": 1917,
+          "testInUniverse": 25,
+          "coverage": 0.5434782608695652
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1543,
+          "poolSize": 2350,
+          "testInUniverse": 27,
+          "coverage": 0.5869565217391305
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 7,
+      "player": {
+        "id": "76561198172457683",
+        "name": "Kalamus",
+        "rank": 2167,
+        "totalPP": 10144.9
+      },
+      "cutoffUsed": 90,
+      "trainSize": 199,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 229,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 8,
+      "player": {
+        "id": "76561199657078815",
+        "name": "Player#412",
+        "rank": 2334,
+        "totalPP": 9930.159446202066
+      },
+      "cutoffUsed": 90,
+      "trainSize": 51,
+      "testSize": 49,
+      "unplayedTestSize": 49,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 88,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.027108618904920757,
+          "recall20": 0.02040816326530612,
+          "unplayedNdcg20": 0.028790296578296584,
+          "unplayedRecall20": 0.02040816326530612,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2078,
+          "poolSize": 2083,
+          "testInUniverse": 47,
+          "coverage": 0.9591836734693877
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.09514863378941989,
+          "recall20": 0.061224489795918366,
+          "unplayedNdcg20": 0.10089704371207464,
+          "unplayedRecall20": 0.061224489795918366,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1764,
+          "poolSize": 1783,
+          "testInUniverse": 43,
+          "coverage": 0.8775510204081632
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.09406034638996548,
+          "recall20": 0.061224489795918366,
+          "unplayedNdcg20": 0.09406034638996548,
+          "unplayedRecall20": 0.061224489795918366,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1764,
+          "poolSize": 1783,
+          "testInUniverse": 43,
+          "coverage": 0.8775510204081632
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.0874028788623667,
+          "recall20": 0.061224489795918366,
+          "unplayedNdcg20": 0.0946492786226393,
+          "unplayedRecall20": 0.061224489795918366,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2196,
+          "poolSize": 2290,
+          "testInUniverse": 45,
+          "coverage": 0.9183673469387755
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 9,
+      "player": {
+        "id": "76561198278241137",
+        "name": "DanDan673",
+        "rank": 2501,
+        "totalPP": 9697.249014238196
+      },
+      "cutoffUsed": 90,
+      "trainSize": 165,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 10,
+      "player": {
+        "id": "76561198977889646",
+        "name": "Burnt Soup",
+        "rank": 2667,
+        "totalPP": 9442.251796558456
+      },
+      "cutoffUsed": 90,
+      "trainSize": 164,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 229,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0.16736212056550465,
+          "unplayedRecall20": 0.25,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2155,
+          "poolSize": 2168,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1877,
+          "poolSize": 1916,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1877,
+          "poolSize": 1916,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2249,
+          "poolSize": 2323,
+          "testInUniverse": 3,
+          "coverage": 0.75
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 11,
+      "player": {
+        "id": "2015541141816104",
+        "name": "jh28473284384",
+        "rank": 2834,
+        "totalPP": 9236.388787118296
+      },
+      "cutoffUsed": 90,
+      "trainSize": 85,
+      "testSize": 82,
+      "unplayedTestSize": 82,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1747,
+          "poolSize": 2267,
+          "testInUniverse": 49,
+          "coverage": 0.5975609756097561
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.10877155385011342,
+          "recall20": 0.024390243902439025,
+          "unplayedNdcg20": 0.11649309072724862,
+          "unplayedRecall20": 0.024390243902439025,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 918,
+          "poolSize": 2030,
+          "testInUniverse": 42,
+          "coverage": 0.5121951219512195
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.11470494391206983,
+          "recall20": 0.024390243902439025,
+          "unplayedNdcg20": 0.12111924353773165,
+          "unplayedRecall20": 0.024390243902439025,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 918,
+          "poolSize": 2030,
+          "testInUniverse": 42,
+          "coverage": 0.5121951219512195
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.0880285264509897,
+          "recall20": 0.024390243902439025,
+          "unplayedNdcg20": 0.0937549025130493,
+          "unplayedRecall20": 0.024390243902439025,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 918,
+          "poolSize": 2397,
+          "testInUniverse": 44,
+          "coverage": 0.5365853658536586
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 12,
+      "player": {
+        "id": "76561198892649796",
+        "name": "CherMis",
+        "rank": 3001,
+        "totalPP": 9062.98458388525
+      },
+      "cutoffUsed": 90,
+      "trainSize": 140,
+      "testSize": 16,
+      "unplayedTestSize": 16,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.28611866766072125,
+          "recall20": 0.125,
+          "unplayedNdcg20": 0.29223230795797495,
+          "unplayedRecall20": 0.125,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2093,
+          "poolSize": 2192,
+          "testInUniverse": 13,
+          "coverage": 0.8125
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1544,
+          "poolSize": 2021,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1544,
+          "poolSize": 2021,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1544,
+          "poolSize": 2427,
+          "testInUniverse": 14,
+          "coverage": 0.875
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 13,
+      "player": {
+        "id": "76561198011082029",
+        "name": "Nikitius",
+        "rank": 3167,
+        "totalPP": 8888.830670893043
+      },
+      "cutoffUsed": 180,
+      "trainSize": 171,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 229,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1911,
+          "poolSize": 2004,
+          "testInUniverse": 2,
+          "coverage": 0.5
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1438,
+          "poolSize": 1950,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1438,
+          "poolSize": 1950,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1438,
+          "poolSize": 2284,
+          "testInUniverse": 1,
+          "coverage": 0.25
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 14,
+      "player": {
+        "id": "76561199297316339",
+        "name": "girl failure cat girl",
+        "rank": 3336,
+        "totalPP": 8699.379384815793
+      },
+      "cutoffUsed": 90,
+      "trainSize": 143,
+      "testSize": 9,
+      "unplayedTestSize": 9,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 233,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2273,
+          "poolSize": 2339,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2042,
+          "poolSize": 2102,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2042,
+          "poolSize": 2102,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2392,
+          "poolSize": 2477,
+          "testInUniverse": 2,
+          "coverage": 0.2222222222222222
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 15,
+      "player": {
+        "id": "76561199029320366",
+        "name": "WinderXP",
+        "rank": 3500,
+        "totalPP": 8519.061735714975
+      },
+      "cutoffUsed": 90,
+      "trainSize": 32,
+      "testSize": 78,
+      "unplayedTestSize": 78,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 227,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2216,
+          "poolSize": 2245,
+          "testInUniverse": 49,
+          "coverage": 0.6282051282051282
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.02566653059053332,
+          "recall20": 0.01282051282051282,
+          "unplayedNdcg20": 0.028074545627966768,
+          "unplayedRecall20": 0.01282051282051282,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1687,
+          "poolSize": 2027,
+          "testInUniverse": 38,
+          "coverage": 0.48717948717948717
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.060016154873479624,
+          "recall20": 0.02564102564102564,
+          "unplayedNdcg20": 0.06023752271482655,
+          "unplayedRecall20": 0.02564102564102564,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1687,
+          "poolSize": 2027,
+          "testInUniverse": 38,
+          "coverage": 0.48717948717948717
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.03571914836922619,
+          "recall20": 0.01282051282051282,
+          "unplayedNdcg20": 0.043345956114083865,
+          "unplayedRecall20": 0.01282051282051282,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1700,
+          "poolSize": 2428,
+          "testInUniverse": 42,
+          "coverage": 0.5384615384615384
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 16,
+      "player": {
+        "id": "76561199174987295",
+        "name": "安し",
+        "rank": 3668,
+        "totalPP": 8351.665112740695
+      },
+      "cutoffUsed": 90,
+      "trainSize": 38,
+      "testSize": 76,
+      "unplayedTestSize": 76,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 232,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.11983013140810221,
+          "recall20": 0.02631578947368421,
+          "unplayedNdcg20": 0.11983013140810221,
+          "unplayedRecall20": 0.02631578947368421,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2287,
+          "poolSize": 2303,
+          "testInUniverse": 50,
+          "coverage": 0.6578947368421053
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1998,
+          "poolSize": 2248,
+          "testInUniverse": 48,
+          "coverage": 0.631578947368421
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1998,
+          "poolSize": 2248,
+          "testInUniverse": 48,
+          "coverage": 0.631578947368421
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2088,
+          "poolSize": 2609,
+          "testInUniverse": 52,
+          "coverage": 0.6842105263157895
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 17,
+      "player": {
+        "id": "76561198072438411",
+        "name": "huskypupgaming",
+        "rank": 3834,
+        "totalPP": 8185.711158316302
+      },
+      "cutoffUsed": 90,
+      "trainSize": 64,
+      "testSize": 49,
+      "unplayedTestSize": 49,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 230,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2157,
+          "poolSize": 2223,
+          "testInUniverse": 21,
+          "coverage": 0.42857142857142855
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1586,
+          "poolSize": 2159,
+          "testInUniverse": 16,
+          "coverage": 0.32653061224489793
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1586,
+          "poolSize": 2159,
+          "testInUniverse": 16,
+          "coverage": 0.32653061224489793
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1589,
+          "poolSize": 2438,
+          "testInUniverse": 16,
+          "coverage": 0.32653061224489793
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 18,
+      "player": {
+        "id": "76561199013366366",
+        "name": "Glitchedfuntime",
+        "rank": 4001,
+        "totalPP": 8029.891468144882
+      },
+      "cutoffUsed": 90,
+      "trainSize": 170,
+      "testSize": 14,
+      "unplayedTestSize": 14,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.20536798308907206,
+          "recall20": 0.07142857142857142,
+          "unplayedNdcg20": 0.23811590282516756,
+          "unplayedRecall20": 0.07142857142857142,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2032,
+          "poolSize": 2452,
+          "testInUniverse": 10,
+          "coverage": 0.7142857142857143
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1187,
+          "poolSize": 2277,
+          "testInUniverse": 5,
+          "coverage": 0.35714285714285715
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1187,
+          "poolSize": 2277,
+          "testInUniverse": 5,
+          "coverage": 0.35714285714285715
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1187,
+          "poolSize": 2473,
+          "testInUniverse": 7,
+          "coverage": 0.5
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 19,
+      "player": {
+        "id": "76561198046412275",
+        "name": "Flyzic",
+        "rank": 4167,
+        "totalPP": 7875.804567659287
+      },
+      "cutoffUsed": 90,
+      "trainSize": 174,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 230,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 20,
+      "player": {
+        "id": "76561198235945184",
+        "name": "EhmC",
+        "rank": 4334,
+        "totalPP": 7749.910573492605
+      },
+      "cutoffUsed": 90,
+      "trainSize": 188,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 21,
+      "player": {
+        "id": "76561199257719853",
+        "name": "NORTH",
+        "rank": 4500,
+        "totalPP": 7606.389779303667
+      },
+      "cutoffUsed": 180,
+      "trainSize": 146,
+      "testSize": 18,
+      "unplayedTestSize": 18,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 229,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2072,
+          "poolSize": 2186,
+          "testInUniverse": 8,
+          "coverage": 0.4444444444444444
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1610,
+          "poolSize": 2066,
+          "testInUniverse": 8,
+          "coverage": 0.4444444444444444
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1610,
+          "poolSize": 2066,
+          "testInUniverse": 8,
+          "coverage": 0.4444444444444444
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1635,
+          "poolSize": 2350,
+          "testInUniverse": 10,
+          "coverage": 0.5555555555555556
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 22,
+      "player": {
+        "id": "76561199098937802",
+        "name": "fewsha :3c",
+        "rank": 4667,
+        "totalPP": 7474.8651344439795
+      },
+      "cutoffUsed": 90,
+      "trainSize": 9,
+      "testSize": 79,
+      "unplayedTestSize": 79,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 231,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.1767973834757531,
+          "recall20": 0.05063291139240506,
+          "unplayedNdcg20": 0.1767973834757531,
+          "unplayedRecall20": 0.05063291139240506,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2502,
+          "poolSize": 2503,
+          "testInUniverse": 68,
+          "coverage": 0.8607594936708861
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.20177242894578715,
+          "recall20": 0.0379746835443038,
+          "unplayedNdcg20": 0.20177242894578715,
+          "unplayedRecall20": 0.0379746835443038,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2126,
+          "poolSize": 2138,
+          "testInUniverse": 52,
+          "coverage": 0.6582278481012658
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.19697265302315156,
+          "recall20": 0.0379746835443038,
+          "unplayedNdcg20": 0.19697265302315156,
+          "unplayedRecall20": 0.0379746835443038,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2126,
+          "poolSize": 2138,
+          "testInUniverse": 52,
+          "coverage": 0.6582278481012658
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.22981377231401667,
+          "recall20": 0.0379746835443038,
+          "unplayedNdcg20": 0.22981377231401667,
+          "unplayedRecall20": 0.0379746835443038,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2345,
+          "poolSize": 2369,
+          "testInUniverse": 53,
+          "coverage": 0.6708860759493671
+        }
+      }
+    },
+    {
+      "stratum": "1001-5000",
+      "slotIndex": 23,
+      "player": {
+        "id": "76561198082920025",
+        "name": "wdrujaghmsn",
+        "rank": 4833,
+        "totalPP": 7350.201545906344
+      },
+      "cutoffUsed": 90,
+      "trainSize": 159,
+      "testSize": 8,
+      "unplayedTestSize": 8,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 230,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2423,
+          "poolSize": 2475,
+          "testInUniverse": 2,
+          "coverage": 0.25
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1769,
+          "poolSize": 2231,
+          "testInUniverse": 4,
+          "coverage": 0.5
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1769,
+          "poolSize": 2231,
+          "testInUniverse": 4,
+          "coverage": 0.5
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1806,
+          "poolSize": 2498,
+          "testInUniverse": 4,
+          "coverage": 0.5
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 0,
+      "player": {
+        "id": "76561197968094276",
+        "name": "Ikthias",
+        "rank": 5001,
+        "totalPP": 7204.394583022192
+      },
+      "cutoffUsed": 90,
+      "trainSize": 155,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 232,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 1,
+      "player": {
+        "id": "76561198012893323",
+        "name": "osasasa",
+        "rank": 5627,
+        "totalPP": 6716.737307174232
+      },
+      "cutoffUsed": 90,
+      "trainSize": 157,
+      "testSize": 30,
+      "unplayedTestSize": 30,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1976,
+          "poolSize": 2635,
+          "testInUniverse": 25,
+          "coverage": 0.8333333333333334
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1047,
+          "poolSize": 2292,
+          "testInUniverse": 27,
+          "coverage": 0.9
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1047,
+          "poolSize": 2292,
+          "testInUniverse": 27,
+          "coverage": 0.9
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1047,
+          "poolSize": 2463,
+          "testInUniverse": 28,
+          "coverage": 0.9333333333333333
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 2,
+      "player": {
+        "id": "76561198864171189",
+        "name": "Loaf",
+        "rank": 6252,
+        "totalPP": 6234.067707349958
+      },
+      "cutoffUsed": 90,
+      "trainSize": 168,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 3,
+      "player": {
+        "id": "76561197972128422",
+        "name": "mackinnations",
+        "rank": 6880,
+        "totalPP": 5791.114150887979
+      },
+      "cutoffUsed": 90,
+      "trainSize": 34,
+      "testSize": 81,
+      "unplayedTestSize": 81,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.07036593448619603,
+          "recall20": 0.012345679012345678,
+          "unplayedNdcg20": 0.07119649045307297,
+          "unplayedRecall20": 0.012345679012345678,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2720,
+          "poolSize": 2939,
+          "testInUniverse": 63,
+          "coverage": 0.7777777777777778
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1586,
+          "poolSize": 2398,
+          "testInUniverse": 59,
+          "coverage": 0.7283950617283951
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1586,
+          "poolSize": 2398,
+          "testInUniverse": 59,
+          "coverage": 0.7283950617283951
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1586,
+          "poolSize": 2605,
+          "testInUniverse": 63,
+          "coverage": 0.7777777777777778
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 4,
+      "player": {
+        "id": "76561199039680125",
+        "name": "Tashiaki",
+        "rank": 7506,
+        "totalPP": 5356.885048040348
+      },
+      "cutoffUsed": 90,
+      "trainSize": 162,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 5,
+      "player": {
+        "id": "76561197972596811",
+        "name": "hardy.",
+        "rank": 8132,
+        "totalPP": 4958.538294346143
+      },
+      "cutoffUsed": 90,
+      "trainSize": 146,
+      "testSize": 2,
+      "unplayedTestSize": 2,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 6,
+      "player": {
+        "id": "76561198068448127",
+        "name": "abbie",
+        "rank": 8761,
+        "totalPP": 4552.53
+      },
+      "cutoffUsed": 90,
+      "trainSize": 176,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 267,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 7,
+      "player": {
+        "id": "76561198047249338",
+        "name": "Nanakra",
+        "rank": 9382,
+        "totalPP": 4157.394322692227
+      },
+      "cutoffUsed": 90,
+      "trainSize": 185,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 8,
+      "player": {
+        "id": "76561197970128219",
+        "name": "Grendelrt",
+        "rank": 10007,
+        "totalPP": 3768.4632372938604
+      },
+      "cutoffUsed": 90,
+      "trainSize": 167,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0.14709548571419342,
+          "recall20": 0.25,
+          "unplayedNdcg20": 0.3549496127884224,
+          "unplayedRecall20": 0.75,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2726,
+          "poolSize": 2854,
+          "testInUniverse": 3,
+          "coverage": 0.75
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1372,
+          "poolSize": 1523,
+          "testInUniverse": 3,
+          "coverage": 0.75
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1372,
+          "poolSize": 1523,
+          "testInUniverse": 3,
+          "coverage": 0.75
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1372,
+          "poolSize": 1523,
+          "testInUniverse": 3,
+          "coverage": 0.75
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 9,
+      "player": {
+        "id": "76561198278173533",
+        "name": "stalnaya-ledi",
+        "rank": 10713,
+        "totalPP": 3331.3919112267463
+      },
+      "cutoffUsed": 90,
+      "trainSize": 100,
+      "testSize": 6,
+      "unplayedTestSize": 6,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2450,
+          "poolSize": 2553,
+          "testInUniverse": 4,
+          "coverage": 0.6666666666666666
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1029,
+          "poolSize": 1122,
+          "testInUniverse": 1,
+          "coverage": 0.16666666666666666
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1029,
+          "poolSize": 1122,
+          "testInUniverse": 1,
+          "coverage": 0.16666666666666666
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1029,
+          "poolSize": 1122,
+          "testInUniverse": 1,
+          "coverage": 0.16666666666666666
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 10,
+      "player": {
+        "id": "76561198283345690",
+        "name": "GaMoLectro",
+        "rank": 11444,
+        "totalPP": 2941.8157133379927
+      },
+      "cutoffUsed": 90,
+      "trainSize": 157,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 11,
+      "player": {
+        "id": "76561198838883172",
+        "name": "fatui_tyan",
+        "rank": 12153,
+        "totalPP": 2589.8559701795593
+      },
+      "cutoffUsed": 90,
+      "trainSize": 139,
+      "testSize": 4,
+      "unplayedTestSize": 4,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 2025,
+          "poolSize": 2111,
+          "testInUniverse": 3,
+          "coverage": 0.75
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 899,
+          "poolSize": 994,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 899,
+          "poolSize": 994,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 899,
+          "poolSize": 994,
+          "testInUniverse": 0,
+          "coverage": 0
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 12,
+      "player": {
+        "id": "76561198340157984",
+        "name": "LUCA",
+        "rank": 13137,
+        "totalPP": 2173.2286728867543
+      },
+      "cutoffUsed": 90,
+      "trainSize": 176,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 13,
+      "player": {
+        "id": "76561198076567524",
+        "name": "danpgro",
+        "rank": 13184,
+        "totalPP": 2161.6343202805374
+      },
+      "cutoffUsed": 90,
+      "trainSize": 129,
+      "testSize": 9,
+      "unplayedTestSize": 9,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 95,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1778,
+          "poolSize": 1909,
+          "testInUniverse": 4,
+          "coverage": 0.4444444444444444
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 812,
+          "poolSize": 965,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 812,
+          "poolSize": 965,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 812,
+          "poolSize": 965,
+          "testInUniverse": 1,
+          "coverage": 0.1111111111111111
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 14,
+      "player": {
+        "id": "76561198793659369",
+        "name": "Blackshade",
+        "rank": 15284,
+        "totalPP": 1494.1001679354558
+      },
+      "cutoffUsed": 90,
+      "trainSize": 109,
+      "testSize": 8,
+      "unplayedTestSize": 8,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 1233,
+          "poolSize": 1328,
+          "testInUniverse": 6,
+          "coverage": 0.75
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0.26873357270611137,
+          "recall20": 0.125,
+          "unplayedNdcg20": 0.26873357270611137,
+          "unplayedRecall20": 0.125,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 519,
+          "poolSize": 601,
+          "testInUniverse": 3,
+          "coverage": 0.375
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0.1834392013955415,
+          "recall20": 0.125,
+          "unplayedNdcg20": 0.1834392013955415,
+          "unplayedRecall20": 0.125,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 519,
+          "poolSize": 601,
+          "testInUniverse": 3,
+          "coverage": 0.375
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0.26873357270611137,
+          "recall20": 0.125,
+          "unplayedNdcg20": 0.26873357270611137,
+          "unplayedRecall20": 0.125,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 519,
+          "poolSize": 601,
+          "testInUniverse": 3,
+          "coverage": 0.375
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 15,
+      "player": {
+        "id": "76561199202824028",
+        "name": "Shinzu",
+        "rank": 16074,
+        "totalPP": 1299.9702339511864
+      },
+      "cutoffUsed": 90,
+      "trainSize": 144,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 16,
+      "player": {
+        "id": "76561198143567134",
+        "name": "gulpin6v",
+        "rank": 16639,
+        "totalPP": 1179.8363447177733
+      },
+      "cutoffUsed": 90,
+      "trainSize": 156,
+      "testSize": 3,
+      "unplayedTestSize": 3,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 266,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 859,
+          "poolSize": 1085,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 327,
+          "poolSize": 497,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 327,
+          "poolSize": 497,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 327,
+          "poolSize": 497,
+          "testInUniverse": 0,
+          "coverage": 0
+        }
+      }
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 17,
+      "player": {
+        "id": "76561198906862263",
+        "name": "iceprison",
+        "rank": 16881,
+        "totalPP": 1126.8484633819285
+      },
+      "cutoffUsed": 90,
+      "trainSize": 190,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 265,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 18,
+      "player": {
+        "id": "76561199292609581",
+        "name": "josuegabby21",
+        "rank": 16992,
+        "totalPP": 1102.9939420493515
+      },
+      "cutoffUsed": 90,
+      "trainSize": 148,
+      "testSize": 0,
+      "unplayedTestSize": 0,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 174,
+      "status": "no-test-set",
+      "methods": null
+    },
+    {
+      "stratum": "5001-20000",
+      "slotIndex": 19,
+      "player": {
+        "id": "76561199014881718",
+        "name": "BK/Ater ＝ ｸﾛ",
+        "rank": 17076,
+        "totalPP": 1087.3891948372282
+      },
+      "cutoffUsed": 90,
+      "trainSize": 83,
+      "testSize": 18,
+      "unplayedTestSize": 18,
+      "improvementTestSize": 0,
+      "fetchedNeighboursProd": 200,
+      "fetchedNeighboursV3": 60,
+      "apiCallsForPlayer": 266,
+      "networkCallsForPlayer": 147,
+      "status": "ok",
+      "methods": {
+        "(i) 本番現行": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 871,
+          "poolSize": 1104,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii) v3 Phase 1": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 347,
+          "poolSize": 489,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(iii) v3 + B2ブレンド": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 347,
+          "poolSize": 489,
+          "testInUniverse": 0,
+          "coverage": 0
+        },
+        "(ii+P3) v3 + 近傍recent": {
+          "ndcg20": 0,
+          "recall20": 0,
+          "unplayedNdcg20": 0,
+          "unplayedRecall20": 0,
+          "improvementNdcg20": 0,
+          "improvementRecall20": 0,
+          "candidateCount": 347,
+          "poolSize": 489,
+          "testInUniverse": 0,
+          "coverage": 0
+        }
+      }
+    }
+  ]
+}

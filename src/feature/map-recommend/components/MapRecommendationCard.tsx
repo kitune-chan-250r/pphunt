@@ -18,7 +18,11 @@ const numberFormat = new Intl.NumberFormat("en-US");
 const formatScore = (score: number) => numberFormat.format(score);
 
 const formatDifficulty = (difficulty: string) => {
-  switch (difficulty.toLowerCase()) {
+  // ScoreSaber sometimes returns raw internal identifiers such as
+  // "_ExpertPlus_SoloStandard" instead of a plain difficulty name.
+  // Normalise those to the leading difficulty token before formatting.
+  const normalized = difficulty.replace(/^_+/, "").split("_")[0];
+  switch (normalized.toLowerCase()) {
     case "easy":
       return "Easy";
     case "normal":
@@ -30,15 +34,29 @@ const formatDifficulty = (difficulty: string) => {
     case "expertplus":
       return "Expert+";
     default:
-      return difficulty;
+      return normalized;
   }
+};
+
+const formatGameMode = (gameMode: string) => {
+  // "SoloStandard" -> "Standard", "SoloNoArrows" -> "NoArrows", etc.
+  return gameMode.startsWith("Solo") ? gameMode.slice("Solo".length) : gameMode;
+};
+
+const formatDifficultyLabel = (gameMode: string, rawDifficulty: string) => {
+  const difficultyLabel = formatDifficulty(rawDifficulty);
+  const modeLabel = formatGameMode(gameMode);
+  // The standard mode is the default, so the difficulty alone is clearest.
+  return modeLabel === "Standard" || modeLabel === ""
+    ? difficultyLabel
+    : `${modeLabel} / ${difficultyLabel}`;
 };
 
 export const MapRecommendationCard = ({
   recommendation,
 }: MapRecommendationCardProps) => {
   const theme = useTheme();
-  const { leaderboard, competitor, myScore, kind } = recommendation;
+  const { leaderboard, competitor, myScore, kind, display } = recommendation;
   const { map, difficulty, realm } = leaderboard;
   const title = `${map.songName}${map.songSubName ? ` ${map.songSubName}` : ""}`;
 
@@ -142,7 +160,10 @@ export const MapRecommendationCard = ({
           <Chip
             size="small"
             variant="outlined"
-            label={`${difficulty.gameMode} / ${formatDifficulty(difficulty.rawDifficulty)}`}
+            label={formatDifficultyLabel(
+              difficulty.gameMode,
+              difficulty.rawDifficulty,
+            )}
             sx={{ borderRadius: "6px" }}
           />
           <Chip
@@ -151,6 +172,23 @@ export const MapRecommendationCard = ({
             label={`周辺 ${recommendation.appearanceCount}人がプレイ`}
             sx={{ borderRadius: "6px" }}
           />
+          {display && display.recentPlayerCount > 0 && (
+            <Chip
+              size="small"
+              variant="outlined"
+              label={`直近90日に ${display.recentPlayerCount}人`}
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
+          {display?.isAboveCurve && (
+            <Chip
+              size="small"
+              color="warning"
+              variant="outlined"
+              label="格上"
+              sx={{ borderRadius: "6px" }}
+            />
+          )}
           {realm.stars > 0 && (
             <Chip
               size="small"
@@ -218,6 +256,24 @@ export const MapRecommendationCard = ({
             ? `自分: ${formatScore(myScore.modifiedScore)}`
             : `${competitor.name} · #${numberFormat.format(competitor.rank)}`}
         </Typography>
+        {display && (
+          <>
+            <Typography variant="caption" color="text.secondary">
+              予測 +ΔPP（周辺最高ベース）:{" "}
+              {display.predictedDeltaPpBest.toFixed(1)} PP
+            </Typography>
+            {kind === "UNPLAYED" && (
+              <Typography variant="caption" color="text.secondary">
+                予測 +ΔPP（中央値ベース）:{" "}
+                {display.predictedDeltaPpMedian.toFixed(1)} PP
+              </Typography>
+            )}
+            <Typography variant="caption" color="text.secondary">
+              予測精度（目安）:{" "}
+              {(display.predictedAccuracy * 100).toFixed(1)}%
+            </Typography>
+          </>
+        )}
       </Stack>
     </Card>
   );

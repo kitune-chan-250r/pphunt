@@ -508,7 +508,8 @@ test("候補をキーボードで選択するとプロフィールと分析結�
   await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
   expect(searchQueries).toEqual(["Aoi"]);
   expect(requests).toContain("/api/v2/players/player-1");
-  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=50&sort=top");
+  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=100&sort=top");
+  expect(requests).toContain("/api/v2/players/player-1/scores?page=1&limit=100&sort=recent");
   expect(requests).toContain(
     "/api/v2/players/player-1/scores/hash/unplayed-map-hash/Standard/4",
   );
@@ -551,6 +552,43 @@ test("候補をキーボードで選択するとプロフィールと分析結�
   await improvementTab.click();
   await expect(improvementTab).toHaveAttribute("aria-selected", "true");
   await expect(recommendationCards.first()).toContainText("Played Map");
+});
+
+test("検索候補とプロフィールに国旗アイコンが表示される", async ({ page }) => {
+  await installSuccessfulApiMocks(page);
+
+  // 国旗用スタイルシートは遅延読み込みされるため、読み込み完了後に
+  // 背景画像と寸法が適用された状態になることを確認する。
+  const expectFlagRendered = async (flag: ReturnType<Page["locator"]>) => {
+    await expect
+      .poll(() =>
+        flag.evaluate((el) => {
+          const rect = el.getBoundingClientRect();
+          return getComputedStyle(el).backgroundImage !== "none" &&
+            rect.width >= 10
+            ? "ready"
+            : "pending";
+        }),
+      )
+      .toBe("ready");
+  };
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+  await searchInput.fill("Player");
+
+  const aoiOption = page.getByRole("option", { name: /Aoi Player/ });
+  await expectFlagRendered(aoiOption.locator("span.fi-jp"));
+
+  await searchInput.press("ArrowDown");
+  await searchInput.press("Enter");
+  const profile = page.getByRole("region", {
+    name: "Aoi Player のプレイヤープロフィール",
+  });
+  await expect(profile).toBeVisible();
+  await expectFlagRendered(profile.locator("span.fi-jp"));
 });
 
 test("検索欄をクリアして別のプレイヤーを選択する", async ({ page }) => {
@@ -596,4 +634,149 @@ test("検索欄をクリアして別のプレイヤーを選択する", async ({
   await expect(miraProfile).toContainText("#2");
   await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
   await expect.poll(() => searchQueries).toEqual(["Aoi", "Mira"]);
+});
+
+test("Enterキーだけでも先頭の候補を選択する", async ({ page }) => {
+  await installSuccessfulApiMocks(page);
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+  await searchInput.fill("Aoi");
+  await expect(
+    page.getByRole("option", { name: /Aoi Player/ }),
+  ).toBeVisible();
+
+  // No arrow-key highlighting: plain Enter should pick the top candidate.
+  await searchInput.press("Enter");
+
+  await expect(searchInput).toHaveValue("Aoi Player");
+  await expect(
+    page.getByRole("region", { name: "Aoi Player のプレイヤープロフィール" }),
+  ).toBeVisible();
+});
+
+test("検索開始前は該当なしを表示せず検索中を表示する", async ({ page }) => {
+  const { searchQueries } = await installSuccessfulApiMocks(page);
+
+  await page.clock.install();
+  // Freeze the clock so the debounce window lasts until fastForward,
+  // regardless of how slow the test runner is. A near-future time is
+  // used because pauseAt() rejects a time that is already in the past
+  // by the time the browser processes it under load.
+  await page.clock.pauseAt(new Date(Date.now() + 10_000));
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+
+  // During the debounce window the request has not started yet, but the
+  // UI must already report a searching state, never a premature no-match.
+  await searchInput.fill("Player");
+  await expect(page.getByText("検索中…", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText("該当するプレイヤーがありません", { exact: true }),
+  ).toHaveCount(0);
+  expect(searchQueries).toEqual([]);
+
+  await page.clock.fastForward(400);
+  await expect(
+    page.getByRole("option", { name: /Aoi Player/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("該当するプレイヤーがありません", { exact: true }),
+  ).toHaveCount(0);
+});
+
+test("難易度の内部IDをそのまま表示しない", async ({ page }) => {
+  const rawPlayedMap: Leaderboard = {
+    ...playedMap,
+    difficulty: {
+      id: playedMap.difficulty.id,
+      difficulty: 4,
+      rawDifficulty: "_Expert_SoloStandard",
+      gameMode: "SoloStandard",
+    },
+  };
+  const rawUnplayedMap: Leaderboard = {
+    ...unplayedMap,
+    difficulty: {
+      id: unplayedMap.difficulty.id,
+      difficulty: 5,
+      rawDifficulty: "_ExpertPlus_SoloStandard",
+      gameMode: "SoloStandard",
+    },
+  };
+  const rawTargetScores: PlayerScoreEntry[] = [
+    { leaderboard: rawPlayedMap, score: makeScore(targetPlayer, 900_000, 12) },
+  ];
+  const rawCompetitorScores: PlayerScoreEntry[] = [
+    { leaderboard: rawPlayedMap, score: makeScore(competitor, 950_000, 14) },
+    {
+      leaderboard: rawUnplayedMap,
+      score: makeScore(competitor, 1_000_000, 25),
+    },
+  ];
+
+  await page.route("**/api/scoresaber/api/v2/**", async (route) => {
+    const url = new URL(route.request().url());
+    const pathname = url.pathname.replace(/^\/api\/scoresaber/, "");
+    const { searchParams } = url;
+
+    if (pathname === "/api/v2/players") {
+      return fulfillJson(
+        route,
+        makePaginatedResponse([targetPlayer, competitor]),
+      );
+    }
+    const playerPath = pathname.match(/^\/api\/v2\/players\/([^/]+)$/);
+    if (playerPath) {
+      const player = [targetPlayer, competitor].find(
+        ({ id }) => id === playerPath[1],
+      );
+      return player
+        ? fulfillJson(route, player satisfies PlayerProfile)
+        : fulfillJson(route, { error: "Player not found" }, 404);
+    }
+    const scoresPath = pathname.match(/^\/api\/v2\/players\/([^/]+)\/scores$/);
+    if (scoresPath) {
+      if (searchParams.has("hash")) {
+        return fulfillJson(route, { error: "No score found" }, 404);
+      }
+      return fulfillJson(
+        route,
+        makePaginatedResponse(
+          scoresPath[1] === targetPlayer.id
+            ? rawTargetScores
+            : rawCompetitorScores,
+        ),
+      );
+    }
+    if (pathname.includes("/scores/hash/")) {
+      return fulfillJson(route, { error: "No score found" }, 404);
+    }
+    return fulfillJson(route, { error: `Unexpected: ${pathname}` }, 500);
+  });
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+  await searchInput.fill("Aoi");
+  await page.getByRole("option", { name: /Aoi Player/ }).click();
+  await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
+
+  const improvementCard = page.getByRole("article").first();
+  await expect(improvementCard).toContainText("Expert");
+  await expect(improvementCard).not.toContainText("SoloStandard");
+  await expect(improvementCard).not.toContainText("_Expert");
+
+  await page
+    .getByRole("tab", { name: "未プレイ・PP候補 (1)" })
+    .click();
+  const unplayedCard = page.getByRole("article").first();
+  await expect(unplayedCard).toContainText("Expert+");
+  await expect(unplayedCard).not.toContainText("SoloStandard");
+  await expect(unplayedCard).not.toContainText("_ExpertPlus");
 });
