@@ -41,7 +41,7 @@ export const AsciiBackdrop = () => {
           inset: 0,
           m: 0,
           fontFamily: "inherit",
-          fontSize: "clamp(6px, 1.02vw, 15px)",
+          fontSize: "clamp(6px, 1.04vw, 20px)",
           lineHeight: 1.2,
           whiteSpace: "pre",
           opacity: { xs: 0.16, sm: 0.22 },
