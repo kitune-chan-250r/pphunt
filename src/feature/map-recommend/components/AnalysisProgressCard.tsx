@@ -6,6 +6,10 @@ import {
   Typography,
 } from "@mui/material";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
+import {
+  estimateRemainingSeconds,
+  roundEstimateSeconds,
+} from "../hooks/analysisTimeEstimate";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import { PlayerProfileCard } from "./PlayerProfileCard";
 
@@ -41,6 +45,9 @@ export const AnalysisProgressCard = ({
   if (!analysis.player) return null;
 
   const progressValue = getProgressValue(analysis);
+  const remainingSeconds = analysis.isLoading
+    ? estimateRemainingSeconds(analysis)
+    : null;
 
   return (
     <Stack spacing={1}>
@@ -80,6 +87,11 @@ export const AnalysisProgressCard = ({
               <Typography variant="body2" color="text.primary" role="status">
                 {getStatusLabel(analysis)}
               </Typography>
+              {remainingSeconds !== null && (
+                <Typography variant="caption" color="text.secondary">
+                  目安：あと約{roundEstimateSeconds(remainingSeconds)}秒
+                </Typography>
+              )}
             </Box>
             {analysis.isLoading && <SpinnerV2 size={16} />}
           </Stack>
