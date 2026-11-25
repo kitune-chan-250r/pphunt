@@ -8,6 +8,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
 import type { MapRecommendation } from "../hooks/useMapRecommendations";
+import { trackEvent } from "../../../common/analytics/googleTagManager";
 
 interface MapRecommendationCardProps {
   recommendation: MapRecommendation;
@@ -102,6 +103,13 @@ export const MapRecommendationCard = ({
             href={`https://scoresaber.com/leaderboard/${leaderboard.id}`}
             target="_blank"
             rel="noreferrer"
+            onClick={() =>
+              trackEvent({
+                event: "leaderboard_opened",
+                recommendation_type:
+                  kind === "UNPLAYED" ? "unplayed" : "improvements",
+              })
+            }
             sx={{
               color: "text.primary",
               textDecoration: "none",
