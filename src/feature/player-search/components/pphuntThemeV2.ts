@@ -1,12 +1,12 @@
 import { createTheme, type Theme } from "@mui/material/styles";
 
 /**
- * Design tokens for the redesigned PPHunt UI.
- * Palette follows ScoreSaber's own visual language (obsidian canvas, amber
- * accent, warm neutrals, Geist) rather than Google's blue/multicolor look.
+ * Design tokens for the ASCII "Terminal Editorial" redesign: obsidian canvas,
+ * amber accent kept from ScoreSaber's language, monospace type and square
+ * corners throughout.
  */
 export const designTokens = {
-  radius: { field: 12, control: 10, popper: 12, option: 8 },
+  radius: { field: 0, control: 0, popper: 0, option: 0 },
   accent: { light: "#facc15", dark: "#facc15" },
   accentInk: { light: "#422006", dark: "#422006" },
   accentSoft: {
@@ -18,7 +18,9 @@ export const designTokens = {
   muted: { light: "#78716c", dark: "#a8a29e" },
   surface: { light: "#ffffff", dark: "#141416" },
   canvas: { light: "#faf9f8", dark: "#09090b" },
-  font: '"Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif, "Noto Sans JP", "Noto Color Emoji", sans-serif',
+  // Monospace everywhere; "ascii.rest mono" supplies box-drawing glyphs that
+  // some system fonts lack, and Noto Sans JP covers Japanese text.
+  font: '"JetBrains Mono Variable", "ascii.rest mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Noto Sans JP", "Noto Color Emoji", monospace',
 } as const;
 
 export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {
@@ -44,13 +46,13 @@ export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {
         ? designTokens.hairline.dark
         : designTokens.hairline.light,
     },
-    shape: { borderRadius: designTokens.radius.control },
+    shape: { borderRadius: 0 },
     typography: {
       fontFamily: designTokens.font,
       h1: {
         fontSize: "clamp(3rem, 14vw, 5rem)",
-        fontWeight: 500,
-        letterSpacing: "-0.01em",
+        fontWeight: 700,
+        letterSpacing: "0.02em",
         lineHeight: 1.15,
       },
       body2: { fontSize: "0.875rem", lineHeight: 1.5 },
@@ -61,10 +63,11 @@ export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {
         styleOverrides: {
           root: {
             textTransform: "none",
-            fontWeight: 500,
-            fontSize: "0.9375rem",
+            fontWeight: 600,
+            fontSize: "0.875rem",
+            letterSpacing: "0.02em",
             borderRadius: designTokens.radius.control,
-            padding: "10px 20px",
+            padding: "9px 18px",
             transition: `background-color ${short} ease, border-color ${short} ease, box-shadow ${short} ease`,
           },
           contained: {
@@ -98,7 +101,7 @@ export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {
       MuiIconButton: {
         styleOverrides: {
           root: {
-            borderRadius: 8,
+            borderRadius: 0,
             padding: 8,
             color: isDark ? designTokens.muted.dark : designTokens.muted.light,
             transition: `background-color ${short} ease, color ${short} ease`,
@@ -137,13 +140,22 @@ export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {
           },
         },
       },
+      MuiChip: {
+        styleOverrides: {
+          root: {
+            borderRadius: 0,
+            fontFamily: designTokens.font,
+            fontWeight: 500,
+          },
+        },
+      },
       MuiAutocomplete: {
         styleOverrides: {
           option: {
             padding: "10px 12px",
-            margin: `2px ${designTokens.radius.option}px`,
-            borderRadius: designTokens.radius.option,
-            fontSize: "0.9375rem",
+            margin: 0,
+            borderRadius: 0,
+            fontSize: "0.875rem",
             lineHeight: 1.4,
           },
           noOptions: {
@@ -156,8 +168,8 @@ export const createPPHuntThemeV2 = (mode: "light" | "dark"): Theme => {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            fontSize: "0.8125rem",
-            borderRadius: 6,
+            fontSize: "0.75rem",
+            borderRadius: 0,
             bgcolor: isDark ? "#3c4043" : "#202124",
             color: "#ffffff",
           },

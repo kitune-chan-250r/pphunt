@@ -16,7 +16,8 @@ import {
   type AutocompleteRenderInputParams,
 } from "@mui/material";
 import type { HTMLAttributes, ReactNode } from "react";
-import { ClearIconV2, SearchIconV2, SpinnerV2 } from "./PPHuntIconsV2";
+import { ClearIconV2, SpinnerV2 } from "./PPHuntIconsV2";
+import { Glyph } from "../../../common/ascii/Glyph";
 import { PlayerSearchOptionV2 } from "./PlayerSearchOptionV2";
 import { LoadingListboxV2 } from "./LoadingListboxV2";
 import { designTokens } from "./pphuntThemeV2";
@@ -143,11 +144,11 @@ export const PlayerSearchBarV2 = ({
                   sx={{
                     display: "flex",
                     color: isDark
-                      ? designTokens.muted.dark
-                      : designTokens.muted.light,
+                      ? designTokens.accent.dark
+                      : designTokens.accent.light,
                   }}
                 >
-                  <SearchIconV2 />
+                  <Glyph char="$" size="1em" />
                 </Box>
               </InputAdornment>
             ),
@@ -170,11 +171,14 @@ export const PlayerSearchBarV2 = ({
         }}
         sx={{
           "& .MuiOutlinedInput-root": {
-            borderRadius: `${designTokens.radius.field}px`,
+            borderRadius: 0,
             height: compact ? 40 : 48,
             bgcolor: isDark
               ? designTokens.surface.dark
               : designTokens.surface.light,
+            caretColor: isDark
+              ? designTokens.accent.dark
+              : designTokens.accent.light,
             "& fieldset": {
               borderColor: isDark
                 ? designTokens.hairline.dark
@@ -188,7 +192,7 @@ export const PlayerSearchBarV2 = ({
             },
           },
           "& .MuiOutlinedInput-input": {
-            fontSize: compact ? "0.9375rem" : "1rem",
+            fontSize: compact ? "0.875rem" : "0.9375rem",
             py: compact ? 0.5 : 1,
           },
         }}

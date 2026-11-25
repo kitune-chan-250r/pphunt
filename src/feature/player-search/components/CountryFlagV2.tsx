@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { Box } from "@mui/material";
 import { designTokens } from "./pphuntThemeV2";
-import "flag-icons/css/flag-icons.min.css";
+import { ensureFlagIconsCss } from "../flagIconsCss";
 
 /**
  * Country flag icon backed by the `flag-icons` SVG sprite (image-based, so it
@@ -46,6 +47,15 @@ export const CountryFlagV2 = ({
 }: CountryFlagV2Props) => {
   const code = toFlagCode(country);
   const label = title ?? (country || "不明");
+
+  // The flag stylesheet is loaded lazily (see flagIconsCss.ts); the search
+  // flow already prefetches it, so this effect is only a fallback for a flag
+  // that mounts without a preceding search.
+  useEffect(() => {
+    if (code) {
+      void ensureFlagIconsCss();
+    }
+  }, [code]);
 
   if (!code) {
     return (

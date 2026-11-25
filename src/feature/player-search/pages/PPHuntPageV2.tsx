@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import "@fontsource-variable/geist";
 import {
   Box,
   Container,
@@ -15,6 +14,7 @@ import { usePlayerSearch } from "../hooks/usePlayerSearch";
 import { DarkModeIconV2, LightModeIconV2 } from "../components/PPHuntIconsV2";
 import { PlayerSearchBarV2 } from "../components/PlayerSearchBarV2";
 import { PPHuntWordmarkV2 } from "../components/PPHuntWordmarkV2";
+import { AsciiBackdrop } from "../../../common/ascii/AsciiBackdrop";
 import { createPPHuntThemeV2, designTokens } from "../components/pphuntThemeV2";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
 import { MapRecommend } from "../../map-recommend/components/MapRecommend";
@@ -62,13 +62,15 @@ export const PPHuntPageV2 = () => {
           minHeight: "100svh",
           display: "flex",
           flexDirection: "column",
-          bgcolor: "background.default",
           color: "text.primary",
         }}
       >
+        <AsciiBackdrop />
         <Box
           component="header"
           sx={{
+            position: "relative",
+            zIndex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -94,6 +96,8 @@ export const PPHuntPageV2 = () => {
           component="main"
           maxWidth="lg"
           sx={{
+            position: "relative",
+            zIndex: 1,
             flex: 1,
             display: "flex",
             flexDirection: "column",

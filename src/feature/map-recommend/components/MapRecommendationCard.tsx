@@ -1,12 +1,12 @@
 import {
   Avatar,
   Box,
-  Card,
   Chip,
   Stack,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
 import type { MapRecommendation } from "../hooks/useMapRecommendations";
 
 interface MapRecommendationCardProps {
@@ -56,14 +56,13 @@ export const MapRecommendationCard = ({
   recommendation,
 }: MapRecommendationCardProps) => {
   const theme = useTheme();
-  const { leaderboard, competitor, myScore, kind } = recommendation;
+  const { leaderboard, competitor, myScore, kind, display } = recommendation;
   const { map, difficulty, realm } = leaderboard;
   const title = `${map.songName}${map.songSubName ? ` ${map.songSubName}` : ""}`;
 
   return (
-    <Card
+    <AsciiPanel
       component="article"
-      variant="outlined"
       sx={{
         display: "grid",
         gridTemplateColumns: {
@@ -72,10 +71,8 @@ export const MapRecommendationCard = ({
         },
         gap: { xs: 1.5, sm: 2.5 },
         alignItems: { xs: "start", sm: "center" },
-        p: { xs: 1.5, sm: 2 },
-        bgcolor: "background.paper",
-        borderColor: "divider",
-        borderRadius: "14px",
+        px: { xs: 1.5, sm: 2 },
+        py: { xs: 1.5, sm: 2 },
         transition: "border-color 180ms cubic-bezier(0.22, 1, 0.36, 1)",
         "&:hover": {
           borderColor: "text.disabled",
@@ -89,7 +86,7 @@ export const MapRecommendationCard = ({
         sx={{
           width: { xs: 56, sm: 72 },
           height: { xs: 56, sm: 72 },
-          borderRadius: "8px",
+          borderRadius: 0,
           bgcolor: "action.hover",
         }}
       />
@@ -132,7 +129,7 @@ export const MapRecommendationCard = ({
             sx={{
               alignSelf: { xs: "flex-start", sm: "center" },
               height: 24,
-              borderRadius: "6px",
+              borderRadius: 0,
               "& .MuiChip-label": { px: 1 },
             }}
           />
@@ -164,20 +161,37 @@ export const MapRecommendationCard = ({
               difficulty.gameMode,
               difficulty.rawDifficulty,
             )}
-            sx={{ borderRadius: "6px" }}
+            sx={{ borderRadius: 0 }}
           />
           <Chip
             size="small"
             variant="outlined"
             label={`周辺 ${recommendation.appearanceCount}人がプレイ`}
-            sx={{ borderRadius: "6px" }}
+            sx={{ borderRadius: 0 }}
           />
+          {display && display.recentPlayerCount > 0 && (
+            <Chip
+              size="small"
+              variant="outlined"
+              label={`直近90日に ${display.recentPlayerCount}人`}
+              sx={{ borderRadius: 0 }}
+            />
+          )}
+          {display?.isAboveCurve && (
+            <Chip
+              size="small"
+              color="warning"
+              variant="outlined"
+              label="格上"
+              sx={{ borderRadius: 0 }}
+            />
+          )}
           {realm.stars > 0 && (
             <Chip
               size="small"
               variant="outlined"
               label={`${realm.stars.toFixed(2)} stars`}
-              sx={{ borderRadius: "6px" }}
+              sx={{ borderRadius: 0 }}
             />
           )}
           {map.bpm > 0 && (
@@ -239,7 +253,25 @@ export const MapRecommendationCard = ({
             ? `自分: ${formatScore(myScore.modifiedScore)}`
             : `${competitor.name} · #${numberFormat.format(competitor.rank)}`}
         </Typography>
+        {display && (
+          <>
+            <Typography variant="caption" color="text.secondary">
+              予測 +ΔPP（周辺最高ベース）:{" "}
+              {display.predictedDeltaPpBest.toFixed(1)} PP
+            </Typography>
+            {kind === "UNPLAYED" && (
+              <Typography variant="caption" color="text.secondary">
+                予測 +ΔPP（中央値ベース）:{" "}
+                {display.predictedDeltaPpMedian.toFixed(1)} PP
+              </Typography>
+            )}
+            <Typography variant="caption" color="text.secondary">
+              予測精度（目安）:{" "}
+              {(display.predictedAccuracy * 100).toFixed(1)}%
+            </Typography>
+          </>
+        )}
       </Stack>
-    </Card>
+    </AsciiPanel>
   );
 };
