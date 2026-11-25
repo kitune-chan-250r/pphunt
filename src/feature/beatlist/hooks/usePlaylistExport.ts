@@ -6,7 +6,7 @@ import {
   isValidSongHash,
 } from "../utils/beatlist";
 import type { PlaylistExportInput } from "../types/beatlist";
-import { trackEvent } from "../../../common/analytics/googleTagManager";
+import { trackEvent } from "../../../common/analytics/googleAnalytics";
 
 export const BEATSAVER_BASE_URL = "/api/beatsaver";
 

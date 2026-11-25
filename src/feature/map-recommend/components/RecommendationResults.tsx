@@ -21,7 +21,7 @@ import {
 import type { PlaylistSourceSong } from "../../beatlist/types/beatlist";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import { MapRecommendationCard } from "./MapRecommendationCard";
-import { trackEvent } from "../../../common/analytics/googleTagManager";
+import { trackEvent } from "../../../common/analytics/googleAnalytics";
 
 type MapRecommendationsAnalysis = ReturnType<typeof useMapRecommendations>;
 

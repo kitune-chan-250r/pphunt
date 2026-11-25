@@ -1,11 +1,6 @@
-import TagManager from "react-gtm-module";
+import ReactGA from "react-ga4";
 
 type AnalyticsEvent =
-  | {
-      event: "page_view";
-      page_location: string;
-      page_title: string;
-    }
   | {
       event: "player_search";
       status: "success" | "error";
@@ -46,7 +41,7 @@ type AnalyticsEvent =
       lookup_failure_count: number;
     };
 
-const GTM_ID = "GTM-WTQF7J38";
+const GA4_MEASUREMENT_ID = "G-JQRSE94FW4";
 let initialized = false;
 
 export const getQueryLengthBucket = (
@@ -59,17 +54,13 @@ export const getQueryLengthBucket = (
 
 export const trackEvent = (event: AnalyticsEvent) => {
   if (!initialized) return;
-  TagManager.dataLayer({ dataLayer: event });
+  const { event: eventName, ...params } = event;
+  ReactGA.event(eventName, params);
 };
 
 export const initializeAnalytics = () => {
   if (!import.meta.env.PROD || initialized) return;
 
-  TagManager.initialize({ gtmId: GTM_ID });
+  ReactGA.initialize(GA4_MEASUREMENT_ID);
   initialized = true;
-  trackEvent({
-    event: "page_view",
-    page_location: `${window.location.origin}${window.location.pathname}`,
-    page_title: document.title,
-  });
 };

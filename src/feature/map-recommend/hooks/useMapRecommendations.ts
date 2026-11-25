@@ -26,7 +26,7 @@ import {
   setPersistentCache,
   NEIGHBOUR_CACHE_TTL_MS,
 } from "../lib/cache";
-import { trackEvent } from "../../../common/analytics/googleTagManager";
+import { trackEvent } from "../../../common/analytics/googleAnalytics";
 
 export type RecommendationKind = "UNPLAYED" | "IMPROVEMENT";
 

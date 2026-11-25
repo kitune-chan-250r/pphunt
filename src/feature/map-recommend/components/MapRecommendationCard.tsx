@@ -8,7 +8,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
 import type { MapRecommendation } from "../hooks/useMapRecommendations";
-import { trackEvent } from "../../../common/analytics/googleTagManager";
+import { trackEvent } from "../../../common/analytics/googleAnalytics";
 
 interface MapRecommendationCardProps {
   recommendation: MapRecommendation;

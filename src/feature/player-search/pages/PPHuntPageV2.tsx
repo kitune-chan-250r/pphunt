@@ -21,7 +21,7 @@ import { MapRecommend } from "../../map-recommend/components/MapRecommend";
 import {
   initializeAnalytics,
   trackEvent,
-} from "../../../common/analytics/googleTagManager";
+} from "../../../common/analytics/googleAnalytics";
 
 type ThemeMode = "light" | "dark";
 

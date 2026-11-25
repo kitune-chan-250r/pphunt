@@ -62,14 +62,15 @@ Terraform の state、plan ファイル、ローカル変数ファイル、`.ter
 - `src/feature/player-search/` にはプレイヤー検索のページと UI コンポーネントがあります。
 - `src/feature/scoresaber/` には検索 UI で使用する ScoreSaber のデータフックとレスポンス型があります。
 
-## Google Analytics（GTM / GA4）
+## Google Analytics 4
 
-本番ビルドでは `react-gtm-module` で Google Tag Manager コンテナ
-`GTM-WTQF7J38` を初期化し、次のイベントを dataLayer に送信します。
+本番ビルドでは `react-ga4` で測定 ID `G-JQRSE94FW4` に直接イベントを送信します。
+開発ビルドでは計測しません。ページビューは Google tag の自動計測に任せ、
+イベントとして二重送信しません。
 
 | イベント | 計測内容 |
 | --- | --- |
-| `page_view` | アプリの表示。クエリ・ハッシュを除くURLとページタイトル |
+| `page_view` | Google tag によるアプリの表示 |
 | `player_search` | デバウンス後の検索結果。検索語は送らず、文字数帯・結果数・成否を送信 |
 | `player_selected` | 検索候補からのプレイヤー選択 |
 | `recommendation_analysis_started` / `recommendation_analysis_completed` / `recommendation_analysis_failed` | 分析の開始・結果・所要時間・件数・失敗数 |
@@ -77,10 +78,9 @@ Terraform の state、plan ファイル、ローカル変数ファイル、`.ter
 | `leaderboard_opened` | ScoreSaber譜面ページへの遷移。譜面名やIDは送信しない |
 | `playlist_export` | プレイリストの出力成否、出力数、BeatSaver Key の照会失敗数 |
 
-イベントには検索語、プレイヤー名・ID、譜面名・IDを含めません。GTM 側で
-GA4 設定タグと各イベント名に対応する GA4 イベントタグを設定してください。
-`page_view` を二重送信しないよう、GA4 設定タグの自動ページビュー送信は無効にしてください。
-開発ビルドでは計測しません。
+イベントには検索語、プレイヤー名・ID、譜面名・IDを含めません。初回のデータが
+GA4 のレポートに表示されるまで最大 48 時間かかる場合があります。リアルタイム
+レポートまたは DebugView で先に受信状況を確認できます。
 
 このテンプレートは、Vite の HMR と ESLint ルールを使って React を動かすための
 最小構成です。

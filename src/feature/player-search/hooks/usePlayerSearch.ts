@@ -6,7 +6,7 @@ import { ensureFlagIconsCss } from "../flagIconsCss";
 import {
   getQueryLengthBucket,
   trackEvent,
-} from "../../../common/analytics/googleTagManager";
+} from "../../../common/analytics/googleAnalytics";
 
 const MIN_QUERY_LENGTH = 3;
 const DEBOUNCE_MS = 350;
