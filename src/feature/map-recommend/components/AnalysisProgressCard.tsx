@@ -1,10 +1,10 @@
 import {
   Box,
-  Card,
-  LinearProgress,
   Stack,
   Typography,
 } from "@mui/material";
+import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
+import { AsciiProgress } from "../../../common/ascii/AsciiWidgets";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import { PlayerProfileCard } from "./PlayerProfileCard";
@@ -55,16 +55,7 @@ export const AnalysisProgressCard = ({
           分析完了
         </Typography>
       ) : (
-        <Card
-          variant="outlined"
-          sx={{
-            px: { xs: 2, sm: 3 },
-            py: { xs: 2, sm: 2.5 },
-            bgcolor: "background.paper",
-            borderColor: "divider",
-            borderRadius: "14px",
-          }}
-        >
+        <AsciiPanel title="ANALYSIS">
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={1}
@@ -84,21 +75,11 @@ export const AnalysisProgressCard = ({
             {analysis.isLoading && <SpinnerV2 size={16} />}
           </Stack>
           {analysis.isLoading && (
-            <LinearProgress
-              variant={
-                progressValue === undefined ? "indeterminate" : "determinate"
-              }
-              value={progressValue}
-              sx={{
-                mt: 2,
-                borderRadius: 2,
-                height: 4,
-                bgcolor: "action.hover",
-                "& .MuiLinearProgress-bar": { borderRadius: 2 },
-              }}
-            />
+            <Box sx={{ mt: 1.5 }}>
+              <AsciiProgress value={progressValue} width={36} />
+            </Box>
           )}
-        </Card>
+        </AsciiPanel>
       )}
     </Stack>
   );

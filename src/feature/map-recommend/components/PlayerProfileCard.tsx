@@ -1,7 +1,8 @@
-import { Avatar, Box, Card, Divider, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { CountryFlagV2 } from "../../player-search/components/CountryFlagV2";
 import { ExternalLinkIconV2 } from "../../player-search/components/PPHuntIconsV2";
+import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
 import type { PlayerProfile } from "../../scoresaber/types/ScoreSaber";
 
 interface PlayerProfileCardProps {
@@ -41,18 +42,11 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
   ];
 
   return (
-    <Card
+    <AsciiPanel
       component="section"
-      aria-label={`${player.name} のプレイヤープロフィール`}
-      variant="outlined"
-      sx={{
-        p: { xs: 2, sm: 2.5 },
-        color: "text.primary",
-        bgcolor: "background.paper",
-        backgroundImage: "none",
-        borderColor: "divider",
-        borderRadius: "12px",
-      }}
+      ariaLabel={`${player.name} のプレイヤープロフィール`}
+      title="PLAYER"
+      sx={{ color: "text.primary" }}
     >
       <Box
         sx={{
@@ -70,9 +64,11 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
           <Avatar
             src={player.avatar}
             alt={player.name}
+            variant="rounded"
             sx={{
               width: { xs: 48, sm: 56 },
               height: { xs: 48, sm: 56 },
+              borderRadius: 0,
               border: "1px solid",
               borderColor: "divider",
               bgcolor: "background.default",
@@ -224,6 +220,6 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
           </Box>
         ))}
       </Box>
-    </Card>
+    </AsciiPanel>
   );
 };

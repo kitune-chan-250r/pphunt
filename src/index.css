@@ -1,3 +1,14 @@
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Box-drawing/block glyphs some systems lack (Android especially), per
+   https://ascii.rest — scoped so it never shadows the main mono face. */
+@font-face {
+  font-family: "ascii.rest mono";
+  src: url("https://ascii.rest/fonts/ascii-rest-mono.woff2") format("woff2");
+  unicode-range: U+00B0, U+00B7, U+2022, U+2500-259F, U+25CF;
+  font-display: swap;
+}
+
 html,
 body,
 #root {
@@ -10,4 +21,8 @@ body,
 #root {
   display: flex;
   flex-direction: column;
+}
+
+::selection {
+  background: rgba(250, 204, 21, 0.35);
 }
