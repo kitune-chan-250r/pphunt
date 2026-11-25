@@ -76,7 +76,7 @@ export const AnalysisProgressCard = ({
           </Stack>
           {analysis.isLoading && (
             <Box sx={{ mt: 1.5 }}>
-              <AsciiProgress value={progressValue} width={36} />
+              <AsciiProgress value={progressValue} />
             </Box>
           )}
         </AsciiPanel>

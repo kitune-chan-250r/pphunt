@@ -25,8 +25,12 @@ export const huntRadar = radar;
 /** Braille dots spinner (1x1, currentColor when mounted on a text host). */
 export const dotsSpinner = spinner("dots");
 
-/** Scrolling band shown while a phase has no measurable progress yet. */
-export const scanningBand = marquee("▓▒░ SCANNING ░▒▓", { width: 32 });
+/**
+ * Scrolling band shown while a phase has no measurable progress yet. Built per
+ * mount so it can span the host's whole width; marquee() takes 4-320 columns.
+ */
+export const scanningBand = (width = 32) =>
+  marquee("▓▒░ SCANNING ░▒▓", { width: Math.max(4, Math.min(320, width)) });
 
 /**
  * A live █░ bar that reads its percentage from `readValue` every frame, so the
