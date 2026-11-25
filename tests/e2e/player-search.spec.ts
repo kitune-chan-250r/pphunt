@@ -780,3 +780,80 @@ test("難易度の内部IDをそのまま表示しない", async ({ page }) => {
   await expect(unplayedCard).not.toContainText("SoloStandard");
   await expect(unplayedCard).not.toContainText("_ExpertPlus");
 });
+
+/**
+ * installSuccessfulApiMocks と同じ応答を返すが、周辺プレイヤーのスコア取得
+ * だけを遅延させ、分析が scores フェーズに留まる時間を意図的に作る。
+ */
+async function installDelayedCompetitorApiMocks(page: Page): Promise<void> {
+  await page.route("**/api/scoresaber/api/v2/**", async (route) => {
+    const url = new URL(route.request().url());
+    const pathname = url.pathname.replace(/^\/api\/scoresaber/, "");
+    const { searchParams } = url;
+
+    if (pathname === "/api/v2/players" && searchParams.has("search")) {
+      return fulfillJson(
+        route,
+        makePaginatedResponse([targetPlayer, competitor]),
+      );
+    }
+
+    if (pathname === "/api/v2/players" && searchParams.has("page")) {
+      return fulfillJson(
+        route,
+        makePaginatedResponse([targetPlayer, competitor]),
+      );
+    }
+
+    const playerPath = pathname.match(/^\/api\/v2\/players\/([^/]+)$/);
+    if (playerPath) {
+      const player = [targetPlayer, competitor].find(
+        ({ id }) => id === playerPath[1],
+      );
+      if (!player) {
+        return fulfillJson(route, { error: "Player not found" }, 404);
+      }
+      return fulfillJson(route, player satisfies PlayerProfile);
+    }
+
+    const scoresPath = pathname.match(/^\/api\/v2\/players\/([^/]+)\/scores$/);
+    if (scoresPath) {
+      if (scoresPath[1] === competitor.id) {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        return fulfillJson(route, makePaginatedResponse(competitorScores));
+      }
+      return fulfillJson(route, makePaginatedResponse(targetScores));
+    }
+
+    if (
+      pathname ===
+      `/api/v2/players/${targetPlayer.id}/scores/hash/${unplayedMap.map.hash}/Standard/4`
+    ) {
+      return fulfillJson(route, { error: "No score found" }, 404);
+    }
+
+    return fulfillJson(route, { error: `Unexpected API request: ${pathname}` }, 500);
+  });
+}
+
+test("分析中は所要時間の目安を表示し、完了後は消える", async ({ page }) => {
+  await installDelayedCompetitorApiMocks(page);
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+  await searchInput.fill("Aoi");
+  const playerOption = page.getByRole("option", { name: /Aoi Player/ });
+  await expect(playerOption).toBeVisible();
+  await playerOption.click();
+
+  // scores フェーズ（周辺 1 人・完了 0 人）では残り 51 コール見積りとなり、
+  // 51 × 0.3 秒 = 15.3 秒 → 表示は「目安：あと約15秒」になる。
+  const estimate = page.getByText("目安：あと約15秒", { exact: true });
+  await expect(estimate).toBeVisible();
+  await expect(page.getByText(/プレイヤースコア取得中 0\/1/)).toBeVisible();
+
+  await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
+  await expect(estimate).toHaveCount(0);
+});
