@@ -9,6 +9,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
+import { AsciiView } from "../../../common/ascii/AsciiView";
+import { huntRadar } from "../../../common/ascii/pieces";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
 import {
   PlaylistExportAlert,
@@ -35,17 +38,18 @@ const EmptyState = ({
   isDone: boolean;
   activeTab: number;
 }) => (
-  <Box
-    sx={{
-      py: 6,
-      px: 2,
-      textAlign: "center",
-      border: 1,
-      borderColor: "divider",
-      borderRadius: "14px",
-      bgcolor: "background.paper",
-    }}
-  >
+  <AsciiPanel sx={{ py: 6, px: 2, textAlign: "center" }}>
+    <Box sx={{ display: "flex", justifyContent: "center", mb: 1.5 }}>
+      <AsciiView
+        piece={huntRadar}
+        options={{ fps: 10 }}
+        label="レーダー"
+        sx={{
+          fontSize: "clamp(7px, 1.4vw, 11px)",
+          color: "text.disabled",
+        }}
+      />
+    </Box>
     {isLoading ? (
       <Stack spacing={1.5} sx={{ alignItems: "center" }}>
         <SpinnerV2 size={22} />
@@ -62,7 +66,7 @@ const EmptyState = ({
           : "分析を開始しています…"}
       </Typography>
     )}
-  </Box>
+  </AsciiPanel>
 );
 
 export const RecommendationResults = ({

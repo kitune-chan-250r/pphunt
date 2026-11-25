@@ -1,4 +1,3 @@
-import "@fontsource-variable/geist";
 import { Box, Stack, useMediaQuery } from "@mui/material";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnalysisProgressCard } from "./AnalysisProgressCard";

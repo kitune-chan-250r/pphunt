@@ -97,7 +97,7 @@ export const PlaylistExportButton = ({
         minWidth: hideLabelOnMobile ? { xs: 40, sm: 0 } : undefined,
         width: hideLabelOnMobile ? { xs: 40, sm: "auto" } : undefined,
         px: hideLabelOnMobile ? { xs: 0, sm: 1.5 } : 1.5,
-        borderRadius: "10px",
+        borderRadius: 0,
         borderColor: "divider",
         bgcolor: "background.paper",
         color: "text.primary",
