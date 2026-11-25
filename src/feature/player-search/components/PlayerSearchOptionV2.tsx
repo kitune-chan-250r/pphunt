@@ -33,7 +33,7 @@ export const PlayerSearchOptionV2 = ({
             width={28}
             height={28}
             sx={{
-              borderRadius: 8,
+              borderRadius: 0,
               flexShrink: 0,
               bgcolor: isDark
                 ? designTokens.hairline.dark
