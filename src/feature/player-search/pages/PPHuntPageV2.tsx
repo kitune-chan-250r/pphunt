@@ -104,7 +104,9 @@ export const PPHuntPageV2 = () => {
             alignItems: selectedPlayer ? "stretch" : "center",
             justifyContent: selectedPlayer ? "flex-start" : "center",
             pt: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 6, sm: 10 },
-            pb: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 12, sm: 16 },
+            // Extra bottom padding lifts the hero lockup so the autocomplete
+            // popper always has room to open below the search bar.
+            pb: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 18, sm: 24 },
           }}
         >
           <motion.div
