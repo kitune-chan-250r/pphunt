@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Box,
   Container,
@@ -18,10 +18,18 @@ import { AsciiBackdrop } from "../../../common/ascii/AsciiBackdrop";
 import { createPPHuntThemeV2, designTokens } from "../components/pphuntThemeV2";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
 import { MapRecommend } from "../../map-recommend/components/MapRecommend";
+import {
+  initializeAnalytics,
+  trackEvent,
+} from "../../../common/analytics/googleTagManager";
 
 type ThemeMode = "light" | "dark";
 
 export const PPHuntPageV2 = () => {
+  useEffect(() => {
+    initializeAnalytics();
+  }, []);
+
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [modeOverride, setModeOverride] = useState<ThemeMode | null>(null);
   const mode: ThemeMode = modeOverride ?? (prefersDarkMode ? "dark" : "light");
@@ -47,6 +55,7 @@ export const PPHuntPageV2 = () => {
   };
 
   const handlePlayerSelect = (player: Player) => {
+    trackEvent({ event: "player_selected" });
     setSelectedPlayer(player);
     setPlayerSearchString(player.name);
   };

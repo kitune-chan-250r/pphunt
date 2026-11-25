@@ -6,6 +6,7 @@ import {
   isValidSongHash,
 } from "../utils/beatlist";
 import type { PlaylistExportInput } from "../types/beatlist";
+import { trackEvent } from "../../../common/analytics/googleTagManager";
 
 export const BEATSAVER_BASE_URL = "/api/beatsaver";
 
@@ -82,6 +83,12 @@ export const usePlaylistExport = () => {
 
     if (hashes.length === 0) {
       exportingRef.current = false;
+      trackEvent({
+        event: "playlist_export",
+        status: "failure",
+        song_count: 0,
+        lookup_failure_count: 0,
+      });
       setState({
         ...INITIAL_STATE,
         error: "プレイリストに出力できる譜面がありません。",
@@ -153,6 +160,12 @@ export const usePlaylistExport = () => {
 
     if (playlist.songs.length === 0) {
       exportingRef.current = false;
+      trackEvent({
+        event: "playlist_export",
+        status: "failure",
+        song_count: 0,
+        lookup_failure_count: lookupFailed,
+      });
       setState({
         ...INITIAL_STATE,
         error: "プレイリストに出力できる譜面がありません。",
@@ -164,6 +177,12 @@ export const usePlaylistExport = () => {
       downloadPlaylistFile(playlist);
     } catch {
       exportingRef.current = false;
+      trackEvent({
+        event: "playlist_export",
+        status: "failure",
+        song_count: playlist.songs.length,
+        lookup_failure_count: lookupFailed,
+      });
       setState({
         ...INITIAL_STATE,
         error: "プレイリストの保存に失敗しました。",
@@ -172,6 +191,12 @@ export const usePlaylistExport = () => {
     }
 
     exportingRef.current = false;
+    trackEvent({
+      event: "playlist_export",
+      status: lookupFailed > 0 ? "partial" : "success",
+      song_count: playlist.songs.length,
+      lookup_failure_count: lookupFailed,
+    });
     setState({
       ...INITIAL_STATE,
       error:

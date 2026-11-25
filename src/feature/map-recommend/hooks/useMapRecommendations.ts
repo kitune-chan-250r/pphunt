@@ -26,6 +26,7 @@ import {
   setPersistentCache,
   NEIGHBOUR_CACHE_TTL_MS,
 } from "../lib/cache";
+import { trackEvent } from "../../../common/analytics/googleTagManager";
 
 export type RecommendationKind = "UNPLAYED" | "IMPROVEMENT";
 
@@ -175,7 +176,9 @@ export const useMapRecommendations = (playerId: string) => {
 
     const run = async () => {
       if (cancelled) return;
+      const startedAt = Date.now();
       setState({ ...EMPTY_STATE, playerId: id, phase: "player" });
+      trackEvent({ event: "recommendation_analysis_started" });
 
       // API 呼び出し予算（DESIGN_V3.md §3.6）。キャッシュヒットは消費しない。
       const budget = new ApiBudget(HARD_API_BUDGET);
@@ -545,6 +548,11 @@ export const useMapRecommendations = (playerId: string) => {
           display: buildDisplay(map, recommendation.myScore),
         });
 
+        const initialImprovementCount = buildImprovements()
+          .sort(compareByFreshness)
+          .slice(0, MAX_RECOMMENDATIONS)
+          .length;
+
         setState((current) => ({
           ...current,
           improvements: current.improvements
@@ -668,6 +676,18 @@ export const useMapRecommendations = (playerId: string) => {
         });
 
         if (!cancelled) {
+          trackEvent({
+            event: "recommendation_analysis_completed",
+            analysis_duration_ms: Date.now() - startedAt,
+            improvement_count: Math.min(
+              initialImprovementCount + newlyFoundImprovements.length,
+              MAX_RECOMMENDATIONS,
+            ),
+            unplayed_count: unplayed.length,
+            failed_players: failedPlayers,
+            failed_maps: failedMaps,
+            api_call_count: budget.used,
+          });
           setState((current) => ({
             ...current,
             phase: "done",
@@ -676,6 +696,10 @@ export const useMapRecommendations = (playerId: string) => {
         }
       } catch {
         if (!cancelled) {
+          trackEvent({
+            event: "recommendation_analysis_failed",
+            analysis_duration_ms: Date.now() - startedAt,
+          });
           setState((current) => ({
             ...current,
             phase: "error",
