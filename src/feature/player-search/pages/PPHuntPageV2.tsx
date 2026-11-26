@@ -4,6 +4,7 @@ import {
   Container,
   CssBaseline,
   IconButton,
+  Link,
   Stack,
   ThemeProvider,
   Tooltip,
@@ -185,6 +186,28 @@ export const PPHuntPageV2 = () => {
             <MapRecommend playerId={selectedPlayer.id} />
           ) : null}
         </Container>
+
+        <Box
+          component="footer"
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            display: "flex",
+            justifyContent: "center",
+            px: 2,
+            py: 2,
+            borderTop: `1px solid ${isDark ? designTokens.hairline.dark : designTokens.hairline.light}`,
+          }}
+        >
+          <Link
+            href="/guide/"
+            underline="hover"
+            color="text.secondary"
+            variant="body2"
+          >
+            PPガイド：ScoreSaberのPPの仕組みと効率的な上げ方
+          </Link>
+        </Box>
       </Box>
     </ThemeProvider>
   );
