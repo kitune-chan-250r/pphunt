@@ -22,7 +22,7 @@ export const MapRecommend = ({ playerId }: MapRecommendProps) => {
       aria-label="譜面のおすすめ"
       sx={{ color: "text.primary" }}
     >
-      <Stack spacing={{ xs: 2, sm: 2.5 }} sx={{ py: { xs: 2, sm: 3 } }}>
+      <Stack spacing={{ xs: 1.5, sm: 1.5 }} sx={{ py: { xs: 1.5, sm: 1.5 } }}>
         {/* <motion.div
           initial={shouldAnimate ? { opacity: 0, y: riseDistance } : false}
           animate={{ opacity: 1, y: 0 }}
@@ -65,7 +65,11 @@ export const MapRecommend = ({ playerId }: MapRecommendProps) => {
             ease: entranceEase,
           }}
         >
-          <RecommendationResults analysis={analysis} playerId={playerId} />
+          <RecommendationResults
+            key={playerId}
+            analysis={analysis}
+            playerId={playerId}
+          />
         </motion.div>
       </Stack>
     </Box>

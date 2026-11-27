@@ -51,7 +51,7 @@ export const PPHuntWordmarkV2 = ({
         display: "flex",
         justifyContent: "center",
         width: "100%",
-        marginBottom: compact ? 1.5 : 3.5,
+        marginBottom: compact ? 0.75 : 3.5,
       }}
     >
       <Banner
@@ -66,7 +66,7 @@ export const PPHuntWordmarkV2 = ({
           fontFamily: "inherit",
           lineHeight: 1.2,
           fontSize: compact
-            ? "clamp(9px, 2.6vw, 15px)"
+            ? "clamp(8px, 2.2vw, 11px)"
             : "clamp(7px, 2.3vw, 15px)",
           color: "inherit",
         }}
