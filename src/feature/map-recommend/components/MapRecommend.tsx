@@ -65,7 +65,11 @@ export const MapRecommend = ({ playerId }: MapRecommendProps) => {
             ease: entranceEase,
           }}
         >
-          <RecommendationResults analysis={analysis} playerId={playerId} />
+          <RecommendationResults
+            key={playerId}
+            analysis={analysis}
+            playerId={playerId}
+          />
         </motion.div>
       </Stack>
     </Box>
