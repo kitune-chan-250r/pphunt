@@ -111,16 +111,7 @@ describe("buildRecommendationView のフィルタ", () => {
     makeRecommendation({ id: 3, mapId: 12, difficulty: 5, stars: 6 }),
   ];
 
-  it("難易度フィルタは選択した難易度だけを残す（空集合は全件）", () => {
-    expect(ids(view(input, { difficulties: new Set([7, 9]) }).items)).toEqual([
-      1, 2,
-    ]);
-    expect(ids(view(input, { difficulties: new Set() }).items)).toEqual([
-      1, 2, 3,
-    ]);
-  });
-
-  it("stars帯フィルタは境界値を含む", () => {
+  it("starsフィルタは境界値を含む", () => {
     expect(ids(view(input, { minStars: 8, maxStars: 11 }).items)).toEqual([
       1, 2,
     ]);
@@ -128,12 +119,8 @@ describe("buildRecommendationView のフィルタ", () => {
     expect(ids(view(input, { maxStars: 7 }).items)).toEqual([3]);
   });
 
-  it("難易度と stars帯は併用できる", () => {
-    expect(
-      ids(
-        view(input, { difficulties: new Set([7, 9]), maxStars: 10 }).items,
-      ),
-    ).toEqual([1]);
+  it("フィルタ未指定では難易度によらず全件が残る", () => {
+    expect(ids(view(input).items)).toEqual([1, 2, 3]);
   });
 });
 
