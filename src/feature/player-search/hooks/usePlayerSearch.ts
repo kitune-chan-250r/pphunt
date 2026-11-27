@@ -3,6 +3,10 @@ import { useDebouncedCallback, type DebouncedState } from "use-debounce";
 import { useScoreSaber } from "../../scoresaber/hooks/useScoreSaber";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
 import { ensureFlagIconsCss } from "../flagIconsCss";
+import {
+  getQueryLengthBucket,
+  trackEvent,
+} from "../../../common/analytics/googleAnalytics";
 
 const MIN_QUERY_LENGTH = 3;
 const DEBOUNCE_MS = 350;
@@ -52,11 +56,23 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
         const players = await searchPlayers(value);
         if (seq !== requestSeq.current) return;
         setPlayerSearchResults(players);
+        trackEvent({
+          event: "player_search",
+          status: "success",
+          query_length_bucket: getQueryLengthBucket(value),
+          result_count: players.length,
+        });
       } catch (error) {
         if (seq !== requestSeq.current) return;
         console.error("[usePlayerSearch] Player search failed.", error);
         setPlayerSearchResults([]);
         setSearchError("プレイヤーの検索に失敗しました。再度お試しください。");
+        trackEvent({
+          event: "player_search",
+          status: "error",
+          query_length_bucket: getQueryLengthBucket(value),
+          result_count: 0,
+        });
       } finally {
         if (seq === requestSeq.current) {
           setIsSearching(false);

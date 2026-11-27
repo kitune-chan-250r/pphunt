@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScoreSaberでPPを稼ぐには？仕組みと効率的な上げ方ガイド | PPHunt</title>
+    <meta
+      name="description"
+      content="ScoreSaberのPPの仕組み（重み付け0.965と精度カーブ）をわかりやすく解説し、効率よくPPを上げるための譜面の選び方を紹介します。無料ツールPPHuntなら、あなたの実績から今伸ばせるおすすめランク譜面を自動で提案します。"
+    />
+    <link rel="canonical" href="https://pphunt.rakas.cc/guide/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="ScoreSaberでPPを稼ぐには？仕組みと効率的な上げ方ガイド | PPHunt"
+    />
+    <meta
+      property="og:description"
+      content="ScoreSaberのPPの仕組み（重み付け0.965と精度カーブ）を解説し、効率よくPPを上げるための譜面の選び方を紹介。PPHuntで自分に合ったおすすめランク譜面も見つけられます。"
+    />
+    <meta property="og:url" content="https://pphunt.rakas.cc/guide/" />
+    <meta property="og:image" content="https://pphunt.rakas.cc/og.png" />
+    <meta property="og:site_name" content="PPHunt" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ScoreSaberでPPを稼ぐには？仕組みと効率的な上げ方ガイド | PPHunt"
+    />
+    <meta
+      name="twitter:description"
+      content="ScoreSaberのPPの仕組み（重み付け0.965と精度カーブ）を解説し、効率よくPPを上げるための譜面の選び方を紹介します。"
+    />
+    <meta name="twitter:image" content="https://pphunt.rakas.cc/og.png" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#09090b"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#faf9f8"
+    />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "ScoreSaberでPPを稼ぐには？仕組みと効率的な上げ方ガイド",
+          "description": "ScoreSaberのPPの仕組み（重み付け0.965と精度カーブ）を解説し、効率よくPPを上げるための譜面の選び方を紹介します。",
+          "inLanguage": "ja",
+          "mainEntityOfPage": "https://pphunt.rakas.cc/guide/",
+          "author": { "@type": "Organization", "name": "PPHunt", "url": "https://pphunt.rakas.cc/" },
+          "publisher": { "@type": "Organization", "name": "PPHunt", "url": "https://pphunt.rakas.cc/" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "PPHuntは無料ですか？ログインは必要ですか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "はい、無料で使えます。アカウント登録やログインも不要で、ScoreSaberのプレイヤー名を検索するだけですぐに分析が始まります。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "BeatLeaderには対応していますか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "いいえ、PPHuntはScoreSaber専用です。BeatLeaderのPPや譜面には対応していません。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "おすすめ譜面はどうやって決まっていますか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "あなたの上位スコアと、あなたと近い順位帯のプレイヤーの実績をもとに、「すでにプレイした譜面のスコア更新でどれだけPPが伸びるか」と「未プレイ譜面でどれだけPPを獲得できそうか」を見積もって提案しています。おすすめの並び順は、93人のプレイヤーを対象にしたバックテストで、従来の並び順より良い結果が得られることを確認した方法を使っています。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "おすすめ譜面をまとめてプレイリストにできますか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "はい。おすすめ結果はプレイリストファイル（.bplist形式）で書き出せるので、PlaylistManagerなどのMODでゲーム内に取り込んで、そのまま順番にプレイできます。"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <style>
+      :root {
+        --canvas: #faf9f8;
+        --surface: #ffffff;
+        --ink: #221e1c;
+        --muted: #78716c;
+        --hairline: #e7e5e4;
+        --accent: #facc15;
+        --accent-ink: #422006;
+        --accent-soft: rgba(250, 204, 21, 0.16);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --canvas: #09090b;
+          --surface: #141416;
+          --ink: #e7e7e4;
+          --muted: #a8a29e;
+          --hairline: #2a2a2e;
+          --accent-soft: rgba(250, 204, 21, 0.14);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--canvas);
+        color: var(--ink);
+        font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+          "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+        font-size: 16px;
+        line-height: 1.9;
+      }
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--hairline);
+      }
+      .wordmark {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .wordmark::before {
+        content: "";
+        display: inline-block;
+        width: 0.65em;
+        height: 0.65em;
+        margin-right: 0.45em;
+        background: var(--accent);
+      }
+      .header-link {
+        color: var(--muted);
+        font-size: 0.875rem;
+        text-decoration: none;
+      }
+      .header-link:hover { color: var(--ink); text-decoration: underline; }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 32px 20px 16px;
+      }
+      h1 {
+        font-size: 1.75rem;
+        line-height: 1.5;
+        margin: 0 0 16px;
+      }
+      h2 {
+        font-size: 1.3rem;
+        line-height: 1.5;
+        margin: 44px 0 12px;
+        padding-left: 12px;
+        border-left: 4px solid var(--accent);
+      }
+      h3 {
+        font-size: 1.05rem;
+        margin: 26px 0 8px;
+      }
+      p { margin: 0 0 14px; }
+      ul, ol { margin: 0 0 14px; padding-left: 1.4em; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 700; }
+      .lead { color: var(--ink); }
+      .note { color: var(--muted); font-size: 0.875rem; }
+      .formula {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        padding: 10px 14px;
+        margin: 0 0 14px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .cta {
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        padding: 20px;
+        margin: 28px 0;
+        text-align: center;
+      }
+      .cta p { margin-bottom: 12px; }
+      .cta a {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 700;
+        text-decoration: none;
+        padding: 10px 26px;
+      }
+      .cta a:hover { box-shadow: 0 0 0 3px var(--accent-soft); }
+      .faq dt { font-weight: 700; margin-top: 18px; }
+      .faq dd { margin: 4px 0 0; }
+      .site-footer {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 20px;
+        border-top: 1px solid var(--hairline);
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+      .site-footer a { color: var(--muted); }
+      @media (max-width: 600px) {
+        h1 { font-size: 1.45rem; }
+        main { padding-top: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">PPHUNT</a>
+      <a class="header-link" href="/">ツールを開く →</a>
+    </header>
+
+    <main>
+      <h1>ScoreSaberでPPを稼ぐには？仕組みと効率的な上げ方ガイド</h1>
+      <p class="lead">
+        Beat Saberのランク譜面をプレイしていると、「どの譜面をやればPP（パフォーマンスポイント）が伸びるのか分からない」という悩みに必ずぶつかります。このページでは、ScoreSaberのPPが決まる仕組みを整理したうえで、効率よくPPを上げるための譜面の選び方を解説します。仕組みが分かると、練習すべき譜面が自然と絞り込めるようになります。
+      </p>
+
+      <h2>ScoreSaberのPPの仕組み</h2>
+
+      <h3>譜面ごとのPPは「難易度」と「精度」で決まる</h3>
+      <p>
+        PPがもらえるのは、ScoreSaberでランク付けされた譜面（ランク譜面）だけです。各譜面には難易度を表すスター（★）が付けられていて、スターが高い譜面ほど、高い精度でクリアしたときにもらえるPPの上限が大きくなります。実際に得られるPPはあなたの精度（達成度％）で決まりますが、その関係は単純な比例ではありません。精度に対するPPの伸びはカーブを描いていて、特に精度が高い領域では、わずか1％の精度アップが大きなPPの伸びにつながります。逆に言うと、難しい譜面を低精度でクリアするより、少し易しい譜面を高精度で仕上げる方が多くのPPを得られるケースは珍しくありません。
+      </p>
+
+      <h3>合計PPは「重み付け」の合計で決まる</h3>
+      <p>
+        プロフィールに表示される合計PPは、各譜面でもらったPPの単純な合計ではありません。もらったPPを大きい順に並べ、1番目には100％、2番目には96.5％、3番目にはその96.5％……というように、順位が1つ下がるごとに係数0.965が掛かっていく重み付けの合計になっています。
+      </p>
+      <p class="formula">重み = 0.965^(順位 − 1)　／　合計PP = Σ（各譜面のPP × 重み）</p>
+      <p>
+        この仕組みから大事なことが2つ分かります。第一に、合計PPを大きく左右するのは上位数十譜面のスコアであり、簡単な譜面を大量にこなしてもほとんど伸びません。第二に、新しい高PPのスコアが上位に入ると、それより下の譜面の重みが一段ずつ下がるため、実際に増える合計PPは、その譜面で得たPPよりも小さくなります。「思ったより増えなかった」という感覚の正体はこれです。
+      </p>
+
+      <h2>PPを効率よく上げる4つの考え方</h2>
+      <ol>
+        <li>
+          <strong>「今の実力より少し上」の譜面を狙う。</strong>
+          余裕でクリアできる譜面は、精度を上げても得られるPPの上限自体が低めです。一方で、歯が立たない譜面は精度が伸びずPPも出ません。クリアはできるが精度が頭打ちになっていない、その中間の難易度帯に伸びしろがあります。
+        </li>
+        <li>
+          <strong>プレイ済み譜面の「精度上げ」を侮らない。</strong>
+          精度カーブは高精度域で急になるため、よく知っている譜面の精度を96％から98％へ上げるような更新が、未プレイ譜面を1つ開拓する以上のPP増になることがあります。自分の上位スコアの中で、精度が相対的に低めの譜面は優先候補です。
+        </li>
+        <li>
+          <strong>未プレイのランク譜面を開拓する。</strong>
+          上位の重み枠がまだ埋まっていない段階では、新しい譜面でしっかりPPを取ることも有効です。特に、自分と近い実力帯のプレイヤーが良いPPを取っている譜面は、自分の実力でも再現できる可能性が高い「おいしい譜面」の目印になります。
+        </li>
+        <li>
+          <strong>伸び悩んだら「量」より「選定」を見直す。</strong>
+          重み付けの仕組み上、合計PPの伸びは上位譜面の質で決まります。ランダムに譜面を増やすより、自分の実績データから「次に伸びる譜面」を選んで集中的に詰める方が、同じ練習時間でも効率が大きく変わります。
+        </li>
+      </ol>
+
+      <h2>PPHuntで「次に伸びる譜面」を見つける</h2>
+      <p>
+        とはいえ、数千あるランク譜面の中から自分に合った候補を手作業で探すのは現実的ではありません。そこで作ったのが、ScoreSaber専用のおすすめ譜面ツール<strong>PPHunt</strong>です。あなたの上位スコアと、あなたと近い順位帯のプレイヤーの実績を分析し、「スコア更新で伸びそうな譜面」と「未プレイだけどPPを取れそうな譜面」を、予測されるPPの伸びと一緒に提案します。
+      </p>
+      <p>使い方はシンプルです。</p>
+      <ol>
+        <li>トップページで自分のScoreSaberプレイヤー名を検索する</li>
+        <li>分析が終わると、おすすめ譜面が「更新（プレイ済み）」と「新規（未プレイ）」に分かれて表示される</li>
+        <li>各譜面の予測精度や、更新した場合のPPの伸び（ΔPP）を見ながら、狙う譜面を絞り込む</li>
+        <li>気に入った譜面はプレイリストファイル（.bplist）で書き出して、ゲームに取り込む</li>
+      </ol>
+      <p>
+        なおPPHuntのおすすめの並び順は、勘や人気順ではなく、<strong>93人のプレイヤーを対象にしたバックテスト</strong>（過去の実績データで「実際に次に伸びた譜面を当てられるか」を検証するテスト）で、従来の並び順より良い結果が得られることを確認した方法を採用しています。「検証済みの推薦」であることが、PPHuntのいちばんの特徴です。
+      </p>
+
+      <div class="cta">
+        <p>あなたの実績から、今いちばん伸びる譜面を提案します。無料・ログイン不要です。</p>
+        <a href="https://pphunt.rakas.cc/">PPHuntでおすすめ譜面を見る</a>
+      </div>
+
+      <h2>よくある質問</h2>
+      <dl class="faq">
+        <dt>PPHuntは無料ですか？ログインは必要ですか？</dt>
+        <dd>
+          はい、無料で使えます。アカウント登録やログインも不要で、ScoreSaberのプレイヤー名を検索するだけですぐに分析が始まります。
+        </dd>
+        <dt>BeatLeaderには対応していますか？</dt>
+        <dd>
+          いいえ、PPHuntはScoreSaber専用です。BeatLeaderのPPや譜面には対応していません。
+        </dd>
+        <dt>おすすめ譜面はどうやって決まっていますか？</dt>
+        <dd>
+          あなたの上位スコアと、あなたと近い順位帯のプレイヤーの実績をもとに、「すでにプレイした譜面のスコア更新でどれだけPPが伸びるか」と「未プレイ譜面でどれだけPPを獲得できそうか」を見積もって提案しています。おすすめの並び順は、93人のプレイヤーを対象にしたバックテストで、従来の並び順より良い結果が得られることを確認した方法を使っています。
+        </dd>
+        <dt>おすすめ譜面をまとめてプレイリストにできますか？</dt>
+        <dd>
+          はい。おすすめ結果はプレイリストファイル（.bplist形式）で書き出せるので、PlaylistManagerなどのMODでゲーム内に取り込んで、そのまま順番にプレイできます。
+        </dd>
+      </dl>
+
+      <p class="note">
+        ※ PPの重み付け（0.965）や精度カーブの考え方は、ScoreSaber公式Wiki等の公開情報をもとにしています。PPの詳細な計算式はScoreSaberから公開されていないため、本ページでは仕組みの要点のみを説明しています。
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        <a href="https://pphunt.rakas.cc/">PPHunt（ScoreSaber PPおすすめ譜面ツール）</a>
+        — Beat Saberプレイヤーのための、検証済みおすすめ譜面ツール。
+      </p>
+    </footer>
+  </body>
+</html>

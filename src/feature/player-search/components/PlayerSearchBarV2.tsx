@@ -1,9 +1,4 @@
-import {
-  useCallback,
-  useRef,
-  type FormEvent,
-  type KeyboardEvent,
-} from "react";
+import { useCallback, useRef, type FormEvent, type KeyboardEvent } from "react";
 import {
   Autocomplete,
   Box,
@@ -39,9 +34,7 @@ const PlayerSearchStatusV2 = ({
   <Box {...props}>
     {children}
     {!ownerState?.loading && ownerState?.options?.length === 0 ? (
-      <Box
-        sx={{ px: 2, py: 1.75, color: "text.secondary" }}
-      >
+      <Box sx={{ px: 2, py: 1.75, color: "text.secondary" }}>
         {ownerState.noOptionsText}
       </Box>
     ) : null}
@@ -210,6 +203,11 @@ export const PlayerSearchBarV2 = ({
     >
       <Autocomplete
         options={autoCompleteOptions}
+        // Two players can share a display name, so key the list by player id
+        // rather than MUI's default label-based key.
+        getOptionKey={(option) =>
+          typeof option === "string" ? option : option.id
+        }
         getOptionLabel={(option) =>
           typeof option === "string" ? option : option.name
         }

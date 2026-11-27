@@ -21,6 +21,7 @@ import {
 import type { PlaylistSourceSong } from "../../beatlist/types/beatlist";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import { MapRecommendationCard } from "./MapRecommendationCard";
+import { trackEvent } from "../../../common/analytics/googleAnalytics";
 
 type MapRecommendationsAnalysis = ReturnType<typeof useMapRecommendations>;
 
@@ -142,7 +143,13 @@ export const RecommendationResults = ({
         >
           <Tabs
             value={activeTab}
-            onChange={(_, value: number) => setActiveTab(value)}
+            onChange={(_, value: number) => {
+              setActiveTab(value);
+              trackEvent({
+                event: "recommendation_tab_selected",
+                recommendation_type: value === 0 ? "improvements" : "unplayed",
+              });
+            }}
             aria-label="譜面のおすすめ分類"
             variant="scrollable"
             scrollButtons="auto"
