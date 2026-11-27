@@ -12,12 +12,17 @@ import {
 } from "ascii.rest/kit/recipes";
 import * as radar from "ascii.rest/pieces/radar";
 
-/** Ambient sky: stars twinkling over a slow plasma drift, one ink. */
-export const backdropPiece = stars()
-  .add(plasma())
-  .ramp(" .·+*#")
-  .size(160, 64)
-  .named("pphunt-sky");
+/**
+ * Ambient sky at a given grid size: stars twinkling over a slow plasma
+ * drift, one ink. Built per size because a kit piece's grid is fixed at
+ * build time (and capped at 320x120); AsciiBackdrop derives the size from
+ * the viewport so the sky spans any screen.
+ */
+export const createBackdropPiece = (cols: number, rows: number) =>
+  stars().add(plasma()).ramp(" .·+*#").size(cols, rows).named("pphunt-sky");
+
+/** Ambient sky at the original fixed size, the responsive grid's floor. */
+export const backdropPiece = createBackdropPiece(160, 64);
 
 /** The PP-hunting radar sweep used behind the hero and in empty states. */
 export const huntRadar = radar;

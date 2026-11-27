@@ -15,6 +15,7 @@ import { usePlayerSearch } from "../hooks/usePlayerSearch";
 import { DarkModeIconV2, LightModeIconV2 } from "../components/PPHuntIconsV2";
 import { PlayerSearchBarV2 } from "../components/PlayerSearchBarV2";
 import { PPHuntWordmarkV2 } from "../components/PPHuntWordmarkV2";
+import { BuildVersionV2 } from "../components/BuildVersionV2";
 import { AsciiBackdrop } from "../../../common/ascii/AsciiBackdrop";
 import { createPPHuntThemeV2, designTokens } from "../components/pphuntThemeV2";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
@@ -208,6 +209,7 @@ export const PPHuntPageV2 = () => {
             PPガイド：ScoreSaberのPPの仕組みと効率的な上げ方
           </Link>
         </Box>
+        <BuildVersionV2 />
       </Box>
     </ThemeProvider>
   );
