@@ -186,8 +186,8 @@ export const PPHuntPageV2 = () => {
             <MapRecommend playerId={selectedPlayer.id} />
           ) : null}
         </Container>
+        <BuildVersionV2 />
       </Box>
-      <BuildVersionV2 />
     </ThemeProvider>
   );
 };
