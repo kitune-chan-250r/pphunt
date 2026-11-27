@@ -20,18 +20,13 @@ export const onRequestGet = async ({
 }: PagesFunctionContext): Promise<Response> => {
   const { path } = params;
   if (
-    path.length < 2 ||
-    path[0] !== "api" ||
-    path[1] !== "beatsaver" ||
+    path.length === 0 ||
     path.some((segment) => segment === "." || segment === "..")
   ) {
     return new Response("Not found", { status: 404 });
   }
 
-  const upstreamPath = path.slice(2);
-  if (upstreamPath.length === 0) {
-    return new Response("Not found", { status: 404 });
-  }
+  const upstreamPath = path;
 
   const upstreamUrl = new URL(
     `/${upstreamPath.map((segment) => encodeURIComponent(segment)).join("/")}`,

@@ -251,7 +251,9 @@ test("初期表示と入力文字数に応じた候補検索を確認する", as
 
   await page.clock.install();
   await page.goto("/");
-  await expect(page).toHaveTitle("PPHunt");
+  await expect(page).toHaveTitle(
+    "PPHunt | ScoreSaber PP稼ぎ向けおすすめ譜面ツール（Beat Saber）",
+  );
 
   const searchInput = page.getByRole("combobox", {
     name: "検索するプレイヤー名",
