@@ -86,7 +86,7 @@ export const PPHuntPageV2 = () => {
             alignItems: "center",
             justifyContent: "space-between",
             px: { xs: 2, sm: 3 },
-            py: 1.5,
+            py: selectedPlayer ? 0.5 : 1.5,
             borderBottom: `1px solid ${isDark ? designTokens.hairline.dark : designTokens.hairline.light}`,
           }}
         >
@@ -114,7 +114,7 @@ export const PPHuntPageV2 = () => {
             flexDirection: "column",
             alignItems: selectedPlayer ? "stretch" : "center",
             justifyContent: selectedPlayer ? "flex-start" : "center",
-            pt: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 6, sm: 10 },
+            pt: selectedPlayer ? { xs: 2, sm: 0.5 } : { xs: 6, sm: 10 },
             // Extra bottom padding lifts the hero lockup so the autocomplete
             // popper always has room to open below the search bar.
             pb: selectedPlayer ? { xs: 3, sm: 4 } : { xs: 18, sm: 24 },
@@ -162,7 +162,7 @@ export const PPHuntPageV2 = () => {
                 direction="row"
                 spacing={2}
                 sx={{
-                  mt: 3,
+                  mt: selectedPlayer ? 1 : 3,
                   alignItems: "center",
                   justifyContent: "center",
                   color: "text.secondary",
