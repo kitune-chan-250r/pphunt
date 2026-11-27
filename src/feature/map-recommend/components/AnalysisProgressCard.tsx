@@ -43,7 +43,7 @@ export const AnalysisProgressCard = ({
   const progressValue = getProgressValue(analysis);
 
   return (
-    <Stack spacing={1}>
+    <Stack spacing={0.5}>
       <PlayerProfileCard player={analysis.player} />
       {analysis.phase === "done" ? (
         <Typography

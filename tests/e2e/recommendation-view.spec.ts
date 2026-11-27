@@ -12,8 +12,10 @@ import type {
  * 提案5（ソート／フィルタ＋同一曲まとめ）の E2E:
  * - 同じ曲（map.id が同じ）の Expert / Expert+ は既定で1グループにまとまり、
  *   「同じ曲の他の難易度」ボタンで展開できること。
- * - 難易度フィルタで表示件数が絞られ、件数表示が追随すること。
+ * - 難易度フィルタは廃止され、コントロールバーに難易度チップ群が無いこと。
+ * - starsフィルタのラベルが「stars」であること（「stars帯」でないこと）。
  * - stars順ソートで最高 stars の難易度がグループ代表として先頭に来ること。
+ * - 1280×800 では最初のおすすめカードがスクロールなしに収まること。
  */
 
 const daysAgo = (days: number): string =>
@@ -313,7 +315,7 @@ async function installApiMocks(page: Page): Promise<void> {
   });
 }
 
-test("未プレイ候補で同一曲まとめ・難易度フィルタ・stars順ソートが働く", async ({
+test("未プレイ候補で同一曲まとめ・stars順ソートが働き、難易度フィルタは無い", async ({
   page,
 }) => {
   await installApiMocks(page);
@@ -351,16 +353,19 @@ test("未プレイ候補で同一曲まとめ・難易度フィルタ・stars順
   await expandButton.click();
   await expect(cards).toHaveCount(4);
 
-  // 難易度フィルタ Expert+ : Duet Song の Expert+ だけが残る。
-  await controls.getByText("Expert+", { exact: true }).click();
-  await expect(cards).toHaveCount(1);
-  await expect(cards.first()).toContainText("Duet Song");
-  await expect(controls.getByText("4件中 1件を表示")).toBeVisible();
+  // 難易度フィルタは廃止: コントロールバーに「難易度」ラベルも
+  // 難易度チップ（Easy / Normal / Hard / Expert / Expert+）も存在しない。
+  await expect(controls.getByText("難易度", { exact: true })).toHaveCount(0);
+  for (const label of ["Easy", "Normal", "Hard", "Expert", "Expert+"]) {
+    await expect(controls.getByText(label, { exact: true })).toHaveCount(0);
+  }
 
-  // リセットで全件に戻る。
-  await controls.getByRole("button", { name: "リセット" }).click();
-  await expect(cards).toHaveCount(3);
-  await expect(controls.getByText("4件")).toBeVisible();
+  // starsフィルタのラベルは「stars」（「stars帯」ではない）。
+  await expect(controls.getByText("stars", { exact: true })).toBeVisible();
+  await expect(controls.getByText("stars帯", { exact: true })).toHaveCount(0);
+  await expect(
+    controls.locator('[aria-label="stars帯"]'),
+  ).toHaveCount(0);
 
   // stars順: 最高 stars（12）の Expert+ が Duet Song の代表として先頭に来る。
   await controls.getByRole("combobox", { name: "並び順" }).click();
@@ -368,4 +373,48 @@ test("未プレイ候補で同一曲まとめ・難易度フィルタ・stars順
   await expect(cards.first()).toContainText("Duet Song");
   await expect(cards.first()).toContainText("Expert+");
   await expect(cards.first()).toContainText("12.00 stars");
+
+  // リセットで推薦順・同一曲まとめに戻る。
+  await controls.getByRole("button", { name: "リセット" }).click();
+  await expect(cards).toHaveCount(3);
+  await expect(controls.getByText("4件")).toBeVisible();
+});
+
+test("1280x800では最初のおすすめカードがスクロールなしに表示される", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await installApiMocks(page);
+
+  await page.goto("/");
+  const searchInput = page.getByRole("combobox", {
+    name: "検索するプレイヤー名",
+  });
+  await searchInput.fill("Target");
+  const playerOption = page.getByRole("option", { name: /Target Player/ });
+  await expect(playerOption).toBeVisible();
+  await playerOption.click();
+
+  await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
+  await page.getByRole("tab", { name: "未プレイ・PP候補 (4)" }).click();
+
+  const cards = page.getByRole("article");
+  await expect(cards).toHaveCount(3);
+
+  // フォント読み込みと入場アニメーションの終了を待ち、スクロールして
+  // いない状態で最初のカード全体がビューポート内に収まることを確認する。
+  await page.evaluate(() => document.fonts.ready);
+  await expect
+    .poll(
+      async () => {
+        const box = await cards.first().boundingBox();
+        return box ? box.y + box.height : Number.POSITIVE_INFINITY;
+      },
+      { timeout: 15_000 },
+    )
+    .toBeLessThanOrEqual(800);
+  const box = await cards.first().boundingBox();
+  expect(box).not.toBeNull();
+  expect(box!.y).toBeGreaterThanOrEqual(0);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
 });

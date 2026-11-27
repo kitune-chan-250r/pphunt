@@ -17,11 +17,6 @@ export type RecommendationSortKey =
 
 export interface RecommendationViewOptions {
   sortKey: RecommendationSortKey;
-  /**
-   * 選択中の難易度値（`leaderboard.difficulty.difficulty`）。
-   * 空集合は「絞り込みなし」（全難易度を表示）。
-   */
-  difficulties: ReadonlySet<number>;
   /** stars の下限（null = 無制限）。境界値は含む。 */
   minStars: number | null;
   /** stars の上限（null = 無制限）。境界値は含む。 */
@@ -46,18 +41,8 @@ export interface RecommendationView {
   groups: RecommendationGroup[];
 }
 
-/** 難易度フィルタの選択肢（ScoreSaber の数値難易度と表示名）。 */
-export const DIFFICULTY_OPTIONS: readonly { value: number; label: string }[] = [
-  { value: 1, label: "Easy" },
-  { value: 3, label: "Normal" },
-  { value: 5, label: "Hard" },
-  { value: 7, label: "Expert" },
-  { value: 9, label: "Expert+" },
-];
-
 export const DEFAULT_VIEW_OPTIONS: RecommendationViewOptions = {
   sortKey: "recommended",
-  difficulties: new Set(),
   minStars: null,
   maxStars: null,
   groupBySong: true,
@@ -85,12 +70,6 @@ const passesFilter = (
   recommendation: MapRecommendation,
   options: RecommendationViewOptions,
 ): boolean => {
-  if (
-    options.difficulties.size > 0 &&
-    !options.difficulties.has(recommendation.leaderboard.difficulty.difficulty)
-  ) {
-    return false;
-  }
   const stars = recommendation.leaderboard.realm.stars;
   if (options.minStars !== null && stars < options.minStars) {
     return false;

@@ -28,7 +28,6 @@ import type { PlaylistSourceSong } from "../../beatlist/types/beatlist";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import {
   buildRecommendationView,
-  DIFFICULTY_OPTIONS,
   maxStarsOf,
   type RecommendationSortKey,
 } from "../lib/recommendationView";
@@ -95,9 +94,6 @@ export const RecommendationResults = ({
 }: RecommendationResultsProps) => {
   const [activeTab, setActiveTab] = useState(0);
   const [sortKey, setSortKey] = useState<RecommendationSortKey>("recommended");
-  const [selectedDifficulties, setSelectedDifficulties] = useState<
-    ReadonlySet<number>
-  >(new Set());
   const [starsRange, setStarsRange] = useState<[number, number] | null>(null);
   const [groupBySong, setGroupBySong] = useState(true);
   const [expandedMapIds, setExpandedMapIds] = useState<ReadonlySet<number>>(
@@ -125,38 +121,21 @@ export const RecommendationResults = ({
     () =>
       buildRecommendationView(recommendations, {
         sortKey,
-        difficulties: selectedDifficulties,
         minStars: starsRange ? starsRange[0] : null,
         maxStars: starsRange ? starsRange[1] : null,
         groupBySong,
       }),
-    [recommendations, sortKey, selectedDifficulties, starsRange, groupBySong],
+    [recommendations, sortKey, starsRange, groupBySong],
   );
 
   const isViewModified =
-    sortKey !== "recommended" ||
-    selectedDifficulties.size > 0 ||
-    starsRange !== null ||
-    !groupBySong;
+    sortKey !== "recommended" || starsRange !== null || !groupBySong;
 
   const resetView = () => {
     setSortKey("recommended");
-    setSelectedDifficulties(new Set());
     setStarsRange(null);
     setGroupBySong(true);
     setExpandedMapIds(new Set());
-  };
-
-  const toggleDifficulty = (value: number) => {
-    setSelectedDifficulties((prev) => {
-      const next = new Set(prev);
-      if (next.has(value)) {
-        next.delete(value);
-      } else {
-        next.add(value);
-      }
-      return next;
-    });
   };
 
   const toggleGroup = (mapId: number) => {
@@ -190,7 +169,7 @@ export const RecommendationResults = ({
 
   return (
     <PlaylistExportProvider input={playlistInput}>
-      <Stack spacing={{ xs: 2.5, sm: 3 }}>
+      <Stack spacing={{ xs: 2, sm: 1.5 }}>
         {analysis.error && <Alert severity="error">{analysis.error}</Alert>}
         {!playerId.trim() && (
           <Alert severity="info">
@@ -242,9 +221,9 @@ export const RecommendationResults = ({
             sx={{
               flexGrow: 1,
               minWidth: 0,
-              minHeight: 48,
+              minHeight: 40,
               "& .MuiTab-root": {
-                minHeight: 48,
+                minHeight: 40,
                 px: { xs: 1.5, sm: 2 },
                 color: "text.secondary",
                 fontSize: "0.875rem",
@@ -278,10 +257,10 @@ export const RecommendationResults = ({
               border: 1,
               borderColor: "divider",
               px: { xs: 1.5, sm: 2 },
-              py: 1.5,
+              py: 0.75,
             }}
           >
-            <Stack spacing={1.5}>
+            <Stack spacing={1}>
               <Stack
                 direction="row"
                 spacing={1.5}
@@ -338,33 +317,6 @@ export const RecommendationResults = ({
 
               <Stack
                 direction="row"
-                spacing={0.75}
-                useFlexGap
-                sx={{ alignItems: "center", flexWrap: "wrap" }}
-              >
-                <Typography variant="caption" color="text.secondary">
-                  難易度
-                </Typography>
-                {DIFFICULTY_OPTIONS.map((option) => {
-                  const selected = selectedDifficulties.has(option.value);
-                  return (
-                    <Chip
-                      key={option.value}
-                      size="small"
-                      label={option.label}
-                      clickable
-                      color={selected ? "primary" : "default"}
-                      variant={selected ? "filled" : "outlined"}
-                      onClick={() => toggleDifficulty(option.value)}
-                      aria-pressed={selected}
-                      sx={{ borderRadius: 0 }}
-                    />
-                  );
-                })}
-              </Stack>
-
-              <Stack
-                direction="row"
                 spacing={2}
                 sx={{ alignItems: "center" }}
               >
@@ -373,7 +325,7 @@ export const RecommendationResults = ({
                   color="text.secondary"
                   sx={{ whiteSpace: "nowrap" }}
                 >
-                  stars帯
+                  stars
                 </Typography>
                 <Slider
                   size="small"
@@ -388,7 +340,7 @@ export const RecommendationResults = ({
                     );
                   }}
                   valueLabelDisplay="auto"
-                  aria-label="stars帯"
+                  aria-label="stars"
                   sx={{ maxWidth: 420 }}
                 />
                 <Typography

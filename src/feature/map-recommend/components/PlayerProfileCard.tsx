@@ -46,7 +46,7 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
       component="section"
       ariaLabel={`${player.name} のプレイヤープロフィール`}
       title="PLAYER"
-      sx={{ color: "text.primary" }}
+      sx={{ color: "text.primary", py: { xs: 1.5, sm: 1.75 } }}
     >
       <Box
         sx={{
@@ -150,7 +150,7 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
         </Box>
       </Box>
 
-      <Divider sx={{ my: 1.5, borderColor: "divider" }} />
+      <Divider sx={{ my: 1, borderColor: "divider" }} />
 
       <Box
         sx={{
