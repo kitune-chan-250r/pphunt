@@ -3,12 +3,14 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AnalysisProgressCard } from "./AnalysisProgressCard";
 import { RecommendationResults } from "./RecommendationResults";
 import { useMapRecommendations } from "../hooks/useMapRecommendations";
+import { useTranslation } from "react-i18next";
 
 interface MapRecommendProps {
   playerId: string;
 }
 
 export const MapRecommend = ({ playerId }: MapRecommendProps) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery("(max-width:599.95px)");
   const reduceMotion = useReducedMotion();
   const shouldAnimate = !reduceMotion;
@@ -19,7 +21,7 @@ export const MapRecommend = ({ playerId }: MapRecommendProps) => {
   return (
     <Box
       component="section"
-      aria-label="譜面のおすすめ"
+      aria-label={t("analysis.ariaLabel")}
       sx={{ color: "text.primary" }}
     >
       <Stack spacing={{ xs: 1.5, sm: 1.5 }} sx={{ py: { xs: 1.5, sm: 1.5 } }}>

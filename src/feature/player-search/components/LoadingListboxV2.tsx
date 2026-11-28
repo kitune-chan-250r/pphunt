@@ -2,6 +2,7 @@ import { Box, Stack, useTheme } from "@mui/material";
 import type { HTMLAttributes, Ref } from "react";
 import { SpinnerV2 } from "./PPHuntIconsV2";
 import { designTokens } from "./pphuntThemeV2";
+import { useTranslation } from "react-i18next";
 
 type LoadingListboxV2Props = HTMLAttributes<HTMLElement> & {
   ownerState?: { loading?: boolean };
@@ -19,6 +20,7 @@ export const LoadingListboxV2 = ({
   ref,
   ...rest
 }: LoadingListboxV2Props) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
 
@@ -52,7 +54,7 @@ export const LoadingListboxV2 = ({
           >
             <SpinnerV2 />
             <Box component="span" sx={{ fontSize: "0.8125rem" }}>
-              検索中…
+              {t("search.searching")}
             </Box>
           </Stack>
         </li>

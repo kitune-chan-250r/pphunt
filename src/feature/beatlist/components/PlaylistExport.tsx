@@ -7,6 +7,7 @@ import {
   type PlaylistExportState,
 } from "../hooks/usePlaylistExport";
 import type { PlaylistExportInput } from "../types/beatlist";
+import { useTranslation } from "react-i18next";
 
 interface PlaylistExportContextValue extends PlaylistExportState {
   exportPlaylist: (input: PlaylistExportInput) => Promise<void>;
@@ -55,11 +56,14 @@ const usePlaylistExportContext = () => {
 
 /** Dismissible warning shown when an export partially or fully failed. */
 export const PlaylistExportAlert = () => {
+  const { t } = useTranslation();
   const { error, clearError } = usePlaylistExportContext();
   if (!error) return null;
   return (
     <Alert severity="warning" onClose={clearError} sx={{ mb: 0.5 }}>
-      {error}
+      {error.key === "playlist.partialFailure"
+        ? t(error.key, error.values)
+        : t(error.key)}
     </Alert>
   );
 };
@@ -73,6 +77,7 @@ interface PlaylistExportButtonProps {
 export const PlaylistExportButton = ({
   hideLabelOnMobile = true,
 }: PlaylistExportButtonProps = {}) => {
+  const { t } = useTranslation();
   const { isExporting, resolvedCount, totalCount, input, exportPlaylist } =
     usePlaylistExportContext();
 
@@ -87,9 +92,12 @@ export const PlaylistExportButton = ({
       aria-label={
         isExporting
           ? totalCount > 0
-            ? `BeatSaverを照会中 ${resolvedCount}/${totalCount}`
-            : "プレイリストを作成中"
-          : "表示中の候補をBeat Saberプレイリストとしてダウンロード"
+            ? t("playlist.lookup", {
+                resolved: resolvedCount,
+                total: totalCount,
+              })
+            : t("playlist.preparing")
+          : t("playlist.download")
       }
       sx={{
         flexShrink: 0,
@@ -145,7 +153,7 @@ export const PlaylistExportButton = ({
             sx={{ alignItems: "baseline", whiteSpace: "nowrap" }}
           >
             <Typography component="span" variant="body2" sx={{ fontWeight: 500 }}>
-              準備中
+              {t("playlist.preparingShort")}
             </Typography>
             {totalCount > 0 && (
               <Typography
@@ -166,7 +174,7 @@ export const PlaylistExportButton = ({
             sx={{ alignItems: "baseline", whiteSpace: "nowrap" }}
           >
             <Typography component="span" variant="body2" sx={{ fontWeight: 500 }}>
-              書き出す
+              {t("playlist.export")}
             </Typography>
             <Typography
               component="span"

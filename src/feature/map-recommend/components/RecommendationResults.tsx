@@ -33,6 +33,7 @@ import {
 } from "../lib/recommendationView";
 import { MapRecommendationCard } from "./MapRecommendationCard";
 import { trackEvent } from "../../../common/analytics/googleAnalytics";
+import { useTranslation } from "react-i18next";
 
 type MapRecommendationsAnalysis = ReturnType<typeof useMapRecommendations>;
 
@@ -40,13 +41,6 @@ interface RecommendationResultsProps {
   analysis: MapRecommendationsAnalysis;
   playerId: string;
 }
-
-const SORT_OPTIONS: { value: RecommendationSortKey; label: string }[] = [
-  { value: "recommended", label: "推薦順" },
-  { value: "deltaPp", label: "予測+ΔPP順" },
-  { value: "stars", label: "stars順" },
-  { value: "accuracy", label: "予測精度順" },
-];
 
 const EmptyState = ({
   isLoading,
@@ -56,42 +50,46 @@ const EmptyState = ({
   isLoading: boolean;
   isDone: boolean;
   activeTab: number;
-}) => (
-  <AsciiPanel sx={{ py: 6, px: 2, textAlign: "center" }}>
-    <Box sx={{ display: "flex", justifyContent: "center", mb: 1.5 }}>
-      <AsciiView
-        piece={huntRadar}
-        options={{ fps: 10 }}
-        label="レーダー"
-        sx={{
-          fontSize: "clamp(7px, 1.4vw, 11px)",
-          color: "text.disabled",
-        }}
-      />
-    </Box>
-    {isLoading ? (
-      <Stack spacing={1.5} sx={{ alignItems: "center" }}>
-        <SpinnerV2 size={22} />
+}) => {
+  const { t } = useTranslation();
+  return (
+    <AsciiPanel sx={{ py: 6, px: 2, textAlign: "center" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mb: 1.5 }}>
+        <AsciiView
+          piece={huntRadar}
+          options={{ fps: 10 }}
+          label={t("recommendations.radar")}
+          sx={{
+            fontSize: "clamp(7px, 1.4vw, 11px)",
+            color: "text.disabled",
+          }}
+        />
+      </Box>
+      {isLoading ? (
+        <Stack spacing={1.5} sx={{ alignItems: "center" }}>
+          <SpinnerV2 size={22} />
+          <Typography variant="body2" color="text.secondary">
+            {t("recommendations.loading")}
+          </Typography>
+        </Stack>
+      ) : (
         <Typography variant="body2" color="text.secondary">
-          スコアを集めながら候補を解析しています…
+          {isDone
+            ? activeTab === 0
+              ? t("recommendations.noImprovements")
+              : t("recommendations.noUnplayed")
+            : t("recommendations.starting")}
         </Typography>
-      </Stack>
-    ) : (
-      <Typography variant="body2" color="text.secondary">
-        {isDone
-          ? activeTab === 0
-            ? "周辺プレイヤーより高いスコアの譜面は見つかりませんでした。"
-            : "条件に合う未プレイ譜面は見つかりませんでした。"
-          : "分析を開始しています…"}
-      </Typography>
-    )}
-  </AsciiPanel>
-);
+      )}
+    </AsciiPanel>
+  );
+};
 
 export const RecommendationResults = ({
   analysis,
   playerId,
 }: RecommendationResultsProps) => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
   const [sortKey, setSortKey] = useState<RecommendationSortKey>("recommended");
   const [starsRange, setStarsRange] = useState<[number, number] | null>(null);
@@ -107,7 +105,16 @@ export const RecommendationResults = ({
   const recommendations =
     activeTab === 0 ? analysis.improvements : analysis.unplayed;
   const playerName = analysis.player?.name?.trim() || "";
-  const tabLabel = activeTab === 0 ? "スコア更新候補" : "未プレイ・PP候補";
+  const tabLabel =
+    activeTab === 0
+      ? t("recommendations.improveCandidates")
+      : t("recommendations.unplayedCandidates");
+  const sortOptions: { value: RecommendationSortKey; label: string }[] = [
+    { value: "recommended", label: t("recommendations.sortRecommended") },
+    { value: "deltaPp", label: t("recommendations.sortDeltaPp") },
+    { value: "stars", label: t("recommendations.sortStars") },
+    { value: "accuracy", label: t("recommendations.sortAccuracy") },
+  ];
 
   // プレイヤーが変わると MapRecommend 側の key で再マウントされ、
   // 表示条件（ソート／フィルタ／展開状態）は既定に戻る。
@@ -156,7 +163,10 @@ export const RecommendationResults = ({
         ? `PPHunt ${playerName} ${tabLabel}`
         : `PPHunt ${tabLabel}`,
       author: "PPHunt",
-      description: `PPHuntで生成したプレイリスト（${tabLabel} / ${view.items.length}譜面）`,
+      description: t("recommendations.playlistDescription", {
+        tabLabel,
+        count: view.items.length,
+      }),
       songs: view.items.map<PlaylistSourceSong>((recommendation) => ({
         hash: recommendation.leaderboard.map.hash,
         bsid: recommendation.leaderboard.map.bsid,
@@ -164,34 +174,34 @@ export const RecommendationResults = ({
         difficulty: recommendation.leaderboard.difficulty.rawDifficulty,
       })),
     }),
-    [playerName, tabLabel, view.items],
+    [playerName, tabLabel, t, view.items],
   );
 
   return (
     <PlaylistExportProvider input={playlistInput}>
       <Stack spacing={{ xs: 2, sm: 1.5 }}>
-        {analysis.error && <Alert severity="error">{analysis.error}</Alert>}
+        {analysis.error && (
+          <Alert severity="error">{t("analysis.playerFetchFailed")}</Alert>
+        )}
         {!playerId.trim() && (
-          <Alert severity="info">
-            プレイヤーIDを指定すると分析を開始します。
-          </Alert>
+          <Alert severity="info">{t("recommendations.specifyPlayer")}</Alert>
         )}
         {analysis.failedPlayers > 0 && (
           <Alert severity="warning">
-            {analysis.failedPlayers}
-            人分のスコアを取得できませんでした。取得できたデータで分析を続けています。
+            {t("recommendations.failedPlayers", {
+              count: analysis.failedPlayers,
+            })}
           </Alert>
         )}
         {analysis.failedMaps > 0 && (
           <Alert severity="warning">
-            {analysis.failedMaps}譜面のプレイ状況を確認できませんでした。
+            {t("recommendations.failedMaps", { count: analysis.failedMaps })}
           </Alert>
         )}
         {analysis.player?.stats.plusOnePP === null &&
           (analysis.phase === "done" || analysis.phase === "maps") && (
             <Alert severity="info">
-              ScoreSaberから plusOnePP
-              が提供されていないため、未プレイ譜面のPP条件を判定できません。スコア更新候補は引き続き表示します。
+              {t("recommendations.missingPlusOnePp")}
             </Alert>
           )}
 
@@ -215,7 +225,7 @@ export const RecommendationResults = ({
                 recommendation_type: value === 0 ? "improvements" : "unplayed",
               });
             }}
-            aria-label="譜面のおすすめ分類"
+            aria-label={t("recommendations.tabsLabel")}
             variant="scrollable"
             scrollButtons="auto"
             sx={{
@@ -235,12 +245,12 @@ export const RecommendationResults = ({
             }}
           >
             <Tab
-              label={`スコア更新候補 (${analysis.improvements.length})`}
+              label={`${t("recommendations.improveCandidates")} (${analysis.improvements.length})`}
               id="recommend-tab-0"
               aria-controls="recommend-panel-0"
             />
             <Tab
-              label={`未プレイ・PP候補 (${analysis.unplayed.length})`}
+              label={`${t("recommendations.unplayedCandidates")} (${analysis.unplayed.length})`}
               id="recommend-tab-1"
               aria-controls="recommend-panel-1"
             />
@@ -252,7 +262,7 @@ export const RecommendationResults = ({
         {recommendations.length > 0 && (
           <Box
             role="group"
-            aria-label="表示の絞り込みと並び替え"
+            aria-label={t("recommendations.filtersLabel")}
             sx={{
               border: 1,
               borderColor: "divider",
@@ -268,7 +278,7 @@ export const RecommendationResults = ({
                 sx={{ alignItems: "center", flexWrap: "wrap" }}
               >
                 <Typography variant="caption" color="text.secondary">
-                  並び順
+                  {t("recommendations.sortLabel")}
                 </Typography>
                 <Select
                   size="small"
@@ -276,10 +286,10 @@ export const RecommendationResults = ({
                   onChange={(event: SelectChangeEvent<RecommendationSortKey>) =>
                     setSortKey(event.target.value)
                   }
-                  aria-label="並び順"
+                  aria-label={t("recommendations.sortLabel")}
                   sx={{ borderRadius: 0, fontSize: "0.8125rem" }}
                 >
-                  {SORT_OPTIONS.map((option) => (
+                  {sortOptions.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
@@ -287,7 +297,7 @@ export const RecommendationResults = ({
                 </Select>
                 <Chip
                   size="small"
-                  label="同じ曲をまとめる"
+                  label={t("recommendations.groupSongs")}
                   clickable
                   color={groupBySong ? "primary" : "default"}
                   variant={groupBySong ? "filled" : "outlined"}
@@ -301,7 +311,7 @@ export const RecommendationResults = ({
                     onClick={resetView}
                     sx={{ borderRadius: 0, textTransform: "none" }}
                   >
-                    リセット
+                    {t("recommendations.reset")}
                   </Button>
                 )}
                 <Typography
@@ -310,16 +320,17 @@ export const RecommendationResults = ({
                   sx={{ ml: "auto" }}
                 >
                   {view.items.length === recommendations.length
-                    ? `${recommendations.length}件`
-                    : `${recommendations.length}件中 ${view.items.length}件を表示`}
+                    ? t("recommendations.count", {
+                        count: recommendations.length,
+                      })
+                    : t("recommendations.countShown", {
+                        total: recommendations.length,
+                        shown: view.items.length,
+                      })}
                 </Typography>
               </Stack>
 
-              <Stack
-                direction="row"
-                spacing={2}
-                sx={{ alignItems: "center" }}
-              >
+              <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
                 <Typography
                   variant="caption"
                   color="text.secondary"
@@ -346,7 +357,10 @@ export const RecommendationResults = ({
                 <Typography
                   variant="caption"
                   color="text.secondary"
-                  sx={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
+                  sx={{
+                    whiteSpace: "nowrap",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
                 >
                   {effectiveStarsRange[0].toFixed(1)} –{" "}
                   {effectiveStarsRange[1].toFixed(1)}
@@ -397,8 +411,10 @@ export const RecommendationResults = ({
                           }}
                         >
                           {expanded
-                            ? "同じ曲の他の難易度を閉じる"
-                            : `同じ曲の他の難易度 (${group.others.length}件)`}
+                            ? t("recommendations.collapseDifficulties")
+                            : t("recommendations.otherDifficulties", {
+                                count: group.others.length,
+                              })}
                         </Button>
                         {expanded && (
                           <Stack
@@ -429,14 +445,14 @@ export const RecommendationResults = ({
           {recommendations.length > 0 && view.items.length === 0 && (
             <AsciiPanel sx={{ py: 4, px: 2, textAlign: "center" }}>
               <Typography variant="body2" color="text.secondary">
-                条件に合う候補がありません。フィルターを緩めてください。
+                {t("recommendations.noFilteredResults")}
               </Typography>
               <Button
                 size="small"
                 onClick={resetView}
                 sx={{ mt: 1, borderRadius: 0, textTransform: "none" }}
               >
-                フィルターをリセット
+                {t("recommendations.resetFilters")}
               </Button>
             </AsciiPanel>
           )}
@@ -452,8 +468,10 @@ export const RecommendationResults = ({
 
         {analysis.phase === "done" && (
           <Typography variant="caption" color="text.secondary">
-            分析に使用したAPI呼び出し: 約{analysis.apiCallCount}回（周辺
-            {analysis.totalPlayers}人のスコアを集計）
+            {t("recommendations.apiUsage", {
+              count: analysis.apiCallCount,
+              players: analysis.totalPlayers,
+            })}
           </Typography>
         )}
       </Stack>

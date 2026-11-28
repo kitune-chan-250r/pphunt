@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Box } from "@mui/material";
 import { designTokens } from "./pphuntThemeV2";
 import { ensureFlagIconsCss } from "../flagIconsCss";
+import { useTranslation } from "react-i18next";
 
 /**
  * Country flag icon backed by the `flag-icons` SVG sprite (image-based, so it
@@ -45,8 +46,9 @@ export const CountryFlagV2 = ({
   isDark,
   title,
 }: CountryFlagV2Props) => {
+  const { t } = useTranslation();
   const code = toFlagCode(country);
-  const label = title ?? (country || "不明");
+  const label = title ?? (country || t("country.unknown"));
 
   // The flag stylesheet is loaded lazily (see flagIconsCss.ts); the search
   // flow already prefetches it, so this effect is only a fallback for a flag
@@ -70,7 +72,7 @@ export const CountryFlagV2 = ({
       component="span"
       className={`fi fis fi-${code}`}
       title={label}
-      aria-label={`国旗: ${country.toUpperCase()}`}
+      aria-label={t("country.flag", { country: country.toUpperCase() })}
       sx={{
         fontSize: "1rem",
         lineHeight: 1,
