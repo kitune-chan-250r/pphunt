@@ -44,3 +44,6 @@ crash.*.log
 .env
 .env.*
 !.env.example
+
+# allure test results
+allure-results/
