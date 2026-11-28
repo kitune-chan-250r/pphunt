@@ -125,8 +125,10 @@ pipeline {
 
   post {
     always {
-      if (fileExists('allure-results')) {
-        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+      script {
+        if (fileExists('allure-results')) {
+          allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        }
       }
     }
   }
