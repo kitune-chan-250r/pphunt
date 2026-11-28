@@ -47,8 +47,16 @@ export interface PlaylistExportState {
   justSaved: boolean;
   resolvedCount: number;
   totalCount: number;
-  error: string | null;
+  error: PlaylistExportError | null;
 }
+
+export type PlaylistExportError =
+  | { key: "playlist.noSongs" }
+  | { key: "playlist.saveFailed" }
+  | {
+      key: "playlist.partialFailure";
+      values: { count: number; failed: number };
+    };
 
 const INITIAL_STATE: PlaylistExportState = {
   isExporting: false,
@@ -134,7 +142,7 @@ export const usePlaylistExport = () => {
       });
       setState({
         ...INITIAL_STATE,
-        error: "プレイリストに出力できる譜面がありません。",
+        error: { key: "playlist.noSongs" },
       });
       return;
     }
@@ -221,7 +229,7 @@ export const usePlaylistExport = () => {
       });
       setState({
         ...INITIAL_STATE,
-        error: "プレイリストに出力できる譜面がありません。",
+        error: { key: "playlist.noSongs" },
       });
       return;
     }
@@ -238,7 +246,7 @@ export const usePlaylistExport = () => {
       });
       setState({
         ...INITIAL_STATE,
-        error: "プレイリストの保存に失敗しました。",
+        error: { key: "playlist.saveFailed" },
       });
       return;
     }
@@ -246,9 +254,12 @@ export const usePlaylistExport = () => {
     // ここから先はダウンロードの受け渡しフェーズ。ブラウザはダウンロードの
     // 進捗を JavaScript から観測できないため、一定時間ボタンを無効化して連打
     // （連続する自動ダウンロード＝実ブラウザで無言ブロックされる原因）を防ぐ。
-    const partialError =
+    const partialError: PlaylistExportError | null =
       lookupFailed > 0
-        ? `${playlist.songs.length}曲を出力しました。${lookupFailed}曲はBeatSaver Keyを解決できなかったため、所持している譜面のみ再生できます。`
+        ? {
+            key: "playlist.partialFailure",
+            values: { count: playlist.songs.length, failed: lookupFailed },
+          }
         : null;
 
     trackEvent({

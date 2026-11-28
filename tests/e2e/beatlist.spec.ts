@@ -369,22 +369,35 @@ const allBeatSaverResponses = {
 
 /**
  * プレイヤーを検索して選択し、譜面分析が完了するまで待つ。
+ * `language` を指定すると表示言語を切り替えてから操作する（既定は日本語）。
  */
-async function selectPlayerAndAwaitAnalysis(page: Page) {
+async function selectPlayerAndAwaitAnalysis(
+  page: Page,
+  language: "ja" | "en" = "ja",
+) {
   await page.goto("/");
+  if (language !== "ja") {
+    // 明示選択はブラウザ言語より優先されるため、保存値を注入して再読み込みする。
+    await page.evaluate((lng) => {
+      window.localStorage.setItem("pphunt-language", lng);
+    }, language);
+    await page.reload();
+  }
   const searchInput = page.getByRole("combobox", {
-    name: "検索するプレイヤー名",
+    name: /検索するプレイヤー名|Search players/,
   });
   await searchInput.fill("Aoi");
   const playerOption = page.getByRole("option", { name: /Aoi Player/ });
   await expect(playerOption).toBeVisible();
   await playerOption.click();
-  await expect(page.getByText("分析完了", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText(/分析完了|Analysis complete/, { exact: true }),
+  ).toBeVisible();
 }
 
 const exportButton = (page: Page) =>
   page.getByRole("button", {
-    name: "表示中の候補をBeat Saberプレイリストとしてダウンロード",
+    name: /表示中の候補をBeat Saberプレイリストとしてダウンロード|Download visible maps as a Beat Saber playlist/,
   });
 
 /** 書き出しボタンを押してダウンロードイベントを取得する */
@@ -905,4 +918,33 @@ test("書き出し完了後に『出力済み』のフィードバックが一�
   // フィードバックは一定時間だけ表示され、やがて元のラベルへ戻る
   await expect(exportButton(page)).toContainText("書き出す");
   await expect(exportButton(page)).not.toContainText("出力済み");
+});
+
+/**
+ * 英語表示に切り替えた場合も、書き出しの各フェーズ（保存中・出力済み）が
+ * 英語ラベルで表示され、連打防止の無効化が同じように働くことのテスト。
+ */
+test("英語表示でも書き出しの『Saving…』『Saved』フィードバックが表示される", async ({
+  page,
+}) => {
+  await installApiMocks(page, {
+    targetScores: defaultTargetScores,
+    competitorScores: defaultCompetitorScores,
+  });
+
+  await selectPlayerAndAwaitAnalysis(page, "en");
+
+  const downloadPromise = page.waitForEvent("download");
+  await exportButton(page).click();
+  await downloadPromise;
+
+  // ダウンロード発火後は英語の「Saving…」表示になり、無効化する
+  const savingButton = page.getByRole("button", { name: "Saving playlist" });
+  await expect(savingButton).toBeVisible();
+  await expect(savingButton).toContainText("Saving…");
+  await expect(savingButton).toBeDisabled();
+
+  // 受け渡し完了後は「Saved」、やがて英語の通常ラベル「Export」へ戻る
+  await expect(exportButton(page)).toContainText("Saved");
+  await expect(exportButton(page)).toContainText("Export");
 });

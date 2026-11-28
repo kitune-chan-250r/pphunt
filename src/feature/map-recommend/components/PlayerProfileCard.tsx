@@ -4,6 +4,7 @@ import { CountryFlagV2 } from "../../player-search/components/CountryFlagV2";
 import { ExternalLinkIconV2 } from "../../player-search/components/PPHuntIconsV2";
 import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
 import type { PlayerProfile } from "../../scoresaber/types/ScoreSaber";
+import { useTranslation } from "react-i18next";
 
 interface PlayerProfileCardProps {
   player: PlayerProfile;
@@ -16,6 +17,7 @@ const ppFormat = new Intl.NumberFormat("en-US", {
 });
 
 export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
+  const { t } = useTranslation();
   const { palette } = useTheme();
   const isDark = palette.mode === "dark";
   const accent = isDark ? palette.primary.light : "#805b00";
@@ -23,16 +25,18 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
     player.stats;
   const metrics = [
     {
-      label: "グローバル順位",
+      label: t("profile.globalRank"),
       value: `#${numberFormat.format(rank)}`,
       change: rankChange,
     },
     {
-      label: `${player.country || "国"}順位`,
+      label: t("profile.countryRank", {
+        country: player.country || t("profile.country"),
+      }),
       value: `#${numberFormat.format(countryRank)}`,
     },
     {
-      label: "平均精度",
+      label: t("profile.averageAccuracy"),
       value: `${averageAccuracy.toFixed(2)}%`,
     },
     {
@@ -44,7 +48,7 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
   return (
     <AsciiPanel
       component="section"
-      ariaLabel={`${player.name} のプレイヤープロフィール`}
+      ariaLabel={t("profile.ariaLabel", { name: player.name })}
       title="PLAYER"
       sx={{ color: "text.primary", py: { xs: 1.5, sm: 1.75 } }}
     >
@@ -85,7 +89,7 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
               <CountryFlagV2 country={player.country} isDark={isDark} />
               <Typography
                 component="a"
-                aria-label={`${player.name} の ScoreSaber プロフィールを新しいタブで開く`}
+                aria-label={t("profile.openProfile", { name: player.name })}
                 href={`https://scoresaber.com/u/${encodeURIComponent(player.id)}`}
                 target="_blank"
                 rel="noreferrer"
@@ -121,7 +125,7 @@ export const PlayerProfileCard = ({ player }: PlayerProfileCardProps) => {
             variant="caption"
             sx={{ color: "text.secondary", lineHeight: 1.2 }}
           >
-            合計PP
+            {t("profile.totalPp")}
           </Typography>
           <Stack
             direction="row"

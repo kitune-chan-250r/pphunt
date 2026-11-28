@@ -703,8 +703,7 @@ export const useMapRecommendations = (playerId: string) => {
           setState((current) => ({
             ...current,
             phase: "error",
-            error:
-              "ScoreSaberからプレイヤー情報を取得できませんでした。時間をおいて再度お試しください。",
+            error: "analysis.playerFetchFailed",
           }));
         }
       }

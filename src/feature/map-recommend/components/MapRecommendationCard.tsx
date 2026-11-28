@@ -9,6 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import { AsciiPanel } from "../../../common/ascii/AsciiPanel";
 import type { MapRecommendation } from "../hooks/useMapRecommendations";
 import { trackEvent } from "../../../common/analytics/googleAnalytics";
+import { useTranslation } from "react-i18next";
 
 interface MapRecommendationCardProps {
   recommendation: MapRecommendation;
@@ -56,6 +57,7 @@ const formatDifficultyLabel = (gameMode: string, rawDifficulty: string) => {
 export const MapRecommendationCard = ({
   recommendation,
 }: MapRecommendationCardProps) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { leaderboard, competitor, myScore, kind, display } = recommendation;
   const { map, difficulty, realm } = leaderboard;
@@ -132,7 +134,7 @@ export const MapRecommendationCard = ({
           </Typography>
           <Chip
             size="small"
-            label={kind === "UNPLAYED" ? "未プレイ" : "更新候補"}
+            label={kind === "UNPLAYED" ? t("map.unplayed") : t("map.improvement")}
             color={kind === "UNPLAYED" ? "primary" : "default"}
             sx={{
               alignSelf: { xs: "flex-start", sm: "center" },
@@ -153,7 +155,8 @@ export const MapRecommendationCard = ({
             whiteSpace: "nowrap",
           }}
         >
-          {map.songAuthorName} ・ マップ: {map.levelAuthorName}
+          {map.songAuthorName} ・{" "}
+          {t("map.mapper", { name: map.levelAuthorName })}
         </Typography>
 
         <Stack
@@ -174,14 +177,18 @@ export const MapRecommendationCard = ({
           <Chip
             size="small"
             variant="outlined"
-            label={`周辺 ${recommendation.appearanceCount}人がプレイ`}
+            label={t("map.nearbyPlayers", {
+              count: recommendation.appearanceCount,
+            })}
             sx={{ borderRadius: 0 }}
           />
           {display && display.recentPlayerCount > 0 && (
             <Chip
               size="small"
               variant="outlined"
-              label={`直近90日に ${display.recentPlayerCount}人`}
+              label={t("map.recentPlayers", {
+                count: display.recentPlayerCount,
+              })}
               sx={{ borderRadius: 0 }}
             />
           )}
@@ -190,7 +197,7 @@ export const MapRecommendationCard = ({
               size="small"
               color="warning"
               variant="outlined"
-              label="格上"
+              label={t("map.aboveCurve")}
               sx={{ borderRadius: 0 }}
             />
           )}
@@ -233,7 +240,7 @@ export const MapRecommendationCard = ({
           variant="caption"
           color="text.secondary"
         >
-          参考 PP
+          {t("map.referencePp")}
         </Typography>
         <Typography
           component="p"
@@ -254,28 +261,35 @@ export const MapRecommendationCard = ({
           </Typography>
         </Typography>
         <Typography variant="caption" color="text.secondary">
-          周辺最高: {formatScore(competitor.score.modifiedScore)}
+          {t("map.bestNearby", {
+            score: formatScore(competitor.score.modifiedScore),
+          })}
         </Typography>
         <Typography variant="caption" color="text.secondary">
           {myScore
-            ? `自分: ${formatScore(myScore.modifiedScore)}`
+            ? t("map.myScore", {
+                score: formatScore(myScore.modifiedScore),
+              })
             : `${competitor.name} · #${numberFormat.format(competitor.rank)}`}
         </Typography>
         {display && (
           <>
             <Typography variant="caption" color="text.secondary">
-              予測 +ΔPP（周辺最高ベース）:{" "}
-              {display.predictedDeltaPpBest.toFixed(1)} PP
+              {t("map.predictedBestDelta", {
+                value: display.predictedDeltaPpBest.toFixed(1),
+              })}
             </Typography>
             {kind === "UNPLAYED" && (
               <Typography variant="caption" color="text.secondary">
-                予測 +ΔPP（中央値ベース）:{" "}
-                {display.predictedDeltaPpMedian.toFixed(1)} PP
+                {t("map.predictedMedianDelta", {
+                  value: display.predictedDeltaPpMedian.toFixed(1),
+                })}
               </Typography>
             )}
             <Typography variant="caption" color="text.secondary">
-              予測精度（目安）:{" "}
-              {(display.predictedAccuracy * 100).toFixed(1)}%
+              {t("map.predictedAccuracy", {
+                value: (display.predictedAccuracy * 100).toFixed(1),
+              })}
             </Typography>
           </>
         )}

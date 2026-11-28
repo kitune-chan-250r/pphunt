@@ -8,6 +8,7 @@ import { AsciiProgress } from "../../../common/ascii/AsciiWidgets";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
 import type { useMapRecommendations } from "../hooks/useMapRecommendations";
 import { PlayerProfileCard } from "./PlayerProfileCard";
+import { useTranslation } from "react-i18next";
 
 type MapRecommendationsAnalysis = ReturnType<typeof useMapRecommendations>;
 
@@ -25,19 +26,29 @@ const getProgressValue = (analysis: MapRecommendationsAnalysis) => {
   return undefined;
 };
 
-const getStatusLabel = (analysis: MapRecommendationsAnalysis) => {
+const getStatusLabel = (
+  analysis: MapRecommendationsAnalysis,
+  t: ReturnType<typeof useTranslation>["t"],
+) => {
   if (analysis.phase === "scores") {
-    return `プレイヤースコア取得中 ${analysis.completedPlayers}/${analysis.totalPlayers}`;
+    return t("analysis.players", {
+      completed: analysis.completedPlayers,
+      total: analysis.totalPlayers,
+    });
   }
   if (analysis.phase === "maps") {
-    return `譜面のプレイ状況を確認中 ${analysis.checkedMaps}/${analysis.totalMaps}`;
+    return t("analysis.maps", {
+      checked: analysis.checkedMaps,
+      total: analysis.totalMaps,
+    });
   }
-  return "準備中";
+  return t("analysis.preparing");
 };
 
 export const AnalysisProgressCard = ({
   analysis,
 }: AnalysisProgressCardProps) => {
+  const { t } = useTranslation();
   if (!analysis.player) return null;
 
   const progressValue = getProgressValue(analysis);
@@ -52,7 +63,7 @@ export const AnalysisProgressCard = ({
           role="status"
           sx={{ alignSelf: "flex-end" }}
         >
-          分析完了
+          {t("analysis.complete")}
         </Typography>
       ) : (
         <AsciiPanel title="ANALYSIS">
@@ -66,10 +77,10 @@ export const AnalysisProgressCard = ({
           >
             <Box>
               <Typography variant="caption" color="text.secondary">
-                分析状況
+                {t("analysis.status")}
               </Typography>
               <Typography variant="body2" color="text.primary" role="status">
-                {getStatusLabel(analysis)}
+                {getStatusLabel(analysis, t)}
               </Typography>
             </Box>
             {analysis.isLoading && <SpinnerV2 size={16} />}

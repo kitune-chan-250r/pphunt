@@ -8,8 +8,10 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
+  workers: 4,
   use: {
     baseURL,
+    locale: "ja-JP",
     trace: "retain-on-failure",
   },
   projects: [

@@ -7,6 +7,7 @@ import {
   getQueryLengthBucket,
   trackEvent,
 } from "../../../common/analytics/googleAnalytics";
+import { useTranslation } from "react-i18next";
 
 const MIN_QUERY_LENGTH = 3;
 const DEBOUNCE_MS = 350;
@@ -24,6 +25,7 @@ export interface PlayerSearchInterface {
 }
 
 export const usePlayerSearch = (): PlayerSearchInterface => {
+  const { t } = useTranslation();
   const { searchPlayers } = useScoreSaber();
   const [playerSearchString, setPlayerSearchString] = useState("");
   const [playerSearchResults, setPlayerSearchResults] = useState<Player[]>([]);
@@ -33,7 +35,8 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
   // a window where no search is in flight yet and the UI prematurely
   // reports "no matching players" before the request has even started.
   const [isSearchPending, setIsSearchPending] = useState(false);
-  const [searchError, setSearchError] = useState<string | null>(null);
+  const [hasSearchError, setHasSearchError] = useState(false);
+  const searchError = hasSearchError ? t("search.failed") : null;
   const requestSeq = useRef(0);
 
   const searchPlayerWithDebounce = useDebouncedCallback(
@@ -66,7 +69,7 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
         if (seq !== requestSeq.current) return;
         console.error("[usePlayerSearch] Player search failed.", error);
         setPlayerSearchResults([]);
-        setSearchError("プレイヤーの検索に失敗しました。再度お試しください。");
+        setHasSearchError(true);
         trackEvent({
           event: "player_search",
           status: "error",
@@ -87,7 +90,7 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
   const handlePlayerSearchStringChange = useCallback(
     (searchString: string) => {
       setPlayerSearchString(searchString);
-      setSearchError(null);
+      setHasSearchError(false);
       requestSeq.current += 1;
 
       if (searchString.length < MIN_QUERY_LENGTH) {
@@ -112,7 +115,7 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
       setPlayerSearchResults([]);
       setIsSearching(false);
       setIsSearchPending(false);
-      setSearchError(null);
+      setHasSearchError(false);
     },
     [searchPlayerWithDebounce],
   );
@@ -124,7 +127,7 @@ export const usePlayerSearch = (): PlayerSearchInterface => {
     setPlayerSearchResults([]);
     setIsSearching(false);
     setIsSearchPending(false);
-    setSearchError(null);
+    setHasSearchError(false);
   }, [searchPlayerWithDebounce]);
 
   return {
