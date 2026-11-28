@@ -79,6 +79,13 @@ export const sanitizePlaylistFilename = (title: string) => {
   return cleaned.length > 0 ? cleaned : "playlist";
 };
 
+/**
+ * Grace period before releasing the object URL. Revoking it in the same task
+ * as the anchor click can abort the download before the browser has started
+ * it (silently, with no console output), so give it time to kick off.
+ */
+const OBJECT_URL_RELEASE_DELAY_MS = 2_000;
+
 export const downloadPlaylistFile = (file: PlaylistFile) => {
   const json = JSON.stringify(file, null, 2);
   // Round-trip parse to guarantee the output is valid JSON before saving.
@@ -92,5 +99,5 @@ export const downloadPlaylistFile = (file: PlaylistFile) => {
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => URL.revokeObjectURL(url), OBJECT_URL_RELEASE_DELAY_MS);
 };

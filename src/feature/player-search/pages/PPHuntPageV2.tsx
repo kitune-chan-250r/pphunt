@@ -3,8 +3,11 @@ import {
   Box,
   Container,
   CssBaseline,
+  FormControl,
   IconButton,
   Link,
+  MenuItem,
+  Select,
   Stack,
   ThemeProvider,
   Tooltip,
@@ -24,13 +27,25 @@ import {
   initializeAnalytics,
   trackEvent,
 } from "../../../common/analytics/googleAnalytics";
+import { useTranslation } from "react-i18next";
+import i18n, {
+  changeAppLanguage,
+  getAppLanguage,
+  supportedLanguages,
+} from "../../../i18n";
 
 type ThemeMode = "light" | "dark";
 
 export const PPHuntPageV2 = () => {
+  const { t } = useTranslation();
+  const language = getAppLanguage(i18n.resolvedLanguage);
   useEffect(() => {
     initializeAnalytics();
   }, []);
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title = t("page.title");
+  }, [language, t]);
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [modeOverride, setModeOverride] = useState<ThemeMode | null>(null);
@@ -91,16 +106,56 @@ export const PPHuntPageV2 = () => {
           }}
         >
           <PPHuntWordmarkV2 isDark={isDark} variant="header" />
-          <Tooltip
-            title={isDark ? "ライトモードに切り替え" : "ダークモードに切り替え"}
-          >
-            <IconButton
-              onClick={() => setModeOverride(isDark ? "light" : "dark")}
-              aria-label="カラーテーマを切り替え"
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+            <FormControl size="small" variant="outlined">
+              <Select
+                value={language}
+                onChange={(event) => {
+                  const nextLanguage = supportedLanguages.find(
+                    (supportedLanguage) =>
+                      supportedLanguage === event.target.value,
+                  );
+                  if (nextLanguage) {
+                    void changeAppLanguage(nextLanguage).catch((error: unknown) =>
+                      console.error(
+                        "[PPHuntPageV2] Failed to change language.",
+                        error,
+                      ),
+                    );
+                  }
+                }}
+                aria-label={t("language.selector")}
+                sx={{
+                  minWidth: 104,
+                  borderRadius: 0,
+                  fontSize: "0.8125rem",
+                  "& .MuiSelect-select": { py: 0.75 },
+                }}
+              >
+                {supportedLanguages.map((supportedLanguage) => (
+                  <MenuItem key={supportedLanguage} value={supportedLanguage}>
+                    {t(
+                      supportedLanguage === "ja"
+                        ? "language.japanese"
+                        : "language.english",
+                    )}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Tooltip
+              title={
+                isDark ? t("theme.switchToLight") : t("theme.switchToDark")
+              }
             >
-              {isDark ? <LightModeIconV2 /> : <DarkModeIconV2 />}
-            </IconButton>
-          </Tooltip>
+              <IconButton
+                onClick={() => setModeOverride(isDark ? "light" : "dark")}
+                aria-label={t("theme.selector")}
+              >
+                {isDark ? <LightModeIconV2 /> : <DarkModeIconV2 />}
+              </IconButton>
+            </Tooltip>
+          </Stack>
         </Box>
 
         <Container
@@ -206,7 +261,7 @@ export const PPHuntPageV2 = () => {
             color="text.secondary"
             variant="body2"
           >
-            PPガイド：ScoreSaberのPPの仕組みと効率的な上げ方
+            {t("page.guide")}
           </Link>
         </Box>
         <BuildVersionV2 />

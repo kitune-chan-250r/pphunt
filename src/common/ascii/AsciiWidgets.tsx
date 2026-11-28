@@ -3,6 +3,7 @@ import { mount } from "ascii.rest";
 import { Box } from "@mui/material";
 import { AsciiView } from "./AsciiView";
 import { dotsSpinner, liveProgressBar, scanningBand } from "./pieces";
+import { useTranslation } from "react-i18next";
 
 /** Columns the bar's trailing "  100%" takes, so the track can fill the rest. */
 const PERCENT_COLS = 5;
@@ -45,20 +46,23 @@ const useHostColumns = (hostRef: { current: HTMLElement | null }) => {
 /** Braille dots spinner drawn by ascii.rest, in currentColor. */
 export const AsciiSpinner = ({
   size = 16,
-  label = "検索中",
+  label,
 }: {
   size?: number;
   label?: string;
-}) => (
-  <Box
-    component="span"
-    role="status"
-    aria-label={label}
-    sx={{ display: "inline-flex", flexShrink: 0, lineHeight: 1 }}
-  >
-    <AsciiView piece={dotsSpinner} sx={{ fontSize: size, color: "inherit" }} />
-  </Box>
-);
+}) => {
+  const { t } = useTranslation();
+  return (
+    <Box
+      component="span"
+      role="status"
+      aria-label={label ?? t("ascii.searching")}
+      sx={{ display: "inline-flex", flexShrink: 0, lineHeight: 1 }}
+    >
+      <AsciiView piece={dotsSpinner} sx={{ fontSize: size, color: "inherit" }} />
+    </Box>
+  );
+};
 
 /**
  * █░ progress bar that spans its parent's whole width, reading its value live
@@ -75,6 +79,7 @@ export const AsciiProgress = ({
   value?: number;
   fallbackWidth?: number;
 }) => {
+  const { t } = useTranslation();
   const preRef = useRef<HTMLPreElement>(null);
   // The piece polls this holder every frame, so React never remounts it.
   const valueRef = useRef(value ?? 0);
@@ -105,7 +110,9 @@ export const AsciiProgress = ({
       ref={preRef}
       role="img"
       aria-label={
-        indeterminate ? "分析中" : `進捗 ${Math.round(value)}%`
+        indeterminate
+          ? t("ascii.analyzing")
+          : t("ascii.progress", { percent: Math.round(value) })
       }
       sx={{
         m: 0,

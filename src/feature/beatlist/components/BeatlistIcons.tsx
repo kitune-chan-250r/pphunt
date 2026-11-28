@@ -8,3 +8,8 @@ import { Glyph } from "../../../common/ascii/Glyph";
 export function DownloadIconV2() {
   return <Glyph char="⇣" size="1.05em" />;
 }
+
+/** 出力完了を示すチェック記号（書き出しボタンの完了フィードバック用）。 */
+export function CheckIconV2() {
+  return <Glyph char="✓" size="1.05em" />;
+}

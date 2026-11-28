@@ -17,6 +17,7 @@ import { PlayerSearchOptionV2 } from "./PlayerSearchOptionV2";
 import { LoadingListboxV2 } from "./LoadingListboxV2";
 import { designTokens } from "./pphuntThemeV2";
 import type { Player } from "../../scoresaber/types/PlayerSearchResult";
+import { useTranslation } from "react-i18next";
 
 type PlayerSearchStatusProps = HTMLAttributes<HTMLDivElement> & {
   ownerState?: {
@@ -69,6 +70,7 @@ export const PlayerSearchBarV2 = ({
   onSubmit,
   onPlayerSelect,
 }: PlayerSearchBarV2Props) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
   const inputRef = useRef<HTMLInputElement>(null);
@@ -119,14 +121,14 @@ export const PlayerSearchBarV2 = ({
         {...params}
         fullWidth
         variant="outlined"
-        placeholder="検索するプレイヤー名を入力"
+        placeholder={t("search.placeholder")}
         inputRef={inputRef}
         autoFocus
         slotProps={{
           ...params.slotProps,
           htmlInput: {
             ...params.slotProps.htmlInput,
-            "aria-label": "検索するプレイヤー名",
+            "aria-label": t("search.label"),
             autoComplete: "off",
           },
           input: {
@@ -147,13 +149,13 @@ export const PlayerSearchBarV2 = ({
             ),
             endAdornment: value ? (
               <InputAdornment position="end">
-                <Tooltip title="検索欄をクリア">
+                <Tooltip title={t("search.clear")}>
                   <IconButton
                     type="button"
                     onClick={handleClearClick}
                     edge="end"
                     size="small"
-                    aria-label="検索欄をクリア"
+                    aria-label={t("search.clear")}
                   >
                     <ClearIconV2 />
                   </IconButton>
@@ -191,7 +193,7 @@ export const PlayerSearchBarV2 = ({
         }}
       />
     ),
-    [compact, handleClearClick, isDark, value],
+    [compact, handleClearClick, isDark, t, value],
   );
 
   return (
@@ -234,7 +236,7 @@ export const PlayerSearchBarV2 = ({
         loadingText={
           <Stack direction="row" sx={{ alignItems: "center", gap: 1 }}>
             <SpinnerV2 />
-            <span>検索中…</span>
+            <span>{t("search.searching")}</span>
           </Stack>
         }
         // MUI suppresses noOptionsText for freeSolo, so render it in the status slot.
@@ -246,10 +248,10 @@ export const PlayerSearchBarV2 = ({
         noOptionsText={
           errorMessage ??
           (value.length < 3
-            ? "3文字以上で検索"
+            ? t("search.minLength")
             : isSearching
-              ? "検索中…"
-              : "該当するプレイヤーがありません")
+              ? t("search.searching")
+              : t("search.noResults"))
         }
         sx={{ width: "100%" }}
         freeSolo
