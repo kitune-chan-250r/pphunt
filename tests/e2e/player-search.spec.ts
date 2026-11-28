@@ -293,9 +293,26 @@ test("連続入力では最後の検索語だけを候補検索する", async ({
     name: "検索するプレイヤー名",
   });
 
-  await searchInput.fill("Aoi");
-  await searchInput.fill("Mira");
+  // 2回の入力を同一タスク内で同期的に発火し、デバウンス(350ms)に確実に収める。
+  // fill() を連続させるとワーカーのCPU競合で入力間隔が空き、中間語 "Aoi" の
+  // 検索が混入して不安定になるため、ネイティブの value セッター経由で
+  // input イベントを dispatch する（React の制御された入力は直接代入では
+  // onChange を発火しないため）。
+  await searchInput.evaluate((el) => {
+    const input = el as HTMLInputElement;
+    const setValue = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      "value",
+    )?.set;
+    const type = (nextValue: string) => {
+      setValue?.call(input, nextValue);
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    };
+    type("Aoi");
+    type("Mira");
+  });
 
+  // デバウンスで打ち消されるため、中間語 "Aoi" では検索しない
   await expect.poll(() => searchQueries).toEqual(["Mira"]);
   await expect(
     page.getByRole("option", { name: /Mira Player/ }),
