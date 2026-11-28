@@ -81,12 +81,14 @@ pipeline {
 
           npx playwright install 
 
+          rm -rf allure-results
           npm run test:e2e-allure
         '''
       }
       
       post {
         always {
+          allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
           archiveArtifacts artifacts: 'playwright-report/**, test-results/**, allure-results/**', allowEmptyArchive: true
         }
       }
