@@ -586,6 +586,7 @@ test("書き出し中は進行状況を表示し、完了後は元の表示へ�
   await selectPlayerAndAwaitAnalysis(page);
   await page.getByRole("tab", { name: "未プレイ・PP候補 (2)" }).click();
 
+  const downloadPromise = page.waitForEvent("download");
   await exportButton(page).click();
 
   // 照会中は進行状況（解決済み/全体）をボタンに表示する
@@ -597,8 +598,19 @@ test("書き出し中は進行状況を表示し、完了後は元の表示へ�
   await expect(progressButton).toBeDisabled();
 
   releaseBeatSaver();
+  await downloadPromise;
 
-  // 完了後はラベルと進行表示が元に戻る
+  // ダウンロード発火後は「保存中」表示に切り替わり、連打防止のため無効になる
+  const savingButton = page.getByRole("button", { name: "プレイリストを保存中" });
+  await expect(savingButton).toBeVisible();
+  await expect(savingButton).toContainText("保存中");
+  await expect(savingButton).toBeDisabled();
+
+  // 受け渡しが終わると「✓ 出力済み」のフィードバックが表示される
+  await expect(exportButton(page)).toContainText("出力済み");
+  await expect(exportButton(page)).toBeEnabled();
+
+  // フィードバックが消えると元のラベルへ戻る
   await expect(exportButton(page)).toContainText("書き出す");
   await expect(
     page.getByRole("button", { name: "BeatSaverを照会中 0/2" }),
@@ -695,4 +707,202 @@ test("同一譜面の複数難易度は1曲にまとめて書き出す", async (
       .map((difficulty) => `${difficulty.characteristic}/${difficulty.name}`)
       .sort(),
   ).toEqual(["Standard/Expert", "Standard/ExpertPlus"]);
+});
+
+/**
+ * 初回書き出し後に同じ候補を再書き出しするときの回帰テスト。
+ *
+ * 実ブラウザでは、`<a download>` のクリックが非同期処理のあとに遅れて発火すると
+ * 「ユーザー操作を伴わない連続ダウンロード」として無言でブロックされ、コンソールに
+ * 何も出力されない。BeatSaver キーをセッション内でキャッシュすれば、2 回目以降の
+ * 書き出しはネットワークを待たずに即座に発火するため、この問題を防げる。
+ */
+test("同じ候補を2回以上書き出すとき、BeatSaver を再照会せず即座にダウンロードできる", async ({
+  page,
+}) => {
+  const { beatsaverRequests } = await installApiMocks(page, {
+    targetScores: defaultTargetScores,
+    competitorScores: defaultCompetitorScores,
+    beatsaverResponses: allBeatSaverResponses,
+  });
+
+  await selectPlayerAndAwaitAnalysis(page);
+  await page.getByRole("tab", { name: "未プレイ・PP候補 (2)" }).click();
+
+  // 1 回目: bsid が無い 2 譜面を BeatSaver で解決する
+  const first = await clickExport(page);
+  expect(sortedRequests(beatsaverRequests)).toEqual(
+    sortedRequests([
+      `/maps/hash/${UNPLAYED_HASH}`,
+      `/maps/hash/${RESOLVED_HASH}`,
+    ]),
+  );
+  const firstPlaylist = await readPlaylist(first);
+
+  // 2 回目: 同じ候補なので再照会しない（キャッシュ済みキーで即出力）
+  const second = await clickExport(page);
+  expect(beatsaverRequests).toHaveLength(2);
+  const secondPlaylist = await readPlaylist(second);
+  expect(secondPlaylist.songs.map((song) => song.key)).toEqual(
+    firstPlaylist.songs.map((song) => song.key),
+  );
+  expect(
+    secondPlaylist.songs.find((song) => song.hash === RESOLVED_HASH)?.key,
+  ).toBe(RESOLVED_BEATSAVER_KEY);
+
+  // 3 回目も同様に再照会ゼロでダウンロードできる
+  const third = await clickExport(page);
+  expect(beatsaverRequests).toHaveLength(2);
+  const thirdPlaylist = await readPlaylist(third);
+  expect(thirdPlaylist.songs).toEqual(firstPlaylist.songs);
+
+  await expect(page.getByRole("alert")).toHaveCount(0);
+});
+
+/**
+ * `URL.revokeObjectURL` をクリックと同時（同期）に呼ぶと、実ブラウザでは
+ * ダウンロードが中断されることがある（コンソールには何も出ない）。
+ * オブジェクト URL はダウンロード開始後に遅延して解放されること。
+ */
+test("プレイリストのオブジェクトURLはクリック後、遅延して解放される", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const trace = { createAt: null, clickAt: null, revokeAt: null };
+    (
+      window as unknown as {
+        __urlTrace: {
+          createAt: number | null;
+          clickAt: number | null;
+          revokeAt: number | null;
+        };
+      }
+    ).__urlTrace = trace;
+
+    const originalCreate = URL.createObjectURL.bind(URL);
+    URL.createObjectURL = (blob: Blob | MediaSource) => {
+      trace.createAt = performance.now();
+      return originalCreate(blob);
+    };
+    const originalRevoke = URL.revokeObjectURL.bind(URL);
+    URL.revokeObjectURL = (url: string) => {
+      trace.revokeAt = performance.now();
+      return originalRevoke(url);
+    };
+    const originalClick = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function patched(
+      ...args: Parameters<HTMLAnchorElement["click"]>
+    ) {
+      trace.clickAt = performance.now();
+      return originalClick.apply(this, args);
+    };
+  });
+
+  await installApiMocks(page, {
+    targetScores: defaultTargetScores,
+    competitorScores: defaultCompetitorScores,
+  });
+
+  await selectPlayerAndAwaitAnalysis(page);
+  await clickExport(page);
+
+  // 解放は遅延実行されるため、記録されるまで待つ
+  await page.waitForFunction(
+    () =>
+      (
+        window as unknown as {
+          __urlTrace: { revokeAt: number | null };
+        }
+      ).__urlTrace.revokeAt !== null,
+    undefined,
+    { timeout: 10_000 },
+  );
+
+  const trace = await page.evaluate(() => {
+    const t = (
+      window as unknown as {
+        __urlTrace: {
+          createAt: number | null;
+          clickAt: number | null;
+          revokeAt: number | null;
+        };
+      }
+    ).__urlTrace;
+    return { createAt: t.createAt, clickAt: t.clickAt, revokeAt: t.revokeAt };
+  });
+
+  expect(trace.createAt).not.toBeNull();
+  expect(trace.clickAt).not.toBeNull();
+  expect(trace.revokeAt).not.toBeNull();
+  // クリック直後の同期解放ではなく、ブラウザがダウンロードを開始できるだけの
+  // 猶予をもって解放されること。
+  expect((trace.revokeAt ?? 0) - (trace.clickAt ?? 0)).toBeGreaterThanOrEqual(
+    50,
+  );
+});
+
+/**
+ * ダウンロード発火後の受け渡し中はボタンを無効化し、連打による重複ダウンロード
+ * を防ぐことのテスト。実ブラウザでは連続する自動ダウンロードが無言でブロック
+ * されるため、発火後は一定時間クリックを受け付けない仕様になっている。
+ */
+test("ダウンロードの受け渡し中は書き出しボタンが無効になり、連打しても重複ダウンロードしない", async ({
+  page,
+}) => {
+  await installApiMocks(page, {
+    targetScores: defaultTargetScores,
+    competitorScores: defaultCompetitorScores,
+  });
+
+  await selectPlayerAndAwaitAnalysis(page);
+
+  const first = await clickExport(page);
+  expect(first.suggestedFilename()).toMatch(/\.bplist$/);
+
+  // ダウンロード発火直後は「保存中」表示に切り替わり、ボタンは無効になる
+  const savingButton = page.getByRole("button", {
+    name: "プレイリストを保存中",
+  });
+  await expect(savingButton).toBeVisible();
+  await expect(savingButton).toBeDisabled();
+
+  // 無効中に強制クリックしても（ブラウザがクリックを吸収して）2回目は発火しない
+  await savingButton.click({ force: true }).catch(() => undefined);
+  let duplicate: Download | null = null;
+  try {
+    duplicate = await page.waitForEvent("download", { timeout: 2_000 });
+  } catch {
+    // 期待どおり: 受け渡し中はダウンロードが発生しない
+  }
+  expect(duplicate).toBeNull();
+
+  // 受け渡しとフィードバックが終わると再度書き出せる
+  await expect(exportButton(page)).toBeEnabled();
+  const second = await clickExport(page);
+  expect(second.suggestedFilename()).toMatch(/\.bplist$/);
+});
+
+/**
+ * 書き出し完了後、「✓ 出力済み」のフィードバックが一時的に表示され、
+ * もとの「書き出す」ラベルへ戻ることのテスト。
+ */
+test("書き出し完了後に『出力済み』のフィードバックが一時的に表示される", async ({
+  page,
+}) => {
+  await installApiMocks(page, {
+    targetScores: defaultTargetScores,
+    competitorScores: defaultCompetitorScores,
+  });
+
+  await selectPlayerAndAwaitAnalysis(page);
+
+  await clickExport(page);
+
+  // 保存中フェーズを経て「出力済み」が表示される
+  await expect(exportButton(page)).toContainText("出力済み");
+  await expect(exportButton(page)).toBeEnabled();
+
+  // フィードバックは一定時間だけ表示され、やがて元のラベルへ戻る
+  await expect(exportButton(page)).toContainText("書き出す");
+  await expect(exportButton(page)).not.toContainText("出力済み");
 });

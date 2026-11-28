@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { Alert, Box, Button, Stack, Typography } from "@mui/material";
 import { SpinnerV2 } from "../../player-search/components/PPHuntIconsV2";
-import { DownloadIconV2 } from "./BeatlistIcons";
+import { DownloadIconV2, CheckIconV2 } from "./BeatlistIcons";
 import {
   usePlaylistExport,
   type PlaylistExportState,
@@ -73,10 +73,18 @@ interface PlaylistExportButtonProps {
 export const PlaylistExportButton = ({
   hideLabelOnMobile = true,
 }: PlaylistExportButtonProps = {}) => {
-  const { isExporting, resolvedCount, totalCount, input, exportPlaylist } =
-    usePlaylistExportContext();
+  const {
+    isExporting,
+    isSaving,
+    justSaved,
+    resolvedCount,
+    totalCount,
+    input,
+    exportPlaylist,
+  } = usePlaylistExportContext();
 
-  const canExport = input.songs.length > 0 && !isExporting;
+  // ダウンロードの受け渡し中（isSaving）も無効化して連打を防ぐ。
+  const canExport = input.songs.length > 0 && !isExporting && !isSaving;
 
   return (
     <Button
@@ -89,7 +97,9 @@ export const PlaylistExportButton = ({
           ? totalCount > 0
             ? `BeatSaverを照会中 ${resolvedCount}/${totalCount}`
             : "プレイリストを作成中"
-          : "表示中の候補をBeat Saberプレイリストとしてダウンロード"
+          : isSaving
+            ? "プレイリストを保存中"
+            : "表示中の候補をBeat Saberプレイリストとしてダウンロード"
       }
       sx={{
         flexShrink: 0,
@@ -127,7 +137,15 @@ export const PlaylistExportButton = ({
           opacity: 0.55,
         },
       }}
-      startIcon={isExporting ? <SpinnerV2 size={14} /> : <DownloadIconV2 />}
+      startIcon={
+        isExporting || isSaving ? (
+          <SpinnerV2 size={14} />
+        ) : justSaved ? (
+          <CheckIconV2 />
+        ) : (
+          <DownloadIconV2 />
+        )
+      }
     >
       <Box
         component="span"
@@ -158,6 +176,14 @@ export const PlaylistExportButton = ({
               </Typography>
             )}
           </Stack>
+        ) : isSaving ? (
+          <Typography component="span" variant="body2" sx={{ fontWeight: 500 }}>
+            保存中
+          </Typography>
+        ) : justSaved ? (
+          <Typography component="span" variant="body2" sx={{ fontWeight: 500 }}>
+            出力済み
+          </Typography>
         ) : (
           <Stack
             component="span"
