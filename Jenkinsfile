@@ -81,13 +81,13 @@ pipeline {
 
           npx playwright install 
 
-          npm run test:e2e
+          npm run test:e2e-allure
         '''
       }
       
       post {
         always {
-          archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
+          archiveArtifacts artifacts: 'playwright-report/**, test-results/**, allure-results/**', allowEmptyArchive: true
         }
       }
     }
