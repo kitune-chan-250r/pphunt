@@ -49,6 +49,12 @@ API トークンを登録し、Credentials Binding プラグインを有効に�
 編集権限が必要です。Deploy ステージは `main` ブランチでのみ実行され、
 ビルドと Playwright の各ステージが成功した場合に限りデプロイします。
 
+Playwright の Allure 結果は `allure-results/` に出力し、Jenkins の Allure プラグインで
+各ビルドのレポートとして公開します。Jenkins には Allure プラグインと Allure
+コマンドラインを設定してください。レポート生成はDockerコンテナ外のJenkinsノードで
+行います。ビルドごとに結果ディレクトリを初期化するため、前回ビルドのテスト結果は
+レポートに混在しません。
+
 以前の Terraform 設定で `pphunt` が Git 連携 Pages プロジェクトとして作成済みの
 場合は、Direct Upload 設定を適用する前に `terraform plan` の内容を確認してください。
 デプロイ方式の切り替えに伴い、Pages プロジェクトの再作成が必要になる場合があります。

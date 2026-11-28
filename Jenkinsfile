@@ -4,6 +4,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        sh 'rm -rf allure-results'
         checkout scm
       }
     }
@@ -81,13 +82,13 @@ pipeline {
 
           npx playwright install 
 
-          npm run test:e2e
+          npm run test:e2e-allure
         '''
       }
       
       post {
         always {
-          archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
+          archiveArtifacts artifacts: 'playwright-report/**, test-results/**, allure-results/**', allowEmptyArchive: true
         }
       }
     }
@@ -117,6 +118,16 @@ pipeline {
               --project-name=pphunt \
               --branch=main
           '''
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      script {
+        if (fileExists('allure-results')) {
+          allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
         }
       }
     }
